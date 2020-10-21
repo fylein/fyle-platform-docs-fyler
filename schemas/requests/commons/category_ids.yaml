@@ -4,5 +4,5 @@ description: |
   List of strings.<br>
   Supported operators are `eq`,`cs`.<br>
 schema:
-  type: array
+  type: string
   example: 'cs.{12,7}'

@@ -4,5 +4,5 @@ description: |
   This param is used to filer records by
   Supported operators are `eq`,`not.eq`.<br>
 schema:
-  type: boolean
+  type: string
   example: 'eq.true'
