@@ -1,0 +1,7 @@
+in: query
+name: code
+description: |
+  Supported operators are `in`,`eq`,`like`.<br>
+schema:
+  type: string
+  example: 'eq.CC01'
