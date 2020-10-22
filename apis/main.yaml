@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  version: '3.0'
+  title: Fyle REST API
+  contact:
+    name: Integrations
+    email: support@fyle.in
+servers:
+  - url: 'https://accounts.fylehq.com'
+    description: Live Server
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://accounts.fylehq.com/app/developers/#/oauth/authorize'
+          tokenUrl: 'https://accounts.fylehq.com/oauth/token'
+          scopes:
+            fyler.*: Grant all FYLER actions
+
+tags:
+  - name: Projects
+    description: |
+      These APIs gives you list of your organisation's Projects data.
+  - name: Expenses
+    description: |
+      This API gives you access to your Expenses data.
+
+paths:
+  /v4/fyler/projects:
+    $ref: 'paths/projects.yaml'
+  /v4/fyler/expenses/{id}:
+    $ref: 'paths/expenses.yaml'
+  /v4/fyler/expense_comments/{id}:
+    $ref: 'paths/expense_comments.yaml'
+  /v4/fyler/expenses/delete/bulk:
+    $ref: 'paths/expenses_delete_bulk.yaml'
