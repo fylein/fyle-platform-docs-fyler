@@ -168,6 +168,7 @@ components:
     text:
       in: query
       name: text
+      required: true
       description: >
         The text string on which to search. The Location Autocomplete service
         will return candidate matches based on this string and order results
@@ -180,6 +181,7 @@ components:
     types:
       in: query
       name: type
+      required: true
       description: |
         This param will define the types of place results to return.<br>
         types=(cities)
@@ -189,6 +191,7 @@ components:
     user_id:
       in: query
       name: user_id
+      required: true
       description: >
         This param will contain the user_id of the user who is requesting this
         API.
@@ -644,15 +647,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/location_geocode:
+  '/v4/fyler/location_geocode/{place_id}':
     get:
       tags:
         - Location
       summary: Returns a geographic info of a place
       operationId: GetLocationGeocode
       parameters:
-        - in: query
+        - in: path
           name: place_id
+          required: true
           description: >
             It containes a textual identifier that uniquely identifies a
             place.<br>
