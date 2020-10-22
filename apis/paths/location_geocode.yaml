@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Location
+  summary: Returns a geographic info of a place
+  operationId: GetLocationGeocode
+  parameters:
+    - in: path
+      name: place_id
+      required: true
+      description: |
+        It containes a textual identifier that uniquely identifies a place.<br>
+        place_id=ChIJify3BTzI5zsR2q86fwXrh74
+      schema:
+        type: string
+        example: 'ChIJify3BTzI5zsR2q86fwXrh74'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/location_geocode.yaml'

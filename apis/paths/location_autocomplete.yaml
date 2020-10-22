@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Location
+  summary: Returns a list of location suggestions
+  operationId: GetLocationAutocomplete
+  parameters:
+    - $ref: '../schemas/requests/location/cordinates.yaml'
+    - $ref: '../schemas/requests/location/text.yaml'
+    - $ref: '../schemas/requests/location/types.yaml'
+    - $ref: '../schemas/requests/commons/user_id.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/location_autocomplete.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

@@ -1,0 +1,9 @@
+in: query
+name: text
+required: true
+description: |
+  The text string on which to search. The Location Autocomplete service will return candidate matches based on this string and order results based on their perceived relevance.<br>
+  text=bangalore
+schema:
+  type: string
+  example: 'bangalore'

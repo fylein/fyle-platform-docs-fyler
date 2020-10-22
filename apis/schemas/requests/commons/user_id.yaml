@@ -1,0 +1,9 @@
+in: query
+name: user_id
+required: true
+description: |
+  This param will contain the user_id of the user who is requesting this API.
+  user_id=usvd78228jQS.<br>
+schema:
+  type: string
+  example: 'usvd78228jQS'
