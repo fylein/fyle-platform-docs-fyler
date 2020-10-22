@@ -24,7 +24,12 @@ tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Expense Custom Properties
+    description: |
+      This API gives you access to your organisation's Expenses Custom Properties data.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
+  /v4/fyler/expense_custom_properties:
+    $ref: 'paths/expense_custom_properties.yaml'
