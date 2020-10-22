@@ -2,7 +2,7 @@ get:
   tags:
     - Location
   summary: Returns a geographic info of a place
-  operationId: GetLocationAutocomplete
+  operationId: GetLocationGeocode
   parameters:
     - in: query
       name: place_id
