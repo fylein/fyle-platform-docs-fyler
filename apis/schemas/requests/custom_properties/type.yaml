@@ -1,4 +1,7 @@
-type: string
+in: query
+name: type
 description: |
-  This field specifies the type of the custom property.
-example: TEXT
+  Supported operators are `eq`, `in`.<br>
+schema:
+  type: string
+  example: 'eq.SELECT'

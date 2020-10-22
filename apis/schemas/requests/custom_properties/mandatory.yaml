@@ -1,4 +1,8 @@
-type: boolean
+in: query
+name: mandatory
 description: |
-  This field specifies if the custom property is mandatory or not.
-example: true
+  This param is used to filer records by
+  Supported operators are `eq`,`not.eq`.<br>
+schema:
+  type: string
+  example: 'eq.true'
