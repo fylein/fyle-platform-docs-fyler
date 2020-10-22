@@ -4,7 +4,6 @@ get:
   summary: Returns a geographic info of a place
   operationId: GetLocationAutocomplete
   parameters:
-    - $ref: '../schemas/requests/commons/cordinates.yaml'
     - in: query
       name: place_id
       description: |
