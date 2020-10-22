@@ -4,8 +4,9 @@ get:
   summary: Returns a geographic info of a place
   operationId: GetLocationGeocode
   parameters:
-    - in: query
+    - in: path
       name: place_id
+      required: true
       description: |
         It containes a textual identifier that uniquely identifies a place.<br>
         place_id=ChIJify3BTzI5zsR2q86fwXrh74

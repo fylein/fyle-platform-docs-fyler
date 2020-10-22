@@ -33,5 +33,5 @@ paths:
     $ref: 'paths/projects.yaml'
   /v4/fyler/location_autocomplete:
     $ref: 'paths/location_autocomplete.yaml'
-  /v4/fyler/location_geocode:
+  /v4/fyler/location_geocode/{place_id}:
     $ref: 'paths/location_geocode.yaml'
