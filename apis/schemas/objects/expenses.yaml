@@ -377,3 +377,5 @@ properties:
     $ref: 'commons/org_id.yaml'
   org_name:
     $ref: 'commons/org_name.yaml'
+  actions:
+    $ref: 'expense_actions.yaml'
