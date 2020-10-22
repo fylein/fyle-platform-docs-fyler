@@ -11,7 +11,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/expense_delete_bulk.yaml'
+          $ref: '../schemas/requests/expenses_delete_bulk.yaml'
 
   responses:
     '200':
@@ -19,7 +19,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/post/expense_delete_bulk.yaml'
+            $ref: '../schemas/responses/post/expenses_delete_bulk.yaml'
     '401':
       description: Unauthorized request
       content:

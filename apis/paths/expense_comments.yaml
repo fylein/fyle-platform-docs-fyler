@@ -9,6 +9,7 @@ post:
   parameters:
     - in: path
       name: id
+      required: true
       description: |
         Expense ID for which comment has to be created.<br>
       schema:
@@ -27,7 +28,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/post/expenses.yaml'
+            $ref: '../schemas/responses/post/expense_comments.yaml'
     '401':
       description: Unauthorized request
       content:

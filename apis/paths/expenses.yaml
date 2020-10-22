@@ -9,6 +9,7 @@ delete:
   parameters:
     - in: path
       name: id
+      required: true
       description: |
         Expense ID that is to be deleted.<br>
       schema:
