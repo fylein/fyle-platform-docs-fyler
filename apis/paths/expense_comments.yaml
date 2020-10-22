@@ -1,0 +1,56 @@
+post:
+  tags:
+    - Expenses
+  summary:
+    Upsert expense comments
+  description: |
+    It creates comment on a specific expense.
+  operationId: PostExpenseComments
+  parameters:
+    - in: path
+      name: id
+      description: |
+        Expense ID for which comment has to be created.<br>
+      schema:
+        type: string
+        example: 'txhfw8d920k'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/requests/expense_comments.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/post/expenses.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/403.yaml'
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - type: array
+                items:
+                  $ref: '../schemas/errors/bulk_error.yaml'
+                example:
+                  - row: 1
+                    key: Comment
+                    message: Invalid comment
+              - $ref: '../schemas/errors/json_parsing_error.yaml'

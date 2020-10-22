@@ -24,7 +24,16 @@ tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Expenses
+    description: |
+      This API gives you access to your Expenses data.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
+  /v4/fyler/expenses/{id}:
+    $ref: 'paths/expenses.yaml'
+  /v4/fyler/expense_comments/{id}:
+    $ref: 'paths/expense_comments.yaml'
+  /v4/fyler/expenses/delete/bulk:
+    $ref: 'paths/expenses_delete_bulk.yaml'
