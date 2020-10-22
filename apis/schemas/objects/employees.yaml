@@ -158,18 +158,8 @@ properties:
     description: |
       The account number of the bank account of the employee. `branch_account` is India specific.
     example: 'XWWEW000024324493'
-  org_id:
-    type: string
-    description: |
-      The unique id of the Organization to which the employee belongs.
-      This field shall be ignored in POST requests.
-    example: 'orwruogwnngg'
-  org_name:
-    type: string
-    description: |
-      The Name of the Organization to which the employee belongs.
-      This field shall be ignored in POST requests.
-    example: 'Ministry of Magic'
+  org:
+    $ref: 'orgs.yaml'
   primary_approver:
     allOf:
       - $ref: 'minimals/user.yaml'

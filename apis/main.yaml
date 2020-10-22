@@ -27,9 +27,14 @@ tags:
   - name: Employees
     description: |
       This API gives you access to manage your profile data.
+  - name: Orgs
+    description: |
+      This API gives you access to your current org data.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
-  /v4/fyler/employees/{id}:
+  /v4/fyler/my_profile:
     $ref: 'paths/employees.yaml'
+  /v4/fyler/orgs:
+    $ref: 'paths/orgs.yaml'
