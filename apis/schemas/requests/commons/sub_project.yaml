@@ -1,0 +1,8 @@
+in: query
+name: sub_project
+description: |
+  Supported operators are `eq`, `like`, `in`.<br>
+  sub_project=in.(value1,value2)
+schema:
+  type: string
+  example: 'like.Formula*'
