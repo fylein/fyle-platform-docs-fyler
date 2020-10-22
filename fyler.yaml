@@ -154,6 +154,50 @@ components:
         `primary_approver_id=eq.<value>`. For multiple values, use
         `primary_approver_id=in.(value1,value2,value3)`.
       example: eq.ouX2Rv617cW0
+    name:
+      in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Add*
+    type:
+      in: query
+      name: type
+      description: |
+        Supported operators are `eq`, `in`.<br>
+      schema:
+        type: string
+        example: eq.SELECT
+    options:
+      in: query
+      name: options
+      description: |
+        List of strings.<br>
+        Supported operators are `eq`,`cs`.<br>
+      schema:
+        type: string
+        example: 'cs.{food,travel}'
+    mandatory:
+      in: query
+      name: mandatory
+      description: |
+        This param is used to filer records by
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: string
+        example: eq.true
+    org_category_ids:
+      in: query
+      name: org_category_ids
+      description: |
+        List of strings.<br>
+        Supported operators are `eq`,`cs`.<br>
+      schema:
+        type: string
+        example: 'cs.{12,7}'
   schemas:
     '401':
       type: object
@@ -404,10 +448,107 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/projects'
+    name:
+      type: string
+      description: |
+        This field specifies the name of the custom property.
+      example: Vendor desciption
+    type:
+      type: string
+      description: |
+        This field specifies the type of the custom property.
+      example: TEXT
+    options:
+      type: array
+      items:
+        type: string
+      description: >
+        This field specifies the option values of the custom property in case on
+        SELECT or MULTI_SELECT custom property type.
+      example:
+        - Chai
+        - Coffee
+    placeholder:
+      type: string
+      description: |
+        This field specifies the placeholder of the custom property.
+      example: Enter vendor
+    org_category_ids:
+      type: array
+      items:
+        type: integer
+      description: >
+        This field specifies the org category ids associated with the custom
+        property.
+      example:
+        - 1
+        - 3
+    enabled:
+      type: boolean
+      description: |
+        This field specifies if the object is enabled or not.
+      example: true
+    mandatory:
+      type: boolean
+      description: |
+        This field specifies if the custom property is mandatory or not.
+      example: true
+    expense_custom_properties:
+      type: object
+      properties:
+        id:
+          type: number
+          description: >
+            This id is provided by Fyle to identify a particular custom
+            property.
+          readOnly: true
+          example: 7
+        name:
+          $ref: '#/components/schemas/name'
+        type:
+          $ref: '#/components/schemas/type'
+        options:
+          $ref: '#/components/schemas/options'
+        placeholder:
+          $ref: '#/components/schemas/placeholder'
+        org_category_ids:
+          $ref: '#/components/schemas/org_category_ids'
+        enabled:
+          $ref: '#/components/schemas/enabled'
+        mandatory:
+          $ref: '#/components/schemas/mandatory'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+    get_expense_custom_properties:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/expense_custom_properties
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expense_custom_properties'
 tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Expense Custom Properties
+    description: >
+      This API gives you access to your organisation's Expenses Custom
+      Properties data.
 paths:
   /v4/fyler/projects:
     get:
@@ -446,6 +587,37 @@ paths:
                 $ref: '#/components/schemas/get_projects'
         '401':
           description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/expense_custom_properties:
+    get:
+      tags:
+        - Expense Custom Properties
+      summary: Returns a list of expense custom Properties
+      operationId: GetExpenseCustomProperties
+      parameters:
+        - $ref: '#/components/parameters/org_id'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/options'
+        - $ref: '#/components/parameters/mandatory'
+        - $ref: '#/components/parameters/org_category_ids'
+        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_expense_custom_properties'
+        '401':
+          description: Unauthorised request
           content:
             application/json:
               schema:
