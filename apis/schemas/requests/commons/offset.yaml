@@ -1,5 +1,5 @@
 in: query
-name: offest
+name: offset
 description: |
   offset is used to skip that many number of objects before counting. <br>
 schema:
