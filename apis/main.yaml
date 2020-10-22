@@ -24,7 +24,12 @@ tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Orgs
+    description: |
+      This API gives you access to your current org data.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
+  /v4/fyler/orgs:
+    $ref: 'paths/orgs.yaml'
