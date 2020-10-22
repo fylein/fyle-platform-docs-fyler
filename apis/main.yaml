@@ -24,7 +24,14 @@ tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Location
+    description: |
+      These APIs gives the location suggestions and geographic data of a place.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
+  /v4/fyler/location_autocomplete:
+    $ref: 'paths/location_autocomplete.yaml'
+  /v4/fyler/location_geocode:
+    $ref: 'paths/location_geocode.yaml'

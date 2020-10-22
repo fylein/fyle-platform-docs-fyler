@@ -1,0 +1,81 @@
+type: object
+properties:
+  description:
+    type: string
+    maxLength: 255
+    description: |
+      Contains the human-readable name for the returned result.
+    readOnly: true
+    example: 'Andheri, Maharashtra, India'
+  matched_substrings:
+    type: array
+    description: |
+      These describe the location of the entered term in the prediction result text, so that the term can be highlighted if desired.
+    items:
+      type: object
+      properties:
+        length:
+          type: number
+          description: |
+            For what length of the given text was matched.
+          example: 4
+        offset:
+          type: number
+          description: |
+            For where the matching started.
+          example: 0
+  place_id:
+    type: string
+    maxLength: 255
+    description: It containes a textual identifier that uniquely identifies a place.
+    example: ChIJify3BTzI5zsR2q86fwXrh74
+  reference:
+    type: string
+    maxLength: 255
+    description: Contains reference id for the particular location.
+    example: ChIJify3BTzI5zsR2q86fwXrh74
+  structured_formatting:
+    type: object
+    description: |
+      Provides pre-formatted text that can be shown in your autocomplete results.
+    properties:
+      main_text:
+        type: string
+        maxLength: 255
+        description: |
+          contains the main text of a prediction, usually the name of the place.
+        example: Andheri
+      main_text_matched_substrings:
+        type: array
+        items:
+          type: object
+          properties:
+            length:
+              type: number
+              description: |
+                For what length of the given text was matched.
+              example: 4
+            offset:
+              type: number
+              description: |
+                For where the matching started.
+              example: 0
+  terms:
+    type: array
+    items:
+      type: object
+      properties:
+        offset:
+          type: number
+          description: |
+            For where the matching started.
+          example: 0
+        value:
+          type: string
+          description: |
+            What was the value matched.
+          example: Andheri
+  types:
+    types: array
+    description: |
+      Contains an array of types that apply to this place. For more info visit https://developers.google.com/places/web-service/supported_type.

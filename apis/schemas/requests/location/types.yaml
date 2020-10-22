@@ -1,0 +1,8 @@
+in: query
+name: type
+description: |
+  This param will define the types of place results to return.<br>
+  types=(cities)
+schema:
+  type: string
+  example: '(cities)'
