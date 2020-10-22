@@ -229,7 +229,7 @@ properties:
       This field will be present for travel related categories. To add to and from location to you travel category related expenses add two locations in schema given below.
     type: array
     items:
-      $ref: 'location.yaml'
+      $ref: 'expense_location.yaml'
   train_travel_class:
     description: |
       This field is applicable for only Train category.
