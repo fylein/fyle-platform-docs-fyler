@@ -1,18 +1,18 @@
 type: object
 properties:
-  currency: "'INR'"
+  currency:
     $ref: '../commons/currency.yaml'
   description:
     type: string
     description: |
       Description of this policy rule.
     example: Policy rule is this
-  disable_system_approvers: false
+  disable_system_approvers:
     type: boolean
     description: |
       Indicates whether to disable system approvers or not.
     example: false
-  flag: true
+  flag:
     type: boolean
     description: |
       Indicates whether expense is flagged or not.
