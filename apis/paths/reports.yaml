@@ -6,11 +6,11 @@ post:
     This API creates report.
   operationId: PostReports
   requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        $ref: '../schemas/requests/post/reports.yaml'
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/requests/post/reports.yaml'
   responses:
     '200':
       description: OK
