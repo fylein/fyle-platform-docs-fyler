@@ -27,19 +27,20 @@ properties:
           $ref: '../../objects/expense_location.yaml'
         purpose:
           type: string
-          maxLength: 1024
+          maxLength: 255
           description: |
             This is an auto-generated field by `/v4/fyler/purpose`
           example: '#4:  Oct 2020'
         source:
           type: string
+          maxLength: 255
           description: |
             The name of the client app which is creating the expense.
             if its a thrid party app, it prefixed with TPA_.
           example: WEBAPP
         report_type:
           type: string
-          required: true
+          maxLength: 255
           description: |
             Represents what's the report type that the Fyler is submitting.
           enum:
