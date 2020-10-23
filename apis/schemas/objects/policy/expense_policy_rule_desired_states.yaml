@@ -35,8 +35,8 @@ properties:
       Contains the ids of Approver set for this Fyler.
     items:
       type: string
-    example: [ 'apdh2ue92u', 'ape29iwk2p']
-  popup: true
+    example: [ 'apdh2ue92u', 'ape29iwk2p' ]
+  popup:
     type: boolean
     description: |
       Indicates whether the message is shown in popup window or not.
