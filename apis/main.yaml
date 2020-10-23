@@ -24,7 +24,12 @@ tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Policy
+    description: |
+      These APIs handles the company wide policy operations.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
+  /v4/fyler/policy_test:
+    $ref: 'paths/policy_test.yaml'
