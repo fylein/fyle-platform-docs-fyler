@@ -5,7 +5,7 @@ properties:
     maxLength: 255
     description: |
       Describes the what action will taken on the expense.
-    example: 'The following action(s) will be taken: expense violation will be marked, expense amount will be changed to: 'USD' 0'
+    example: 'The following action(s) will be taken- expense violation will be marked, expense amount will be changed to 0 USD'
   currency:
     $ref: 'commons/currency.yaml'
   disable_system_approvers:

@@ -4,7 +4,7 @@ additionalProperties:
     - type: string
     - type: boolean
     - type: integer
-    - $ref: 'location.yaml'
+    - $ref: 'expense_location.yaml'
     - type: array
       items:
         type: string
