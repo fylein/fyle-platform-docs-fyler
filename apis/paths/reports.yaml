@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Reports
+  summary: Creates Report
+  operationId: PostReports
+  parameters:
+    requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/requests/post/reports.yaml'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/post/reports.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
