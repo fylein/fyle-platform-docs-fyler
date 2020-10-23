@@ -404,10 +404,310 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/projects'
+    employee_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id prodvided by Fyle to uniquely identify an employee within an
+        organization.
+
+        This id is always prefixed with `ou`.
+      readOnly: true
+      example: outGt9ju6qP
+    employees:
+      type: object
+      description: Details of the employee to whom this object belongs to.
+      readOnly: true
+      properties:
+        user_id:
+          type: string
+          maxLength: 255
+          description: |
+            This id helps to identify employees in other organisations.
+            It is always prefixed with the string `us`.
+            It is unique per email.
+          example: usIYTLwzlaGu
+        employee_code:
+          type: string
+          maxLength: 255
+          example: E84122
+          description: >
+            This field refers to any string that the client programs can use to
+            refer to an employee's unique id.
+
+            This could be any field such as an UUID from an Active Directory
+            server or employee id in a HRMS system.
+        location:
+          type: string
+          maxLength: 255
+          example: Bangalore Ofc
+        level_id:
+          type: string
+          maxLength: 255
+          example: lvlnvJUe9k6Vx
+        department_id:
+          type: string
+          maxLength: 255
+          example: dept9in4oIHpdR
+        business_unit:
+          type: string
+          maxLength: 255
+          example: Finance ops
+          description: >-
+            Represents the business unit of the organization to which of the
+            employee belongs.
+        title:
+          type: string
+          maxLength: 255
+          example: Branch Manager
+          description: Represents the title/desgination of the employee.
+        mobile:
+          type: string
+          description: >
+            Mobile number of the employee.
+
+            `Given example is a fake number. We don't know who might answer your
+            call.`
+          example: +1-202-555-0167
+        joining_dt:
+          type: string
+          format: date
+          example: '2018-10-31'
+          description: Date string in YYYY-MM-DD format
+        full_name:
+          type: string
+          maxLength: 255
+          example: John Doe
+          description: >-
+            Represents the full name of the employee. Must be at least 3
+            characters.
+    currency:
+      type: string
+      maxLength: 10
+      description: >
+        The three-letter currency code following ISO standard <a
+        href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>
+      example: USD
+    amount:
+      type: integer
+      description: |
+        Amount value of the object.
+      example: 100
+    expense_location:
+      type: object
+      properties:
+        city:
+          type: string
+          example: London
+        state:
+          type: string
+          example: London
+        display_name:
+          type: string
+        country:
+          type: string
+          example: United Kingdom
+        formatted_address:
+          type: string
+          example: '221 Baker St, Marylebone, London, United Kingdom'
+        latitude:
+          type: number
+          example: 12.971599
+        longitude:
+          type: number
+          example: 77.594566
+    export_info:
+      type: object
+      readOnly: true
+      description: Accounting export information for this object.
+      properties:
+        exported:
+          type: boolean
+          description: >
+            Signifies whether this object has been exported to external
+            accounting system or not.
+          example: true
+        exported_at:
+          type: string
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Signifies when this object was exported to external accounting
+            system or not.
+          example: '2020-06-01T13:14:54.804Z'
+        exported_ids:
+          type: array
+          items:
+            type: string
+          description: |
+            Array of export IDs 
+          example:
+            - tpe7sY2bHfl8
+            - tpe7fs7wvLU9
+    reports:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          description: |
+            This id prodvided by Fyle to uniquely identify a Expense report.
+            This id is always prefixed with `rp`.
+          readOnly: true
+          example: rpevetgn3kl
+        employee_id:
+          $ref: '#/components/schemas/employee_id'
+        employee_email:
+          type: string
+          maxLength: 127
+          format: email
+          description: >
+            Email address of the Employee for whom the expense was/will-be
+            created. Once an Expense is created, the value of this field cannot
+            be changed and is immutable. <br>
+          example: john.doe@example.com
+        employee:
+          $ref: '#/components/schemas/employees'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        submitted_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was submitted to the Approvers.
+
+            If the Report is not yet submitted, this could be null. <br>
+          readOnly: true
+        purpose:
+          type: string
+        claim_number:
+          type: string
+          maxLength: 255
+        currency:
+          $ref: '#/components/schemas/currency'
+        amount:
+          $ref: '#/components/schemas/amount'
+        tax:
+          type: number
+        state:
+          type: string
+        source:
+          type: string
+        approved_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was approved. This field could be null
+            if the Report was not yet approved.
+          readOnly: true
+        verified:
+          type: boolean
+          description: Indicates whether the Report is verified or not
+          readOnly: true
+        verified_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was verified. If the Report is not
+            verified yet, this could be null.
+          readOnly: true
+        reimbursed_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was Reimbursed. If the Report is not
+            reimbursed or submitted yet, this could be null.
+          readOnly: true
+        settlement_id:
+          type: string
+          readOnly: true
+          maxLength: 255
+          description: >
+            An unique ID, generated by Fyle, for identifying the Settlement.
+            Once a Report is paid, the value of this field cannot be changed and
+            is immutable. <br>
+          example: setzS7mbPKPWg
+        settled_at:
+          readOnly: true
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the report approved was settled. <br>
+          example: '2017-07-21T17:32:28Z'
+        num_transactions:
+          type: integer
+        expense_ids:
+          type: array
+          items:
+            type: string
+        verification_state:
+          type: string
+        created_by:
+          type: string
+        trip_request_id:
+          type: string
+        physical_bill:
+          type: boolean
+        physical_bill_at:
+          type: string
+        manual_flag:
+          type: boolean
+        policy_flag:
+          type: boolean
+        type:
+          type: string
+        from_dt:
+          type: string
+        to_dt:
+          type: string
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/expense_location'
+        report_approvals:
+          type: object
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        export_info:
+          $ref: '#/components/schemas/export_info'
+    post_reports:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/reports
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/reports'
 tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Reports
+    description: |
+      This API gives you access to your organisation's Expense Reports data.
 paths:
   /v4/fyler/projects:
     get:
@@ -446,6 +746,33 @@ paths:
                 $ref: '#/components/schemas/get_projects'
         '401':
           description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/reports:
+    post:
+      tags:
+        - Reports
+      summary: Creates Report
+      description: |
+        This API creates report.
+      operationId: PostReports
+      requestBody: null
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/requests/post/reports.yaml
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_reports'
+        '401':
+          description: Unauthorised request
           content:
             application/json:
               schema:
