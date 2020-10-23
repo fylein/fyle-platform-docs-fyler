@@ -2,14 +2,15 @@ post:
   tags:
     - Reports
   summary: Creates Report
+  description: |
+    This API creates report.
   operationId: PostReports
-  parameters:
-    requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: '../schemas/requests/post/reports.yaml'
+  requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/requests/post/reports.yaml'
   responses:
     '200':
       description: OK

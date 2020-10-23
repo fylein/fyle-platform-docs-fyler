@@ -31,7 +31,7 @@ properties:
           maxLength: 1024
           description: This is an auto-generated field by `/v4/fyler/purpose`
           example: '#4:  Oct 2020'
-        source: "WEBAPP"
+        source:
           type: string
           required: true
           example: WEBAPP
