@@ -404,6 +404,105 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/projects'
+    from_dt:
+      type: string
+      format: date-time
+      description: >
+        <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies from when journey started.
+      readOnly: true
+      example: '2020-06-01T13:14:54.804Z'
+    to_dt:
+      type: string
+      format: date-time
+      description: >
+        <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies when the journey ended.
+      readOnly: true
+      example: '2020-06-01T13:14:54.804Z'
+    expense_location:
+      type: object
+      properties:
+        city:
+          type: string
+          example: London
+        state:
+          type: string
+          example: London
+        display_name:
+          type: string
+        country:
+          type: string
+          example: United Kingdom
+        formatted_address:
+          type: string
+          example: '221 Baker St, Marylebone, London, United Kingdom'
+        latitude:
+          type: number
+          example: 12.971599
+        longitude:
+          type: number
+          example: 77.594566
+    reports:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              trip_request_id:
+                type: string
+                maxLength: 255
+                description: |
+                  This id is provided by Fyler itself.
+                example: '121'
+              from_dt:
+                $ref: '#/components/schemas/from_dt'
+              to_dt:
+                $ref: '#/components/schemas/to_dt'
+              location1:
+                $ref: '#/components/schemas/expense_location'
+              location2:
+                $ref: '#/components/schemas/expense_location'
+              location3:
+                $ref: '#/components/schemas/expense_location'
+              location4:
+                $ref: '#/components/schemas/expense_location'
+              location5:
+                $ref: '#/components/schemas/expense_location'
+              purpose:
+                type: string
+                maxLength: 255
+                description: |
+                  This is an auto-generated field by `/v4/fyler/purpose`
+                example: '#4:  Oct 2020'
+              source:
+                type: string
+                maxLength: 255
+                description: |
+                  The name of the client app which is creating the expense.
+                  if its a thrid party app, it prefixed with TPA_.
+                example: WEBAPP
+              report_type:
+                type: string
+                maxLength: 255
+                description: >
+                  Represents what's the report type that the Fyler is
+                  submitting.
+                enum:
+                  - BASIC
+                  - TRIP
+        test:
+          type: boolean
+          example: false
+          default: false
+      required:
+        - data
     employee_id:
       type: string
       maxLength: 255
@@ -493,29 +592,6 @@ components:
       description: |
         Amount value of the object.
       example: 100
-    expense_location:
-      type: object
-      properties:
-        city:
-          type: string
-          example: London
-        state:
-          type: string
-          example: London
-        display_name:
-          type: string
-        country:
-          type: string
-          example: United Kingdom
-        formatted_address:
-          type: string
-          example: '221 Baker St, Marylebone, London, United Kingdom'
-        latitude:
-          type: number
-          example: 12.971599
-        longitude:
-          type: number
-          example: 77.594566
     export_info:
       type: object
       readOnly: true
@@ -545,7 +621,7 @@ components:
           example:
             - tpe7sY2bHfl8
             - tpe7fs7wvLU9
-    reports:
+    objects_reports:
       type: object
       properties:
         id:
@@ -700,7 +776,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/reports'
+            $ref: '#/components/schemas/objects_reports'
 tags:
   - name: Projects
     description: |
@@ -758,12 +834,12 @@ paths:
       description: |
         This API creates report.
       operationId: PostReports
-      requestBody: null
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: ../schemas/requests/post/reports.yaml
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reports'
       responses:
         '200':
           description: OK
