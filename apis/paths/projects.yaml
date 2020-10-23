@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Projects
+  summary: Returns a list of projects
+  operationId: GetProjects
+  parameters:
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/created_at.yaml'
+    - $ref: '../schemas/requests/commons/updated_at.yaml'
+    - $ref: '../schemas/requests/commons/id.yaml'
+    - in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: 'eq.Project1'
+    - $ref: '../schemas/requests/commons/sub_project.yaml'
+    - $ref: '../schemas/requests/commons/display_name.yaml'
+    - $ref: '../schemas/requests/commons/enabled.yaml'
+    - $ref: '../schemas/requests/commons/code.yaml'
+    - $ref: '../schemas/requests/commons/org_id.yaml'
+    - $ref: '../schemas/requests/commons/category_ids.yaml'
+    - $ref: '../schemas/requests/commons/primary_approver_id.yaml'
+    - $ref: '../schemas/requests/commons/secondary_approver_id.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/projects.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

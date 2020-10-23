@@ -1,0 +1,53 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        trip_request_id:
+          type: string
+          maxLength: 255
+          description: |
+            This id is provided by Fyler itself.
+          example: '121'
+        from_dt:
+          $ref: '../../objects/commons/from_dt.yaml'
+        to_dt:
+          $ref: '../../objects/commons/to_dt.yaml'
+        location1:
+          $ref: '../../objects/expense_location.yaml'
+        location2:
+          $ref: '../../objects/expense_location.yaml'
+        location3:
+          $ref: '../../objects/expense_location.yaml'
+        location4:
+          $ref: '../../objects/expense_location.yaml'
+        location5:
+          $ref: '../../objects/expense_location.yaml'
+        purpose:
+          type: string
+          maxLength: 255
+          description: |
+            This is an auto-generated field by `/v4/fyler/purpose`
+          example: '#4:  Oct 2020'
+        source:
+          type: string
+          maxLength: 255
+          description: |
+            The name of the client app which is creating the expense.
+            if its a thrid party app, it prefixed with TPA_.
+          example: WEBAPP
+        report_type:
+          type: string
+          maxLength: 255
+          description: |
+            Represents what's the report type that the Fyler is submitting.
+          enum:
+            - BASIC
+            - TRIP
+  test:
+    type: boolean
+    example: false
+    default: false
+required: [ data ]

@@ -1,0 +1,24 @@
+type: object
+readOnly: true
+description: Accounting export information for this object.
+properties:
+  exported:
+    type: boolean
+    description: |
+      Signifies whether this object has been exported to external accounting system or not.
+    example: true
+  exported_at:
+    type: string
+    description: |
+      <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
+      Signifies when this object was exported to external accounting system or not.
+    example: '2020-06-01T13:14:54.804Z'
+  exported_ids:
+    type: array
+    items:
+      type: string
+    description: |
+      Array of export IDs 
+    example:
+      - 'tpe7sY2bHfl8'
+      - 'tpe7fs7wvLU9'
