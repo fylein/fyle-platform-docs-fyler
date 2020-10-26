@@ -24,7 +24,12 @@ tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Currencies
+    description: |
+      This API gives you list of currencies supported by Fyle.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
+  /v4/fyler/currencies:
+    $ref: 'paths/currencies.yaml'

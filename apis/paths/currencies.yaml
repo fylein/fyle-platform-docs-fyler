@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Currencies
+  summary: Returns a list of projects
+  operationId: GetCurrencies
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/currencies.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
