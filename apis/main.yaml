@@ -24,7 +24,12 @@ tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Expense Stats
+    description: |
+      This API gives you stats of your expenses.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
+  /v4/fyler/expense/stats:
+    $ref: 'paths/stats/expense.yaml'

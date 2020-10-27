@@ -1,0 +1,4 @@
+type: float
+description: |
+  This field indicates the total amount of user expenses.
+example: 1234.56

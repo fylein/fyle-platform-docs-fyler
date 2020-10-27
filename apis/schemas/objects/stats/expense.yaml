@@ -1,0 +1,15 @@
+type: object
+properties:
+  total_amount:
+    $ref: '../commons/total_amount.yaml'
+  total_count:
+    $ref: '../commons/total_count.yaml'
+  reimbursible_total:
+    type: float
+    description: |
+      This field indicates the total of reimbursible expenses.
+    example: 453
+  non_reimbursible_total:
+    description: |
+      This field indicates the total of non reimbursible expenses.
+    example: 765
