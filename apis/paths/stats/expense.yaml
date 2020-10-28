@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Expense Stats
+  summary: Returns expense stats.
+  operationId: GetExpenseStats
+  # parameters:
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/responses/get/stats/expense.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/errors/401.yaml'
