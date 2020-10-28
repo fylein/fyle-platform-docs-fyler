@@ -1,0 +1,35 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+  can_approve:
+    type: boolean
+    example: true
+  can_delete:
+    type: boolean
+    example: false
+  can_edit:
+    type: boolean
+    example: true
+  can_manual_flag:
+    type: boolean
+    example: false
+  can_add_approver:
+    type: boolean
+    example: true
+  can_assign:
+    type: boolean
+    example: false
+  can_verify:
+    type: boolean
+    example: true
+  can_admin_approve:
+    type: boolean
+    example: false
+  can_edit_physical_bill:
+    type: boolean
+    example: true
+  can_remove_from_report:
+    type: boolean
+    example: false
