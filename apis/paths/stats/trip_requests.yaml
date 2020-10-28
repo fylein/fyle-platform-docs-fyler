@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Trip Requests Stats
+  summary: Returns trip requests stats.
+  operationId: GetTripRequestsStats
+  # parameters:
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/responses/get/stats/trip_requests.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/errors/401.yaml'
