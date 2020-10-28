@@ -28,6 +28,19 @@ get:
       schema:
         type: string
       example: 'created_at.desc,id'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/expenses.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
 post:
   tags:
     - Expenses
@@ -96,7 +109,7 @@ delete:
     This API can be used to delete a particular expense at a time only.
   operationId: DeleteExpense
   parameters:
-    - in: path
+    - in: query
       name: id
       required: true
       description: |
@@ -115,13 +128,6 @@ delete:
 
     '401':
       description: Unauthorised request
-      content:
-        application/json:
-          schema:
-            $ref: '../schemas/errors/401.yaml'
-
-    '401':
-      description: Unauthorized request
       content:
         application/json:
           schema:

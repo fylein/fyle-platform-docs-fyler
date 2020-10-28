@@ -207,6 +207,50 @@ components:
       schema:
         type: string
         example: like.India*
+    custom_properties_name:
+      in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Add*
+    type:
+      in: query
+      name: type
+      description: |
+        Supported operators are `eq`, `in`.<br>
+      schema:
+        type: string
+        example: eq.SELECT
+    options:
+      in: query
+      name: options
+      description: |
+        List of strings.<br>
+        Supported operators are `eq`,`cs`.<br>
+      schema:
+        type: string
+        example: 'cs.{food,travel}'
+    mandatory:
+      in: query
+      name: mandatory
+      description: |
+        This param is used to filer records by
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: string
+        example: eq.true
+    org_category_ids:
+      in: query
+      name: org_category_ids
+      description: |
+        List of strings.<br>
+        Supported operators are `eq`,`cs`.<br>
+      schema:
+        type: string
+        example: 'cs.{12,7}'
   schemas:
     '401':
       type: object
@@ -467,151 +511,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/projects'
-<<<<<<< HEAD
     cost_centers:
-=======
-    employee_id:
-      type: string
-      maxLength: 255
-      description: >
-        This id prodvided by Fyle to uniquely identify an employee within an
-        organization.
-
-        This id is always prefixed with `ou`.
-      readOnly: true
-      example: outGt9ju6qP
-    employees:
-      type: object
-      description: Details of the employee to whom this object belongs to.
-      readOnly: true
-      properties:
-        user_id:
-          type: string
-          maxLength: 255
-          description: |
-            This id helps to identify employees in other organisations.
-            It is always prefixed with the string `us`.
-            It is unique per email.
-          example: usIYTLwzlaGu
-        employee_code:
-          type: string
-          maxLength: 255
-          example: E84122
-          description: >
-            This field refers to any string that the client programs can use to
-            refer to an employee's unique id.
-
-            This could be any field such as an UUID from an Active Directory
-            server or employee id in a HRMS system.
-        location:
-          type: string
-          maxLength: 255
-          example: Bangalore Ofc
-        level_id:
-          type: string
-          maxLength: 255
-          example: lvlnvJUe9k6Vx
-        department_id:
-          type: string
-          maxLength: 255
-          example: dept9in4oIHpdR
-        business_unit:
-          type: string
-          maxLength: 255
-          example: Finance ops
-          description: >-
-            Represents the business unit of the organization to which of the
-            employee belongs.
-        title:
-          type: string
-          maxLength: 255
-          example: Branch Manager
-          description: Represents the title/desgination of the employee.
-        mobile:
-          type: string
-          description: >
-            Mobile number of the employee.
-
-            `Given example is a fake number. We don't know who might answer your
-            call.`
-          example: +1-202-555-0167
-        joining_dt:
-          type: string
-          format: date
-          example: '2018-10-31'
-          description: Date string in YYYY-MM-DD format
-        full_name:
-          type: string
-          maxLength: 255
-          example: John Doe
-          description: >-
-            Represents the full name of the employee. Must be at least 3
-            characters.
-    currency:
-      type: string
-      maxLength: 10
-      description: >
-        The three-letter currency code following ISO standard <a
-        href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>
-      example: USD
-    amount:
-      type: integer
-      description: |
-        Amount value of the object.
-      example: 100
-    expense_location:
-      type: object
-      properties:
-        city:
-          type: string
-          example: London
-        state:
-          type: string
-          example: London
-        display_name:
-          type: string
-        country:
-          type: string
-          example: United Kingdom
-        formatted_address:
-          type: string
-          example: '221 Baker St, Marylebone, London, United Kingdom'
-        latitude:
-          type: number
-          example: 12.971599
-        longitude:
-          type: number
-          example: 77.594566
-    export_info:
-      type: object
-      readOnly: true
-      description: Accounting export information for this object.
-      properties:
-        exported:
-          type: boolean
-          description: >
-            Signifies whether this object has been exported to external
-            accounting system or not.
-          example: true
-        exported_at:
-          type: string
-          description: >
-            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
-            section 5.6 compliant timestamp.</a>
-
-            Signifies when this object was exported to external accounting
-            system or not.
-          example: '2020-06-01T13:14:54.804Z'
-        exported_ids:
-          type: array
-          items:
-            type: string
-          description: |
-            Array of export IDs 
-          example:
-            - tpe7sY2bHfl8
-            - tpe7fs7wvLU9
-    reports:
       type: object
       properties:
         id:
@@ -625,178 +525,6 @@ components:
         name:
           type: string
           maxLength: 255
-          description: |
-            This id prodvided by Fyle to uniquely identify a Expense report.
-            This id is always prefixed with `rp`.
-          readOnly: true
-          example: rpevetgn3kl
-        employee_id:
-          $ref: '#/components/schemas/employee_id'
-        employee_email:
-          type: string
-          maxLength: 127
-          format: email
-          description: >
-            Email address of the Employee for whom the expense was/will-be
-            created. Once an Expense is created, the value of this field cannot
-            be changed and is immutable. <br>
-          example: john.doe@example.com
-        employee:
-          $ref: '#/components/schemas/employees'
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
-        submitted_at:
-          type: string
-          format: date-time
-          description: >
-            RFC 3339, section 5.6
-            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the Report was submitted to the Approvers.
-
-            If the Report is not yet submitted, this could be null. <br>
-          readOnly: true
-        purpose:
-          type: string
-        claim_number:
-          type: string
-          maxLength: 255
-        currency:
-          $ref: '#/components/schemas/currency'
-        amount:
-          $ref: '#/components/schemas/amount'
-        tax:
-          type: number
-        state:
-          type: string
-        source:
-          type: string
-        approved_at:
-          type: string
-          format: date-time
-          description: >
-            RFC 3339, section 5.6
-            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the Report was approved. This field could be null
-            if the Report was not yet approved.
-          readOnly: true
-        verified:
-          type: boolean
-          description: Indicates whether the Report is verified or not
-          readOnly: true
-        verified_at:
-          type: string
-          format: date-time
-          description: >
-            RFC 3339, section 5.6
-            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the Report was verified. If the Report is not
-            verified yet, this could be null.
-          readOnly: true
-        reimbursed_at:
-          type: string
-          format: date-time
-          description: >
-            RFC 3339, section 5.6
-            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the Report was Reimbursed. If the Report is not
-            reimbursed or submitted yet, this could be null.
-          readOnly: true
-        settlement_id:
-          type: string
-          readOnly: true
-          maxLength: 255
-          description: >
-            An unique ID, generated by Fyle, for identifying the Settlement.
-            Once a Report is paid, the value of this field cannot be changed and
-            is immutable. <br>
-          example: setzS7mbPKPWg
-        settled_at:
-          readOnly: true
-          type: string
-          format: date-time
-          description: >
-            RFC 3339, section 5.6
-            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the report approved was settled. <br>
-          example: '2017-07-21T17:32:28Z'
-        num_transactions:
-          type: integer
-        expense_ids:
-          type: array
-          items:
-            type: string
-        verification_state:
-          type: string
-        created_by:
-          type: string
-        trip_request_id:
-          type: string
-        physical_bill:
-          type: boolean
-        physical_bill_at:
-          type: string
-        manual_flag:
-          type: boolean
-        policy_flag:
-          type: boolean
-        type:
-          type: string
-        from_dt:
-          type: string
-        to_dt:
-          type: string
-        locations:
-          type: array
-          items:
-            $ref: '#/components/schemas/expense_location'
-        report_approvals:
-          type: object
-        org_name:
-          $ref: '#/components/schemas/org_name'
-        org_id:
-          $ref: '#/components/schemas/org_id'
-        export_info:
-          $ref: '#/components/schemas/export_info'
-    post_reports:
-      type: object
-      properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
-        url:
-          type: string
-          example: /v4/fyler/reports
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/reports'
-tags:
-  - name: Projects
-    description: |
-      These APIs gives you list of your organisation's Projects data.
-  - name: Reports
-    description: |
-      This API gives you access to your organisation's Expense Reports data.
-paths:
-  /v4/fyler/projects:
-    get:
-      tags:
-        - Projects
-      summary: Returns a list of projects
-      operationId: GetProjects
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
-        - in: query
-          name: name
           description: |
             This represents the name of the cost center.
           example: sales & marketing
@@ -1314,8 +1042,11 @@ paths:
           $ref: '#/components/schemas/cost_center'
         category_id:
           type: string
-          description: |
+          description: >
             The unique ID of a Category to which the Expense belongs. <br>
+
+            Use `GET /api/tpa/v1/categories` to get the list of valid ID and
+            Name of the Categories for the organization.
           example: '18'
         category:
           $ref: '#/components/schemas/category'
@@ -1519,8 +1250,11 @@ paths:
             the image of the receipts are added as attachments to the Expenses.
           readOnly: true
         attachments:
-          description: |
-            Returns expense attachments
+          description: >
+            Returns expense attachments. <br>
+
+            This field will not be present in the response for the GET method on
+            the `/api/tpa/v1/expenses` call.
           type: array
           items:
             $ref: '#/components/schemas/file'
@@ -2131,6 +1865,22 @@ paths:
           default: 400
           example: 400
           deprecated: true
+    delete_expenses:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: '/v4/fyler/expenses/{id}'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expenses'
     level:
       type: object
       readOnly: true
@@ -3365,6 +3115,684 @@ paths:
           example: /v4/fyler/reports/stats
         data:
           $ref: '#/components/schemas/reports'
+    expense_comments:
+      type: object
+      properties:
+        notify:
+          type: boolean
+          description: |
+            This indicates whether it should be notified or not.
+          default: true
+          example: true
+        status:
+          type: object
+          description: |
+            This indicates whether it should be notified or not.
+          properties:
+            comment:
+              type: string
+              maxLength: 255
+              description: Comment made on the expense.
+              example: This is a food expense
+      required:
+        - notify
+        - status
+    report_id:
+      type: string
+      maxLength: 255
+      description: |
+        This id prodvided by Fyle to uniquely identify a report.
+        This id is always prefixed with `rp`.
+      readOnly: true
+      example: rptGt9ju6qP
+    expense_id:
+      type: string
+      maxLength: 255
+      description: |
+        This id prodvided by Fyle to uniquely identify an expense.
+        This id is always prefixed with `tx`.
+      readOnly: true
+      example: txhxw8h92ks
+    post_expense_comments:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/expenses_comments
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                maxLength: 255
+                example: tx12345
+                description: >-
+                  An unique string to identify the Expense Comment. Ignore this
+                  field when used as part of a POST request to create an
+                  Expense.
+                readOnly: true
+              comment:
+                type: string
+                maxLength: 255
+                description: Comment made on the expense.
+                example: This is a food expense
+              created_at:
+                $ref: '#/components/schemas/created_at'
+              diff:
+                type: object
+                description: |
+                  Difference between two comments
+                readOnly: true
+              employee_id:
+                $ref: '#/components/schemas/employee_id'
+              report_id:
+                $ref: '#/components/schemas/report_id'
+              expense_id:
+                $ref: '#/components/schemas/expense_id'
+              trip_request_id:
+                type: string
+                maxLength: 255
+                description: |
+                  Trip request id if any.
+                readOnly: true
+              advance_request_id:
+                type: string
+                maxLength: 255
+                description: |
+                  Advance request id if any.
+                readOnly: true
+              state:
+                type: string
+                maxLength: 255
+                description: State of the comment.
+    expenses_delete_bulk:
+      type: array
+      description: |
+        Contains the list of expense id's.
+      items:
+        type: string
+        maxLength: 255
+        description: |
+          Expense Id.
+        example: txdg28d2k0k
+    post_expenses_delete_bulk:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/expenses/delete/bulk
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expenses'
+    name:
+      type: string
+      description: |
+        This field specifies the name of the custom property.
+      example: Vendor desciption
+    type:
+      type: string
+      description: |
+        This field specifies the type of the custom property.
+      example: TEXT
+    options:
+      type: array
+      items:
+        type: string
+      description: >
+        This field specifies the option values of the custom property in case on
+        SELECT or MULTI_SELECT custom property type.
+      example:
+        - Chai
+        - Coffee
+    placeholder:
+      type: string
+      description: |
+        This field specifies the placeholder of the custom property.
+      example: Enter vendor
+    org_category_ids:
+      type: array
+      items:
+        type: integer
+      description: >
+        This field specifies the org category ids associated with the custom
+        property.
+      example:
+        - 1
+        - 3
+    enabled:
+      type: boolean
+      description: |
+        This field specifies if the object is enabled or not.
+      example: true
+    mandatory:
+      type: boolean
+      description: |
+        This field specifies if the custom property is mandatory or not.
+      example: true
+    expense_custom_properties:
+      type: object
+      properties:
+        id:
+          type: number
+          description: >
+            This id is provided by Fyle to identify a particular custom
+            property.
+          readOnly: true
+          example: 7
+        name:
+          $ref: '#/components/schemas/name'
+        type:
+          $ref: '#/components/schemas/type'
+        options:
+          $ref: '#/components/schemas/options'
+        placeholder:
+          $ref: '#/components/schemas/placeholder'
+        org_category_ids:
+          $ref: '#/components/schemas/org_category_ids'
+        enabled:
+          $ref: '#/components/schemas/enabled'
+        mandatory:
+          $ref: '#/components/schemas/mandatory'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+    get_expense_custom_properties:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/expense_custom_properties
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expense_custom_properties'
+    policy_test:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expenses'
+        test:
+          type: boolean
+          example: false
+          default: false
+      required:
+        - data
+    currency:
+      type: string
+      maxLength: 10
+      description: >
+        The three-letter currency code following ISO standard <a
+        href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>
+      example: USD
+    expense_policy_rule_desired_states:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/currency'
+        description:
+          type: string
+          description: |
+            Description of this policy rule.
+          example: Policy rule is this
+        disable_system_approvers:
+          type: boolean
+          description: |
+            Indicates whether to disable system approvers or not.
+          example: false
+        flag:
+          type: boolean
+          description: |
+            Indicates whether expense is flagged or not.
+          example: false
+        missing_approvers:
+          type: array
+          description: |
+            Contains the missing ids of Approver set for this Fyler.
+          items:
+            type: string
+          example:
+            - apdh2ue92u
+            - ape29iwk2p
+        policy_amount:
+          type: number
+          description: |
+            Amount capping set in the policy.
+          example: 100
+        policy_approver_ids:
+          type: array
+          description: |
+            Contains the ids of Approver set for this Fyler.
+          items:
+            type: string
+          example:
+            - apdh2ue92u
+            - ape29iwk2p
+        popup:
+          type: boolean
+          description: |
+            Indicates whether the message is shown in popup window or not.
+          example: false
+        receipt_required:
+          type: boolean
+          description: |
+            Indicates whether receipt is mandatory or not in this policy rule.
+          example: false
+        expense_id:
+          type: string
+          description: |
+            Expense Id on which this policy executed.
+          example: txu89h890i8
+        expense_policy_rule_id:
+          type: string
+          description: |
+            Expense policy rule id.
+          example: tprLjFqDpdjj20
+    objects_policy_test:
+      type: object
+      properties:
+        action_description:
+          type: string
+          maxLength: 255
+          description: |
+            Describes the what action will taken on the expense.
+          example: >-
+            The following action(s) will be taken- expense violation will be
+            marked, expense amount will be changed to 0 USD
+        currency:
+          $ref: '#/components/schemas/currency'
+        disable_system_approvers:
+          type: boolean
+          default: false
+          example: false
+        failure_reason:
+          type: string
+          description: |
+            Contains the failure reasons.
+        flag:
+          type: boolean
+          description: |
+            Indicates whether expense is flagged or not.
+          default: false
+          example: false
+        policy_amount:
+          type: number
+          example: 10
+        policy_approver_ids:
+          type: array
+          description: |
+            Contains list of approver ids.
+          items:
+            type: string
+          example:
+            - apd829d92j9w
+        policy_rule_descriptions:
+          type: array
+          description: |
+            Contains the list of policy rules description.
+          items:
+            type: string
+          example:
+            - This is rule 1
+            - This is the rule 2
+        policy_run_status:
+          type: string
+          description: >
+            Indicates the status of policy execution, whether it got executed or
+            not.
+          example: SUCCESS
+        receipt_required:
+          type: boolean
+          description: |
+            Indicates whether receipt is mandatory or not in this policy.
+          example: true
+        expense_id:
+          type: string
+          description: |
+            Expense Id on which this policy executed.
+          example: txu89h890i8
+        expense_policy_rule_desired_states:
+          type: array
+          items:
+            $ref: '#/components/schemas/expense_policy_rule_desired_states'
+        expense_query_params:
+          type: array
+          description: |
+            Query params present in expense
+          items:
+            type: string
+    post_policy_test:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/policy_test
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/objects_policy_test'
+    from_dt:
+      type: string
+      format: date-time
+      description: >
+        <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies from when journey started.
+      readOnly: true
+      example: '2020-06-01T13:14:54.804Z'
+    to_dt:
+      type: string
+      format: date-time
+      description: >
+        <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies when the journey ended.
+      readOnly: true
+      example: '2020-06-01T13:14:54.804Z'
+    expense_location:
+      type: object
+      properties:
+        city:
+          type: string
+          example: London
+        state:
+          type: string
+          example: London
+        display_name:
+          type: string
+        country:
+          type: string
+          example: United Kingdom
+        formatted_address:
+          type: string
+          example: '221 Baker St, Marylebone, London, United Kingdom'
+        latitude:
+          type: number
+          example: 12.971599
+        longitude:
+          type: number
+          example: 77.594566
+    post_reports:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              trip_request_id:
+                type: string
+                maxLength: 255
+                description: |
+                  This id is provided by Fyler itself.
+                example: '121'
+              from_dt:
+                $ref: '#/components/schemas/from_dt'
+              to_dt:
+                $ref: '#/components/schemas/to_dt'
+              location1:
+                $ref: '#/components/schemas/expense_location'
+              location2:
+                $ref: '#/components/schemas/expense_location'
+              location3:
+                $ref: '#/components/schemas/expense_location'
+              location4:
+                $ref: '#/components/schemas/expense_location'
+              location5:
+                $ref: '#/components/schemas/expense_location'
+              purpose:
+                type: string
+                maxLength: 255
+                description: |
+                  This is an auto-generated field by `/v4/fyler/purpose`
+                example: '#4:  Oct 2020'
+              source:
+                type: string
+                maxLength: 255
+                description: |
+                  The name of the client app which is creating the expense.
+                  if its a thrid party app, it prefixed with TPA_.
+                example: WEBAPP
+              report_type:
+                type: string
+                maxLength: 255
+                description: >
+                  Represents what's the report type that the Fyler is
+                  submitting.
+                enum:
+                  - BASIC
+                  - TRIP
+        test:
+          type: boolean
+          example: false
+          default: false
+      required:
+        - data
+    amount:
+      type: integer
+      description: |
+        Amount value of the object.
+      example: 100
+    export_info:
+      type: object
+      readOnly: true
+      description: Accounting export information for this object.
+      properties:
+        exported:
+          type: boolean
+          description: >
+            Signifies whether this object has been exported to external
+            accounting system or not.
+          example: true
+        exported_at:
+          type: string
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Signifies when this object was exported to external accounting
+            system or not.
+          example: '2020-06-01T13:14:54.804Z'
+        exported_ids:
+          type: array
+          items:
+            type: string
+          description: |
+            Array of export IDs 
+          example:
+            - tpe7sY2bHfl8
+            - tpe7fs7wvLU9
+    objects_reports:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          description: |
+            This id prodvided by Fyle to uniquely identify a Expense report.
+            This id is always prefixed with `rp`.
+          readOnly: true
+          example: rpevetgn3kl
+        employee_id:
+          $ref: '#/components/schemas/employee_id'
+        employee_email:
+          type: string
+          maxLength: 127
+          format: email
+          description: >
+            Email address of the Employee for whom the expense was/will-be
+            created. Once an Expense is created, the value of this field cannot
+            be changed and is immutable. <br>
+          example: john.doe@example.com
+        employee:
+          $ref: '#/components/schemas/employees'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        submitted_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was submitted to the Approvers.
+
+            If the Report is not yet submitted, this could be null. <br>
+          readOnly: true
+        purpose:
+          type: string
+        claim_number:
+          type: string
+          maxLength: 255
+        currency:
+          $ref: '#/components/schemas/currency'
+        amount:
+          $ref: '#/components/schemas/amount'
+        tax:
+          type: number
+        state:
+          type: string
+        source:
+          type: string
+        approved_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was approved. This field could be null
+            if the Report was not yet approved.
+          readOnly: true
+        verified:
+          type: boolean
+          description: Indicates whether the Report is verified or not
+          readOnly: true
+        verified_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was verified. If the Report is not
+            verified yet, this could be null.
+          readOnly: true
+        reimbursed_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was Reimbursed. If the Report is not
+            reimbursed or submitted yet, this could be null.
+          readOnly: true
+        settlement_id:
+          type: string
+          readOnly: true
+          maxLength: 255
+          description: >
+            An unique ID, generated by Fyle, for identifying the Settlement.
+            Once a Report is paid, the value of this field cannot be changed and
+            is immutable. <br>
+          example: setzS7mbPKPWg
+        settled_at:
+          readOnly: true
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the report approved was settled. <br>
+          example: '2017-07-21T17:32:28Z'
+        num_transactions:
+          type: integer
+        expense_ids:
+          type: array
+          items:
+            type: string
+        verification_state:
+          type: string
+        created_by:
+          type: string
+        trip_request_id:
+          type: string
+        physical_bill:
+          type: boolean
+        physical_bill_at:
+          type: string
+        manual_flag:
+          type: boolean
+        policy_flag:
+          type: boolean
+        type:
+          type: string
+        from_dt:
+          type: string
+        to_dt:
+          type: string
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/expense_location'
+        report_approvals:
+          type: object
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        export_info:
+          $ref: '#/components/schemas/export_info'
+    responses_reports:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/reports
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/objects_reports'
 tags:
   - name: Projects
     description: |
@@ -3402,6 +3830,16 @@ tags:
   - name: Report Stats
     description: |
       This API gives you stats of your report.
+  - name: Expense Custom Properties
+    description: >
+      This API gives you access to your organisation's Expenses Custom
+      Properties data.
+  - name: Policy
+    description: |
+      These APIs handles the company wide policy operations.
+  - name: Reports
+    description: |
+      This API gives you access to your organisation's Expense Reports data.
 paths:
   /v4/fyler/projects:
     get:
@@ -3512,7 +3950,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_expenses'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -3572,6 +4010,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
+    delete:
+      tags:
+        - Expenses
+      summary: Delete single expense.
+      description: |
+        This API can be used to delete a particular expense at a time only.
+      operationId: DeleteExpense
+      parameters:
+        - in: query
+          name: id
+          required: true
+          description: |
+            Expense ID that is to be deleted.<br>
+          schema:
+            type: string
+            example: txhfw8d920k
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/delete_expenses'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
   /v4/fyler/my_profile:
     get:
       tags:
@@ -3858,6 +4325,196 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
+  '/v4/fyler/expense_comments/{id}':
+    post:
+      tags:
+        - Expenses
+      summary: Upsert expense comments
+      description: |
+        It creates comment on a specific expense.
+      operationId: PostExpenseComments
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Expense ID for which comment has to be created.<br>
+          schema:
+            type: string
+            example: txhfw8d920k
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/expense_comments'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_expense_comments'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/bulk_error'
+                    example:
+                      - row: 1
+                        key: Comment
+                        message: Invalid comment
+                  - $ref: '#/components/schemas/json_parsing_error'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/fyler/expenses/delete/bulk:
+    post:
+      tags:
+        - Expenses
+      summary: Delete bulk expenses.
+      description: |
+        This API can be used to delete multiple expense at a time.
+      operationId: DeleteBulkExpense
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/expenses_delete_bulk'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_expenses_delete_bulk'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/bulk_error'
+                    example:
+                      - row: 1
+                        key: Comment
+                        message: Invalid comment
+                  - $ref: '#/components/schemas/json_parsing_error'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/fyler/expense_custom_properties:
+    get:
+      tags:
+        - Expense Custom Properties
+      summary: Returns a list of expense custom Properties
+      operationId: GetExpenseCustomProperties
+      parameters:
+        - $ref: '#/components/parameters/org_id'
+        - $ref: '#/components/parameters/custom_properties_name'
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/options'
+        - $ref: '#/components/parameters/mandatory'
+        - $ref: '#/components/parameters/org_category_ids'
+        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_expense_custom_properties'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/policy_test:
+    post:
+      tags:
+        - Policy
+      summary: Test's the policy against an expense
+      description: >
+        It run the Organization defined policy for the expenses and returns any
+        violation that occurred.
+      operationId: PostPolicyTest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/policy_test'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: /v4/fyler/policy_test
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/post_policy_test'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/bulk_error'
+                    example:
+                      - row: 1
+                        key: Cost center abcd
+                        message: Invalid or duplicate cost center code
+                  - $ref: '#/components/schemas/json_parsing_error'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
   /v4/fyler/reports:
     post:
       tags:
@@ -3866,19 +4523,19 @@ paths:
       description: |
         This API creates report.
       operationId: PostReports
-      requestBody: null
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: ../schemas/requests/post/reports.yaml
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post_reports'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/post_reports'
+                $ref: '#/components/schemas/responses_reports'
         '401':
           description: Unauthorised request
           content:
