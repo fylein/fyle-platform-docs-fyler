@@ -1,0 +1,23 @@
+type: object
+properties:
+  twoWheeler:
+    type: number
+    example: 0.0
+  fourWheeler:
+    type: number
+    example: 0.0
+  fourWheeler1:
+    type: number
+    example: 0.0
+  fourWheeler3:
+    type: number
+    example: 0.0
+  fourWheeler4:
+    type: number
+    example: 0.0
+  bicycle:
+    type: number
+    example: 0.0
+  electricCar:
+    type: number
+    example: 0.0

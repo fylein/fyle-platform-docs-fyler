@@ -30,6 +30,12 @@ tags:
   - name: Expenses
     description: |
       This API gives you access to your Expenses data.
+  - name: Employees
+    description: |
+      This API gives you access to manage your profile data.
+  - name: Orgs
+    description: |
+      This API gives you access to your current org data.
 
 paths:
   /v4/fyler/projects:
@@ -38,3 +44,7 @@ paths:
     $ref: 'paths/cost_centers.yaml'
   /v4/fyler/expenses:
     $ref: 'paths/expenses.yaml'
+  /v4/fyler/my_profile:
+    $ref: 'paths/employees.yaml'
+  /v4/fyler/orgs:
+    $ref: 'paths/orgs.yaml'
