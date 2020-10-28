@@ -1,0 +1,19 @@
+type: object
+properties:
+  notify:
+    type: boolean
+    description: |
+      This indicates whether it should be notified or not.
+    default: true
+    example: true
+  status:
+    type: object
+    description: |
+      This indicates whether it should be notified or not.
+    properties:
+      comment:
+        type: string
+        maxLength: 255
+        description: Comment made on the expense.
+        example: This is a food expense
+required: [ notify, status ]

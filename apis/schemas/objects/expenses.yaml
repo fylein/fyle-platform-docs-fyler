@@ -116,6 +116,7 @@ properties:
     type: string
     description: |
       The unique ID of a Category to which the Expense belongs. <br>
+      Use `GET /api/tpa/v1/categories` to get the list of valid ID and Name of the Categories for the organization.
     example: '18'
   category:
     $ref: 'minimals/category.yaml'
@@ -295,7 +296,8 @@ properties:
     readOnly: true
   attachments:
     description: |
-     Returns expense attachments
+      Returns expense attachments. <br>
+      This field will not be present in the response for the GET method on the `/api/tpa/v1/expenses` call.
     type: array
     items:
       $ref: 'minimals/file.yaml'
@@ -374,6 +376,10 @@ properties:
   org_id:
     $ref: 'commons/org_id.yaml'
   org_name:
+<<<<<<< HEAD
     $ref: 'commons/org_name.yaml'
   actions:
     $ref: 'expense_actions.yaml'
+=======
+    $ref: 'commons/org_name.yaml'
+>>>>>>> FYLE-1heudk
