@@ -1,0 +1,6 @@
+type: object
+properties:
+  total_amount:
+    $ref: '../commons/total_amount.yaml'
+  total_count:
+    $ref: '../commons/total_count.yaml'
