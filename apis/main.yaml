@@ -39,6 +39,9 @@ tags:
   - name: Vendors
     description: |
       This API gives you a list of vendors
+  - name: Categories
+    description: |
+      This API gives you list of your organisation's Categories data.
 
 paths:
   /v4/fyler/projects:
@@ -53,3 +56,5 @@ paths:
     $ref: 'paths/orgs.yaml'
   /v4/fyler/vendors:
     $ref: 'paths/vendors.yaml'
+  /v4/fyler/categories:
+    $ref: 'paths/categories.yaml'
