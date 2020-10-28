@@ -27,9 +27,14 @@ tags:
   - name: Expense Stats
     description: |
       This API gives you stats of your expenses.
+  - name: Report Stats
+    description: |
+      This API gives you stats of your report.
 
 paths:
   /v4/fyler/projects:
     $ref: 'paths/projects.yaml'
   /v4/fyler/expense/stats:
     $ref: 'paths/stats/expense.yaml'
+  /v4/fyler/reports/stats:
+    $ref: 'paths/stats/reports.yaml'
