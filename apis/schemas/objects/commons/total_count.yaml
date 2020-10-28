@@ -1,4 +1,4 @@
-type: float
+type: integer
 description: |
   This field indicates the total count of user expenses.
 example: 12
