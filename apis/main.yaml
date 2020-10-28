@@ -60,6 +60,9 @@ tags:
   - name: Expense Custom Properties
     description: |
       This API gives you access to your organisation's Expenses Custom Properties data.
+  - name: Policy
+    description: |
+      These APIs handles the company wide policy operations.
 
 paths:
   /v4/fyler/projects:
@@ -94,3 +97,5 @@ paths:
     $ref: 'paths/expenses_delete_bulk.yaml'
   /v4/fyler/expense_custom_properties:
     $ref: 'paths/expense_custom_properties.yaml'
+  /v4/fyler/policy_test:
+    $ref: 'paths/policy_test.yaml'

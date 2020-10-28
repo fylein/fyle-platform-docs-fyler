@@ -376,10 +376,6 @@ properties:
   org_id:
     $ref: 'commons/org_id.yaml'
   org_name:
-<<<<<<< HEAD
     $ref: 'commons/org_name.yaml'
   actions:
     $ref: 'expense_actions.yaml'
-=======
-    $ref: 'commons/org_name.yaml'
->>>>>>> FYLE-1heudk

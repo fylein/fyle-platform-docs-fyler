@@ -1,0 +1,58 @@
+type: object
+properties:
+  currency:
+    $ref: '../commons/currency.yaml'
+  description:
+    type: string
+    description: |
+      Description of this policy rule.
+    example: Policy rule is this
+  disable_system_approvers:
+    type: boolean
+    description: |
+      Indicates whether to disable system approvers or not.
+    example: false
+  flag:
+    type: boolean
+    description: |
+      Indicates whether expense is flagged or not.
+    example: false
+  missing_approvers:
+    type: array
+    description: |
+      Contains the missing ids of Approver set for this Fyler.
+    items:
+      type: string
+    example: [ 'apdh2ue92u', 'ape29iwk2p']
+  policy_amount:
+    type: number
+    description: |
+      Amount capping set in the policy.
+    example: 100
+  policy_approver_ids:
+    type: array
+    description: |
+      Contains the ids of Approver set for this Fyler.
+    items:
+      type: string
+    example: [ 'apdh2ue92u', 'ape29iwk2p' ]
+  popup:
+    type: boolean
+    description: |
+      Indicates whether the message is shown in popup window or not.
+    example: false
+  receipt_required:
+    type: boolean
+    description: |
+      Indicates whether receipt is mandatory or not in this policy rule.
+    example: false
+  expense_id:
+    type: string
+    description: |
+      Expense Id on which this policy executed.
+    example: txu89h890i8
+  expense_policy_rule_id:
+    type: string
+    description: |
+      Expense policy rule id.
+    example: tprLjFqDpdjj20
