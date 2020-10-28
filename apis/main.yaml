@@ -42,6 +42,9 @@ tags:
   - name: Categories
     description: |
       This API gives you list of your organisation's Categories data.
+  - name: Currencies
+    description: |
+      This API gives you list of currencies supported by Fyle.
 
 paths:
   /v4/fyler/projects:
@@ -58,3 +61,5 @@ paths:
     $ref: 'paths/vendors.yaml'
   /v4/fyler/categories:
     $ref: 'paths/categories.yaml'
+  /v4/fyler/currencies:
+    $ref: 'paths/currencies.yaml'
