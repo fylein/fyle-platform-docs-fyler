@@ -1,8 +1,8 @@
 get:
   tags:
-    - Report Stats
-  summary: Returns report stats.
-  operationId: GetReportStats
+    - Advance Requests Stats
+  summary: Returns advance requests stats.
+  operationId: GetAdvanceRequestsStats
   # parameters:
 
   responses:
@@ -11,7 +11,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../schemas/responses/get/stats/reports.yaml'
+            $ref: '../../schemas/responses/get/stats/advance_requests.yaml'
     '401':
       description: Unauthorized request
       content:
