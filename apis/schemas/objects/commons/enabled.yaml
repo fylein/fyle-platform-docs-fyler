@@ -1,4 +1,4 @@
 type: boolean
 description: |
-  This field specifies if the object is enabled or not.
+  This field indicates if the module is enabled or not.
 example: true

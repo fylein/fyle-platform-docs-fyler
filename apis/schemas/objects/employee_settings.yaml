@@ -1,0 +1,181 @@
+type: object
+properties:
+  auto_fyle_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+      background_enabled:
+        type: boolean
+        description: |
+          This field indicates if it is enabled in background (Not sure about this setting)
+        example: false
+  cost_center_settings:
+    type: object
+    properties:
+      default_cost_center_id:
+        type: integer
+        description: |
+          This field indicates the default cost center id of organisation.
+        example: 9
+        default_cost_center_name:
+          type: integer
+          description: |
+            This field indicates the default cost center name of organisation.
+          example: "Best cost center"
+  per_diem_settings:
+    type: object
+    properties:
+      allowed_per_diem_ids:
+        type: array
+        description: |
+          This contains the list of all allowed per diems in your organisation
+        items:
+          type: integer
+        example: [ 16570, 3434, 543 ]
+  access_delegation_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+  insta_fyle_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+      static_camera_overlay_enabled:
+        type: boolean
+        description: |
+          This field indicates if camera overlay is enabled.
+        example: false
+      extract_fields:
+        type: array
+        description: |
+          This indicates which field to extract from receipt.
+        items:
+          type: string
+        example: ["AMOUNT","CURRENCY","CATEGORY","TXN_DT"]
+  bulk_fyle_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+  gmail_fmr_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+  trip_request_org_user_settings:
+    type: object
+    properties:
+      enabled:
+        $ref: './commons/enabled.yaml'
+  one_click_action_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+      module:
+        type: string
+        description: |
+          This field indicates for which module the setting is enabled/allowed.
+        example: "insta_fyle"
+  preferences:
+    type: object
+    properties:
+      default_project_id:
+        type: integer
+        description: |
+          This field indicates default project assigned to employee.
+        example: 7
+      default_vehicle_type:
+        type: string
+        description: |
+          This field indicates default vehicle type selected by employee.
+        example: "four_wheeler"
+  locale:
+    type: object
+    properties:
+      timezone:
+        type: string
+        description: |
+          This field indicates the timezone of the employee.
+        example: "Asia/Kolkata"
+      abbreviation:
+        type: string
+        description: |
+          This field indicates the abbreviation of timezone.
+        example: "IST"
+      offset:
+        type: string
+        description: |
+          This field indicates the offset of timezone from UTC.
+        example: "05:30:00"
+  whatsapp_fyle_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+  sms_fyle_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+  cost_center_ids:
+    type: array
+    description: |
+      This field indicates the cost centers that can accessed by employee.
+    items:
+      type: integer
+    example: [1233, 343]
+  currency_settings:
+    type: object
+    properties:
+      preferred_currency:
+        type: string
+        description: |
+          This field indicates the preferred currency of employee.
+        example: "INR"
+      enabled:
+        $ref: './commons/enabled.yaml'
+  project_ids:
+    type: array
+    description: |
+      This field indicates the project assigned to employee.
+    items:
+      type: integer
+    example: [1233, 343]
+  in_app_chat_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+      restore_id:
+        type: integer
+        description: |
+          This field indicates the restore id of the in app chat settings.
+        example: 54
+  hotjar_settings:
+    type: object
+    properties:
+      allowed:
+        $ref: './commons/allowed.yaml'
+      enabled:
+        $ref: './commons/enabled.yaml'
+  

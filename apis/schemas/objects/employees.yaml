@@ -158,6 +158,8 @@ properties:
     description: |
       The account number of the bank account of the employee. `branch_account` is India specific.
     example: 'XWWEW000024324493'
+  employee_settings:
+    $ref: 'employee_settings.yaml'
   org:
     $ref: 'orgs.yaml'
   primary_approver:
