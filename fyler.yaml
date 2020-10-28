@@ -21,7 +21,7 @@ components:
   parameters:
     offset:
       in: query
-      name: offest
+      name: offset
       description: |
         offset is used to skip that many number of objects before counting. <br>
       schema:
@@ -154,6 +154,59 @@ components:
         `primary_approver_id=eq.<value>`. For multiple values, use
         `primary_approver_id=in.(value1,value2,value3)`.
       example: eq.ouX2Rv617cW0
+    name:
+      in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.ABCD*
+    cost_centers_id:
+      in: query
+      name: id
+      description: |
+        This param is used to filter cost center record based on cost center id.
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.7
+    cost_centers_code:
+      in: query
+      name: code
+      description: |
+        Supported operators are `in`,`eq`,`like`.<br>
+      schema:
+        type: string
+        example: eq.CC01
+    employee_email:
+      in: query
+      name: employee_email
+      description: |
+        This param is used to filer records based employee email.
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.employee1@example.com
+    fyle_category:
+      in: query
+      name: fyle_category
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        sub_project=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Formula*
+    sub_category:
+      in: query
+      name: sub_category
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        sub_project=in.(value1,value2)
+      schema:
+        type: string
+        example: like.India*
   schemas:
     '401':
       type: object
@@ -167,6 +220,16 @@ components:
             Fyle or has expired.
 
             You need to generate a new access token.
+    '403':
+      type: object
+      properties:
+        message:
+          enum:
+            - Forbidden
+          type: string
+          description: >
+            This error means current user does not have enough permissions to
+            perform this operation.
     count:
       description: |
         The total number of objects that can be requested.
@@ -404,10 +467,2625 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/projects'
+    cost_centers:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          description: >
+            This is provided by Fyle to identify a cost center from this
+            organisation.
+          readOnly: true
+          example: '1'
+        name:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the name of the cost center.
+          example: sales & marketing
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of cost center.
+          example: sm-cc
+        description:
+          type: string
+          maxLength: 255
+          description: |
+            This field provides a decription about the cost center.
+          example: Initial Cost center
+        enabled:
+          type: boolean
+          description: |
+            This field specifies if the current cost center is enabled or not.
+          example: true
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+    get_cost_centers:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/cost_centers
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/cost_centers'
+    employee_id:
+      type: string
+      maxLength: 255
+      description: >
+        This id prodvided by Fyle to uniquely identify an employee within an
+        organization.
+
+        This id is always prefixed with `ou`.
+      readOnly: true
+      example: outGt9ju6qP
+    employees:
+      type: object
+      description: Details of the employee to whom this object belongs to.
+      readOnly: true
+      properties:
+        user_id:
+          type: string
+          maxLength: 255
+          description: |
+            This id helps to identify employees in other organisations.
+            It is always prefixed with the string `us`.
+            It is unique per email.
+          example: usIYTLwzlaGu
+        employee_code:
+          type: string
+          maxLength: 255
+          example: E84122
+          description: >
+            This field refers to any string that the client programs can use to
+            refer to an employee's unique id.
+
+            This could be any field such as an UUID from an Active Directory
+            server or employee id in a HRMS system.
+        location:
+          type: string
+          maxLength: 255
+          example: Bangalore Ofc
+        level_id:
+          type: string
+          maxLength: 255
+          example: lvlnvJUe9k6Vx
+        department_id:
+          type: string
+          maxLength: 255
+          example: dept9in4oIHpdR
+        business_unit:
+          type: string
+          maxLength: 255
+          example: Finance ops
+          description: >-
+            Represents the business unit of the organization to which of the
+            employee belongs.
+        title:
+          type: string
+          maxLength: 255
+          example: Branch Manager
+          description: Represents the title/desgination of the employee.
+        mobile:
+          type: string
+          description: >
+            Mobile number of the employee.
+
+            `Given example is a fake number. We don't know who might answer your
+            call.`
+          example: +1-202-555-0167
+        joining_dt:
+          type: string
+          format: date
+          example: '2018-10-31'
+          description: Date string in YYYY-MM-DD format
+        full_name:
+          type: string
+          maxLength: 255
+          example: John Doe
+          description: >-
+            Represents the full name of the employee. Must be at least 3
+            characters.
+    project:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        sub_project:
+          type: string
+          maxLength: 255
+          description: Represents the name of the sub_project.
+          example: Formula One
+        display_name:
+          type: string
+          maxLength: 513
+          description: >
+            This is a combination of name and sub_project separated by a / and
+            spaces.
+
+            In case if no sub_project is present it is same as name of the
+            project.
+          example: Fast and Furious / Formula One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
+    cost_center:
+      type: object
+      readOnly: true
+      properties:
+        id:
+          type: string
+          example: '11539'
+        name:
+          type: string
+          maxLength: 255
+          example: sales & marketing
+        code:
+          type: string
+          example: sm-cc
+    report:
+      type: object
+      readOnly: true
+      properties:
+        purpose:
+          type: string
+        approved_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Report was approved.
+
+            This field could be null if the Report was not yet approved.
+          example: '2020-07-23T09:32:00.933Z'
+        reimbursed_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Expense was Reimbursed.
+
+            If the Expense is not reimbursed yet, this could be null. <br>
+          example: '2020-07-28T09:32:00.933Z'
+        claim_number:
+          type: string
+          maxLength: 255
+        settlement_id:
+          type: string
+          maxLength: 255
+          description: >
+            An unique ID, generated by Fyle, for identifying the Settlement.
+
+            Once a Report is paid, the value of this field cannot be changed and
+            is immutable. <br>
+          example: setzS7mbPKPWg
+        settled_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the report approved was settled. <br>
+          example: '2020-07-23T09:32:00.933Z'
+        trip_request_id:
+          type: string
+          description: An ID of the TripRequest associated with it
+    location:
+      type: object
+      properties:
+        city:
+          type: string
+          example: London
+        state:
+          type: string
+          example: London
+        display_name:
+          type: string
+        country:
+          type: string
+          example: United Kingdom
+        formatted_address:
+          type: string
+          example: '221 Baker St, Marylebone, London, United Kingdom'
+        latitude:
+          type: number
+          example: 12.971599
+        longitude:
+          type: number
+          example: 77.594566
+    perdiem:
+      type: object
+      readOnly: true
+      properties:
+        id:
+          type: string
+          example: '1104'
+        name:
+          type: string
+          maxLength: 255
+          example: sales & marketing
+        currency:
+          type: string
+          maxLength: 3
+          example: USD
+        rate:
+          type: integer
+          example: 40
+    file:
+      type: object
+      readOnly: true
+      properties:
+        id:
+          type: string
+          description: |
+            Id of the file object. Always starts with `fi`.
+          example: figo4lgkn2224
+        name:
+          type: string
+          description: |
+            Name of the uploaded file.
+          example: uber_expenses_vmrpw.pdf
+        type:
+          type: string
+          enum:
+            - THUMBNAILx200x200
+            - ORIGINAL
+            - ENCRYPTED
+          description: >
+            Indicates whether this file original size or encrypted or its
+            thumbnail image.
+          example: ORIGINAL
+        password:
+          type: string
+          description: |
+            Password which required to unlock the file.
+          example: SuperSecretPassword
+        download_path:
+          type: string
+          description: |
+            Link to download this file.
+            change this to right url later.
+          example: /api/files/fiGxWO1vdkW8/download
+    custom_properties:
+      type: object
+      additionalProperties:
+        oneOf:
+          - type: string
+          - type: boolean
+          - type: integer
+          - $ref: '#/components/schemas/location'
+          - type: array
+            items:
+              type: string
+        description: >
+          The value for the custom properties. This could be a String, Boolean,
+          Integer or an Array of Strings. <br>
+      example:
+        house: gryffindor
+    approvals:
+      type: object
+      description: |
+        siginifies all the approvals of a particular object.
+      additionalProperties:
+        type: object
+        properties:
+          state:
+            type: string
+            enum:
+              - APPROVED
+              - APPROVAL_PENDING
+              - APPROVAL_DISABLED
+      example:
+        oueoblnegf:
+          state: APPROVED
+    expense_actions:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '1'
+        can_approve:
+          type: boolean
+          example: true
+        can_delete:
+          type: boolean
+          example: false
+        can_edit:
+          type: boolean
+          example: true
+        can_manual_flag:
+          type: boolean
+          example: false
+        can_add_approver:
+          type: boolean
+          example: true
+        can_assign:
+          type: boolean
+          example: false
+        can_verify:
+          type: boolean
+          example: true
+        can_admin_approve:
+          type: boolean
+          example: false
+        can_edit_physical_bill:
+          type: boolean
+          example: true
+        can_remove_from_report:
+          type: boolean
+          example: false
+    expenses:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          example: tx12345
+          description: >-
+            An unique string to identify the Expense. Ignore this field when
+            used as part of a POST request to create an Expense.
+          readOnly: true
+        employee_email:
+          type: string
+          maxLength: 127
+          format: email
+          description: >
+            Email address of the Employee for whom the expense was/will-be
+            created. Once an Expense is created, the value of this field cannot
+            be changed and is immutable. <br>
+          example: john.doe@example.com
+        employee_id:
+          $ref: '#/components/schemas/employee_id'
+        employee:
+          $ref: '#/components/schemas/employees'
+        spent_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the transaction for which the expense [being]
+            fyled was made. <br>
+
+            This date cannot be in future.
+          example: '2020-07-21T17:32:28Z'
+        source:
+          type: string
+          example: SLACK_APP
+          description: >
+            The name of the client app which is creating the expense.
+
+            if its a thrid party app, it prefixed with TPA_.
+
+            Ex - If you pass SLACK_APP, it will be saved as TPA_SLACK_APP. If
+            not passed, source is saved as TPA.
+        currency:
+          type: string
+          maxLength: 3
+          example: USD
+          description: >
+            ISO 4217 currency codes that are usually of three upper case
+            letters.
+
+            See "https://www.iban.com/currency-codes" for examples.
+
+            If this field is ignored during a POST call to create/update an
+            Expense, the default currency of the organization will be used.
+
+            To use other currency than default currency use `foreign_currency`
+            field.
+        amount:
+          type: number
+          description: >
+            The transaction amount for which the expense was/will-be fyled.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+
+            Note that, when used as part of creating an Expense via POST, the
+            actual amount in the Expense, in a subsequent GET call, may get
+            changed either because of policies or admin/approvers changing the
+            amount.
+          example: 1500
+        user_amount:
+          type: number
+          description: >
+            The transaction amount as claimed by user.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+          example: 1984.18
+        policy_amount:
+          type: number
+          description: >
+            The transaction amount which is modified by policy.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+          example: 1500
+        admin_amount:
+          type: number
+          description: >
+            The transaction amount which is modified by admin or approver.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+
+            This could be null if admin or approver has not edited your expense.
+          example: null
+        tax:
+          type: number
+          description: Tax amount as setup by your organisation.
+          deprecated: true
+        foreign_currency:
+          type: string
+          maxLength: 3
+          example: INR
+          description: >
+            ISO 4217 currency codes that are usually of three upper case
+            letters.
+
+            See "https://www.iban.com/currency-codes" for examples.
+
+            This field is used when expense is of non-default currency of an
+            organisation.
+        foreign_amount:
+          type: number
+          description: >
+            The transaction foriegn amount for which the expense was/will-be
+            fyled.
+
+            The amount will be in the currency that is mentioned in the `foriegn
+            currncy`<br>
+
+            Note that, if an expense of currency other default currency of an
+            organistation is used then `amount`, `foreign_currency`,
+            `foreign_amount` are mandatory.
+          example: 138962.05
+        created_by:
+          type: string
+          maxLength: 255
+          description: >
+            An unique ID, generated by Fyle, for identifying the Employee who
+            created the expense. Once an Expense is created, the value of this
+            field cannot be changed and is immutable. <br>
+          example: ou12345Zdfx
+          readOnly: true
+        purpose:
+          type: string
+          maxLength: 1024
+          description: Justification for the expense.
+          example: Team lunch
+        project_id:
+          type: string
+          description: >
+            The ID generated by Fyle to uniquely identify the Project, to which
+            the Expense belongs. <br>
+          example: '1234'
+        project:
+          $ref: '#/components/schemas/project'
+        cost_center_id:
+          type: string
+          description: >
+            The ID generated by Fyle to uniquely identify the CostCenter, to
+            which the Expense belongs. <br>
+          example: '4321'
+        cost_centers:
+          $ref: '#/components/schemas/cost_center'
+        category_id:
+          type: string
+          description: |
+            The unique ID of a Category to which the Expense belongs. <br>
+          example: '18'
+        category:
+          $ref: '#/components/schemas/category'
+        state:
+          type: string
+          enum:
+            - COMPLETE
+            - DRAFT
+            - PAID
+            - PAYMENT_PROCESSING
+            - APPROVER_PENDING
+            - PAYMENT_PENDING
+            - APPROVED
+          description: >-
+            The state of the Expense. This field shall be ignored in POST calls
+            when creating/updating an Expense.
+          readOnly: true
+        fund_source:
+          type: string
+          enum:
+            - PERSONAL
+            - ADVANCE
+            - CCC
+          description: >-
+            The fund source of the Expense. This field shall be ignored in POST
+            calls when creating/updating an Expense.
+          readOnly: true
+        payment_id:
+          type: string
+        source_account_id:
+          type: string
+        source_account_type:
+          type: string
+        invoice_number:
+          type: string
+          description: |
+            invoice number from the receipt.
+        billable:
+          type: boolean
+          example: true
+          description: This fields marks whether a given expense is billable a not.
+        reimbursable:
+          type: boolean
+          example: true
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        expense_number:
+          type: string
+          description: |
+            This is user visible identifier for an expense.
+            This field can be used as reference in UI.
+          example: E/2020/10/T/95
+        exchange_rate:
+          type: number
+          description: >
+            This field determines at which rate the expenses from foriegn
+            currency was converted to home curreny
+        report_id:
+          type: string
+          description: |
+            Unique id given by Fyle to identify an Expense Report.
+        reported_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Expense was submitted via a Report to the
+            Approvers.
+
+            If the Expense is not added to a Report yet or if the Report is not
+            yet submitted, this could be null.
+        report:
+          $ref: '#/components/schemas/report'
+        physical_bill:
+          type: boolean
+          description: |
+            This field indicated whether physicall bill was received or not.
+          example: true
+        physical_bill_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp indicating when the Expense's physicall bill was
+            submitted.
+
+            If the Expense's bill is not required to be submitted, then this
+            could be null.
+        verified:
+          type: boolean
+          description: |
+            Indicates whether the Expense is verified or not
+          readOnly: true
+        verification_state:
+          type: string
+        verified_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Expense was verified.
+
+            If the Expense is not verified yet, this could be null. <br>
+          readOnly: true
+        skip_reimbursement:
+          type: boolean
+          deprecated: true
+        vendor:
+          type: string
+          example: Uber
+          maxLength: 255
+          description: |
+            String denoting the name of the vendor to which the Expense was made
+        vendor_id:
+          type: string
+          example: 24242r
+          maxLength: 255
+          description: |
+            String denoting the id of the vendor to which the Expense was made
+        locations:
+          description: >
+            This field will be present for travel related categories. To add to
+            and from location to you travel category related expenses add two
+            locations in schema given below.
+          type: array
+          items:
+            $ref: '#/components/schemas/location'
+        train_travel_class:
+          description: |
+            This field is applicable for only Train category.
+          type: string
+          example: string
+        flight_journey_travel_class:
+          description: >
+            This field is applicable only for flight category. Can be
+            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
+          type: string
+          example: ECONOMY
+        flight_return_travel_class:
+          description: >
+            This field is applicable only for flight category. Can be
+            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
+          type: string
+          example: BUSINESS
+        bus_travel_class:
+          description: |
+            This field is applicable only for bus category.
+          type: string
+          example: AC
+        from_dt:
+          description: >
+            This field is only relevant for travel related categories. This
+            represents the onward date.
+          type: string
+          example: '2019-07-17T00:00:00.000Z'
+        to_dt:
+          description: >
+            This field is only relevant for travel related categories. This
+            represents the return date.
+          type: string
+          example: '2019-07-27T00:00:00.000Z'
+        distance:
+          type: number
+        distance_unit:
+          type: string
+        num_days:
+          type: integer
+        mileage_calculated_distance:
+          type: number
+        mileage_calculated_amount:
+          type: number
+        mileage_vehicle_type:
+          type: string
+        mileage_rate:
+          type: number
+        mileage_is_round_trip:
+          type: boolean
+        hotel_is_breakfast_provided:
+          type: boolean
+        per_diem_rate_id:
+          type: string
+        per_diem_rate:
+          $ref: '#/components/schemas/perdiem'
+        activity_details:
+          type: string
+        activity_policy_pending:
+          type: boolean
+        num_files:
+          type: integer
+          description: |
+            Number of files attached to this Expenses.
+        has_attachments:
+          type: boolean
+          description: >
+            Returns if there are file attachments that the Expense has. Usually
+            the image of the receipts are added as attachments to the Expenses.
+          readOnly: true
+        attachments:
+          description: |
+            Returns expense attachments
+          type: array
+          items:
+            $ref: '#/components/schemas/file'
+        custom_properties:
+          $ref: '#/components/schemas/custom_properties'
+        user_can_delete:
+          type: boolean
+          description: >
+            This field describes whether a user can delete this expenses.
+
+            This is flag is set as false when travel agent creates expenses on
+            your behalf.
+          example: true
+        policy_flag:
+          type: boolean
+          description: >-
+            This field indicates whether policy execution has flagged this
+            expenses or not.
+          example: false
+        manual_flag:
+          type: boolean
+          description: >
+            This field indicates whether this expenses was manually flagged by
+            approver or finance or admin.
+          example: true
+        policy_state:
+          type: string
+          enum:
+            - FAILED
+            - SUCCESS
+            - RUNNING
+          description: >
+            This fields shows policy execution state for this expenses.
+
+            If this field is null then its policy has not yet run on this
+            expenses.
+        extracted_data:
+          type: object
+        transcribed_data:
+          type: object
+        user_review_needed:
+          type: boolean
+        mandatory_fields_present:
+          type: boolean
+        transcription_state:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - SUCCESS
+            - FAILURE
+            - NO_WORK
+          example: SUCCESS
+        receipt_required:
+          type: boolean
+        is_holiday_expense:
+          type: boolean
+        risk_state:
+          type: string
+          enum:
+            - HIGH_RISK
+            - MODERATE_RISK
+            - NO_RISK
+          example: NO_RISK
+        external_id:
+          type: string
+        split_group_id:
+          type: string
+        split_group_user_amount:
+          type: string
+        external_expense:
+          type: object
+        corporate_credit_card_transaction:
+          type: object
+        transaction_approvals:
+          allOf:
+            - $ref: '#/components/schemas/approvals'
+          example:
+            ougelgneget:
+              state: APPROVED
+            ougo3nlwfgg:
+              state: APPROVAL_PENDING
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        org_name:
+          $ref: '#/components/schemas/org_name'
+        actions:
+          $ref: '#/components/schemas/expense_actions'
+    get_expenses:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/expenses
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expenses'
+    requests_expenses:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/expenses'
+        test:
+          type: boolean
+          example: false
+          default: false
+      required:
+        - data
+    commons_created_at:
+      type: string
+      format: date-time
+      description: >
+        <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies when this object was created.
+      readOnly: true
+      example: '2020-06-01T13:14:54.804'
+    commons_updated_at:
+      type: string
+      format: date-time
+      description: >
+        <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339,
+        section 5.6 compliant timestamp.</a>
+
+        Signifies when this object was updated.
+      readOnly: true
+      example: '2020-06-11T13:14:55.201598'
+    commons_org_id:
+      type: string
+      description: |
+        The unique id of the Organization to which the object is associated.
+      example: orNVthTo2Zyo
+    commons_org_name:
+      type: string
+      description: |
+        The name of the Organization to which the object is associated.
+      example: Ministry of Magic
+    post_expenses:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          example: tx12345
+          description: >-
+            An unique string to identify the Expense. Ignore this field when
+            used as part of a POST request to create an Expense.
+          readOnly: true
+        spent_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the transaction for which the expense [being]
+            fyled was made. <br>
+
+            This date cannot be in future.
+          example: '2020-07-21T17:32:28Z'
+        source:
+          type: string
+          example: SLACK_APP
+          description: >
+            The name of the client app which is creating the expense.
+
+            if its a thrid party app, it prefixed with TPA_.
+
+            Ex - If you pass SLACK_APP, it will be saved as TPA_SLACK_APP. If
+            not passed, source is saved as TPA.
+        currency:
+          type: string
+          maxLength: 3
+          example: USD
+          description: >
+            ISO 4217 currency codes that are usually of three upper case
+            letters.
+
+            See "https://www.iban.com/currency-codes" for examples.
+
+            If this field is ignored during a POST call to create/update an
+            Expense, the default currency of the organization will be used.
+
+            To use other currency than default currency use `foreign_currency`
+            field.
+        amount:
+          type: number
+          description: >
+            The transaction amount for which the expense was/will-be fyled.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+
+            Note that, when used as part of creating an Expense via POST, the
+            actual amount in the Expense, in a subsequent GET call, may get
+            changed either because of policies or admin/approvers changing the
+            amount.
+          example: 1500
+        user_amount:
+          type: number
+          description: >
+            The transaction amount as claimed by user.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+          example: 1984.18
+        policy_amount:
+          type: number
+          description: >
+            The transaction amount which is modified by policy.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+          example: 1500
+        admin_amount:
+          type: number
+          description: >
+            The transaction amount which is modified by admin or approver.
+
+            The amount will be in the currency that the organization is setup
+            with in case of GET requests. <br>
+
+            This could be null if admin or approver has not edited your expense.
+          example: null
+        tax:
+          type: number
+          description: Tax amount as setup by your organisation.
+          deprecated: true
+        foreign_currency:
+          type: string
+          maxLength: 3
+          example: INR
+          description: >
+            ISO 4217 currency codes that are usually of three upper case
+            letters.
+
+            See "https://www.iban.com/currency-codes" for examples.
+
+            This field is used when expense is of non-default currency of an
+            organisation.
+        foreign_amount:
+          type: number
+          description: >
+            The transaction foriegn amount for which the expense was/will-be
+            fyled.
+
+            The amount will be in the currency that is mentioned in the `foriegn
+            currncy`<br>
+
+            Note that, if an expense of currency other default currency of an
+            organistation is used then `amount`, `foreign_currency`,
+            `foreign_amount` are mandatory.
+          example: 138962.05
+        created_by:
+          type: string
+          maxLength: 255
+          description: >
+            An unique ID, generated by Fyle, for identifying the Employee who
+            created the expense. Once an Expense is created, the value of this
+            field cannot be changed and is immutable. <br>
+          example: ou12345Zdfx
+          readOnly: true
+        purpose:
+          type: string
+          maxLength: 1024
+          description: Justification for the expense.
+          example: Team lunch
+        project_id:
+          type: string
+          description: >
+            The ID generated by Fyle to uniquely identify the Project, to which
+            the Expense belongs. <br>
+          example: '1234'
+        project:
+          $ref: '#/components/schemas/project'
+        cost_center_id:
+          type: string
+          description: >
+            The ID generated by Fyle to uniquely identify the CostCenter, to
+            which the Expense belongs. <br>
+          example: '4321'
+        cost_centers:
+          $ref: '#/components/schemas/cost_center'
+        category_id:
+          type: string
+          description: >
+            The unique ID of a Category to which the Expense belongs. <br>
+
+            Use `GET /api/tpa/v1/categories` to get the list of valid ID and
+            Name of the Categories for the organization.
+          example: '18'
+        category:
+          $ref: '#/components/schemas/category'
+        state:
+          type: string
+          enum:
+            - COMPLETE
+            - DRAFT
+            - PAID
+            - PAYMENT_PROCESSING
+            - APPROVER_PENDING
+            - PAYMENT_PENDING
+            - APPROVED
+          description: >-
+            The state of the Expense. This field shall be ignored in POST calls
+            when creating/updating an Expense.
+          readOnly: true
+        fund_source:
+          type: string
+          enum:
+            - PERSONAL
+            - ADVANCE
+            - CCC
+          description: >-
+            The fund source of the Expense. This field shall be ignored in POST
+            calls when creating/updating an Expense.
+          readOnly: true
+        payment_id:
+          type: string
+        source_account_id:
+          type: string
+        source_account_type:
+          type: string
+        invoice_number:
+          type: string
+          description: |
+            invoice number from the receipt.
+        billable:
+          type: boolean
+          example: true
+          description: This fields marks whether a given expense is billable a not.
+        reimbursable:
+          type: boolean
+          example: true
+        created_at:
+          $ref: '#/components/schemas/commons_created_at'
+        updated_at:
+          $ref: '#/components/schemas/commons_updated_at'
+        expense_number:
+          type: string
+          description: |
+            This is user visible identifier for an expense.
+            This field can be used as reference in UI.
+          example: E/2020/10/T/95
+        exchange_rate:
+          type: number
+          description: >
+            This field determines at which rate the expenses from foriegn
+            currency was converted to home curreny
+        report_id:
+          type: string
+          description: |
+            Unique id given by Fyle to identify an Expense Report.
+        reported_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Expense was submitted via a Report to the
+            Approvers.
+
+            If the Expense is not added to a Report yet or if the Report is not
+            yet submitted, this could be null.
+        physical_bill:
+          type: boolean
+          description: |
+            This field indicated whether physicall bill was received or not.
+          example: true
+        physical_bill_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp indicating when the Expense's physicall bill was
+            submitted.
+
+            If the Expense's bill is not required to be submitted, then this
+            could be null.
+        verified:
+          type: boolean
+          description: |
+            Indicates whether the Expense is verified or not
+          readOnly: true
+        verification_state:
+          type: string
+        verified_at:
+          type: string
+          format: date-time
+          description: >
+            RFC 3339, section 5.6
+            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
+            timestamp on which the Expense was verified.
+
+            If the Expense is not verified yet, this could be null. <br>
+          readOnly: true
+        skip_reimbursement:
+          type: boolean
+          deprecated: true
+        vendor:
+          type: string
+          example: Uber
+          maxLength: 255
+          description: |
+            String denoting the name of the vendor to which the Expense was made
+        vendor_id:
+          type: string
+          example: 24242r
+          maxLength: 255
+          description: |
+            String denoting the id of the vendor to which the Expense was made
+        locations:
+          description: >
+            This field will be present for travel related categories. To add to
+            and from location to you travel category related expenses add two
+            locations in schema given below.
+          type: array
+          items:
+            $ref: '#/components/schemas/location'
+        train_travel_class:
+          description: |
+            This field is applicable for only Train category.
+          type: string
+          example: string
+        flight_journey_travel_class:
+          description: >
+            This field is applicable only for flight category. Can be
+            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
+          type: string
+          example: ECONOMY
+        flight_return_travel_class:
+          description: >
+            This field is applicable only for flight category. Can be
+            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
+          type: string
+          example: BUSINESS
+        bus_travel_class:
+          description: |
+            This field is applicable only for bus category.
+          type: string
+          example: AC
+        from_dt:
+          description: >
+            This field is only relevant for travel related categories. This
+            represents the onward date.
+          type: string
+          example: '2019-07-17T00:00:00.000Z'
+        to_dt:
+          description: >
+            This field is only relevant for travel related categories. This
+            represents the return date.
+          type: string
+          example: '2019-07-27T00:00:00.000Z'
+        distance:
+          type: number
+        distance_unit:
+          type: string
+        num_days:
+          type: integer
+        mileage_calculated_distance:
+          type: number
+        mileage_calculated_amount:
+          type: number
+        mileage_vehicle_type:
+          type: string
+        mileage_rate:
+          type: number
+        mileage_is_round_trip:
+          type: boolean
+        hotel_is_breakfast_provided:
+          type: boolean
+        per_diem_rate_id:
+          type: string
+        per_diem_rate:
+          $ref: '#/components/schemas/perdiem'
+        activity_details:
+          type: string
+        activity_policy_pending:
+          type: boolean
+        num_files:
+          type: integer
+          description: |
+            Number of files attached to this Expenses.
+        has_attachments:
+          type: boolean
+          description: >
+            Returns if there are file attachments that the Expense has. Usually
+            the image of the receipts are added as attachments to the Expenses.
+          readOnly: true
+        attachments:
+          description: >
+            This field will not be present in the response for the GET method on
+            the `/api/tpa/v1/expenses` call.
+          type: array
+          items:
+            $ref: '#/components/schemas/file'
+        custom_properties:
+          $ref: '#/components/schemas/custom_properties'
+        user_can_delete:
+          type: boolean
+          description: >
+            This field describes whether a user can delete this expenses.
+
+            This is flag is set as false when travel agent creates expenses on
+            your behalf.
+          example: true
+        policy_flag:
+          type: boolean
+          description: >-
+            This field indicates whether policy execution has flagged this
+            expenses or not.
+          example: false
+        manual_flag:
+          type: boolean
+          description: >
+            This field indicates whether this expenses was manually flagged by
+            approver or finance or admin.
+          example: true
+        policy_state:
+          type: string
+          enum:
+            - FAILED
+            - SUCCESS
+            - RUNNING
+          description: >
+            This fields shows policy execution state for this expenses.
+
+            If this field is null then its policy has not yet run on this
+            expenses.
+        extracted_data:
+          type: object
+        transcribed_data:
+          type: object
+        user_review_needed:
+          type: boolean
+        mandatory_fields_present:
+          type: boolean
+        transcription_state:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - SUCCESS
+            - FAILURE
+            - NO_WORK
+          example: SUCCESS
+        receipt_required:
+          type: boolean
+        is_holiday_expense:
+          type: boolean
+        risk_state:
+          type: string
+          enum:
+            - HIGH_RISK
+            - MODERATE_RISK
+            - NO_RISK
+          example: NO_RISK
+        external_id:
+          type: string
+        split_group_id:
+          type: string
+        split_group_user_amount:
+          type: string
+        external_expense:
+          type: object
+        corporate_credit_card_transaction:
+          type: object
+        org_id:
+          $ref: '#/components/schemas/commons_org_id'
+        org_name:
+          $ref: '#/components/schemas/commons_org_name'
+        actions:
+          $ref: '#/components/schemas/expense_actions'
+    bulk_error:
+      type: object
+      properties:
+        row:
+          type: integer
+          description: |
+            This holds the info of which row contains bad data.
+        key:
+          type: string
+          description: |
+            This helps in identifying the error by unique key.
+        message:
+          type: string
+          description: |
+            This explains what the error is in `human readable` text.
+    json_parsing_error:
+      type: object
+      properties:
+        message:
+          enum:
+            - Unable to process JSON
+          type: string
+          description: |
+            This error means that incoming json is not in right format.
+        code:
+          type: integer
+          default: 400
+          example: 400
+          deprecated: true
+    level:
+      type: object
+      readOnly: true
+      properties:
+        name:
+          type: string
+          description: |
+            Level name of the employees
+          example: Associate I
+        band:
+          type: string
+          description: >
+            Band in which this level belongs to, you can group mulitple levels
+            into a single band.
+          example: Associate
+        rank:
+          type: integer
+          description: >
+            Rank in which this level belongs to. We recommend to assign higher
+            rank for senior people in the org trees and
+
+            lower rank for employees in leaf of org tree.
+          example: 1
+    department:
+      type: object
+      readOnly: true
+      properties:
+        name:
+          type: string
+          example: Sales
+        subDepartment:
+          type: string
+          example: Outbound Sales
+    orgs:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/org_id'
+        name:
+          $ref: '#/components/schemas/org_name'
+        domain:
+          type: string
+          maxLength: 255
+          description: >
+            This field specifies the domain with which the organisation is
+            registered.
+          example: example.com
+        currency:
+          type: string
+          maxLength: 255
+          description: |
+            This field specifies the default currency to be used in expenses.
+          example: INR
+        branch_ifsc:
+          type: string
+          maxLength: 255
+          description: >
+            This is the IFSC code of the bank branch with which the organisation
+            is associated.
+          example: HDFC0122333
+        branch_account:
+          type: string
+          maxLength: 255
+          description: >
+            This field specifies the bank branch with which the organisation is
+            associated.
+          example: '2019238034424802'
+        verified:
+          type: boolean
+          description: |
+            This field specifies if the organisation is verified or not.
+          example: true
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+    dwolla_cutomers_metadata:
+      type: object
+      readOnly: true
+      properties:
+        customerMetadataId:
+          type: string
+          readOnly: true
+        customerId:
+          type: string
+          readOnly: true
+        bankAccountAdded:
+          type: boolean
+          readOnly: true
+          description: |
+            Flag which indicates whether bank account was added or not.
+          default: false
+          example: true
+    annual_mileage:
+      type: object
+      properties:
+        twoWheeler:
+          type: number
+          example: 0
+        fourWheeler:
+          type: number
+          example: 0
+        fourWheeler1:
+          type: number
+          example: 0
+        fourWheeler3:
+          type: number
+          example: 0
+        fourWheeler4:
+          type: number
+          example: 0
+        bicycle:
+          type: number
+          example: 0
+        electricCar:
+          type: number
+          example: 0
+    objects_employees:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 255
+          description: >
+            This id prodvided by Fyle to identify a employee from this
+            organisation.
+
+            This id is always prefixed with `ou`.
+
+            This id is unique per organisation per email.
+          readOnly: true
+          example: ouHXboARkbAB
+        user_id:
+          type: string
+          maxLength: 255
+          description: |
+            This id helps to identify employees in other organisations.
+            It is always prefixed with the string `us`.
+            It is unique per email.
+          example: usIYTLwzlaGu
+        email:
+          type: string
+          format: email
+          maxLength: 127
+          example: john.doe@example.com
+          description: >
+            An immutable field that represents the email address of the
+            employee.
+
+            Must be compliant with <a
+            href='https://www.ietf.org/rfc/rfc822.txt'>RFC 822.</a>
+        employee_code:
+          type: string
+          maxLength: 255
+          example: E84122
+          description: >
+            This field refers to any string that the client programs can use to
+            refer to an employee's unique id.
+
+            This could be any field such as an UUID from an Active Directory
+            server or employee id in a HRMS system.
+
+            This field shall be ignored in POST requests.
+        full_name:
+          type: string
+          maxLength: 255
+          example: John Doe
+          description: >-
+            Represents the full name of the employee. Must be at least 3
+            characters.
+        created_at:
+          type: string
+          format: date-time
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Shows when this employees entry was created.
+
+            This field shall be ignored in POST calls to create/update
+            employees.
+          readOnly: true
+          example: '2020-06-01T13:14:54.804Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Shows when this employees entry was updated.
+
+            This field shall be ignored in POST calls to create/update
+            employees.
+          readOnly: true
+          example: '2020-06-11T13:14:55.201598Z'
+        email_verified_at:
+          type: string
+          format: date-time
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Shows when this email was verified in Fyle.
+
+            This field shall be ignored in POST calls to create/update
+            employees.
+          readOnly: true
+          example: '2020-06-01T16:19:00.000Z'
+        onboarded:
+          type: boolean
+          description: >
+            This flag indicates whether an employee has completed the onboarding
+            flow or not.
+          example: true
+        joining_date:
+          type: string
+          format: date
+          example: '2018-10-31'
+          description: Date string in YYYY-MM-DD format
+        location:
+          type: string
+          maxLength: 255
+          example: Bangalore Ofc
+        level_id:
+          type: string
+          maxLength: 255
+          example: lvlnvJUe9k6Vx
+        level:
+          $ref: '#/components/schemas/level'
+        business_unit:
+          type: string
+          maxLength: 255
+          example: Finance ops
+        department_id:
+          type: string
+          maxLength: 255
+          example: dept9in4oIHpdR
+        department:
+          $ref: '#/components/schemas/department'
+        title:
+          type: string
+          maxLength: 255
+          example: Branch Manager
+        mobile:
+          type: string
+          description: >
+            Mobile number of the employee.
+
+            `Given example is a fake number. We don't know who might answer your
+            call.`
+          example: +1-202-555-0167
+        mobile_verified:
+          type: boolean
+          description: ''
+          default: false
+          example: false
+        mobile_verified_at:
+          type: string
+          format: date-time
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Shows when the employee has verified his/her mobile number in Fyle.
+
+            This field shall be ignored in POST calls to create/update
+            employees.
+          readOnly: true
+          example: '2020-06-01T16:19:00.000Z'
+        roles:
+          type: array
+          readOnly: true
+          description: >
+            These are roles assigned to an employee, Most roles are assigned by
+            Admin.
+
+            Few roles like HOP, HOD, APPROVER are assigned by FYLE.
+          items:
+            type: string
+            enum:
+              - FYLER
+              - APPROVER
+              - TRAVEL_ADMIN
+              - VERIFIER
+              - PAYMENT_PROCESSOR
+              - FINANCE
+              - ADMIN
+              - TRAVEL_AGENT
+              - OWNER
+              - AUDITOR
+              - HOD
+              - HOP
+          example:
+            - FYLER
+            - APPROVER
+        branch_ifsc:
+          type: string
+          maxLength: 11
+          description: >
+            IFSC code of the bank account of the employee.
+
+            Must be a 11 digit alphanumeric code. `branch_ifsc` is India
+            specific.
+          example: SBIN0116569
+        bank_name:
+          type: string
+          readOnly: true
+          example: Example bank
+        branch_account:
+          type: string
+          maxLength: 63
+          description: >
+            The account number of the bank account of the employee.
+            `branch_account` is India specific.
+          example: XWWEW000024324493
+        org:
+          $ref: '#/components/schemas/orgs'
+        primary_approver:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: >
+            Primary approver who will be added as an approver by default for all
+            the submitted reports and expenses.
+          example:
+            full_name: primary approver
+            email: primary_approver@example.com
+        primary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the primary approver.
+          example: ou4b24ugv3vg
+        secondary_approver:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: |
+            A secondary approver who can be added to reports via policies.
+          example:
+            full_name: secondary approver
+            email: secondary_approver@example.com
+        secondary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the secondary approver.
+          example: ourjgeugv3vg
+        tertiary_approver:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: |
+            A tertiary approver who can be added to reports via policies.
+          example:
+            full_name: tertiary approver
+            email: tertiary_approver@example.com
+        tertiary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the tertiary approver.
+          example: oueuroefkver
+        delegatee:
+          allOf:
+            - $ref: '#/components/schemas/user'
+          description: |
+            An employee who will be able to login on-behalf-of this employee.
+          example:
+            full_name: delegatee
+            email: delegatee@example.com
+        delegatee_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the delegatee.
+          example: ouvebjeasfj
+        delegation_end_at:
+          type: string
+          format: date-time
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Show when the employee has verified his/her mobile number in Fyle.
+
+            This field shall be ignored in POST calls to create/update
+            employees.
+          readOnly: true
+          example: '2020-06-01T16:19:00.000Z'
+        delegation_start_at:
+          type: string
+          format: date-time
+          description: >
+            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
+            section 5.6 compliant timestamp.</a>
+
+            Shows when the employee was verified his/her mobile number in Fyle.
+
+            This field shall be ignored in POST calls to create/update
+            employees.
+          readOnly: true
+          example: '2020-06-01T16:19:00.000Z'
+        mileage_rate_labels:
+          type: array
+          description: |
+            The list of mileage labels that are applicable for this employee.
+          items:
+            type: string
+            enum:
+              - TWO_WHEELER
+              - FOUR_WHEELER
+              - FOUR_WHEELER1
+              - FOUR_WHEELER3
+              - FOUR_WHEELER4
+              - BICYCLE
+              - ELECTRIC_CAR
+          example:
+            - TWO_WHEELER
+            - FOUR_WHEELER
+        cost_centers:
+          type: array
+          description: |
+            This list of cost centers that are applicable for this employee.
+          items:
+            $ref: '#/components/schemas/cost_center'
+        per_diem_rates:
+          type: array
+          description: This list of per diem rates that are applicable for this employee.
+          items:
+            $ref: '#/components/schemas/perdiem'
+        custom_properties:
+          $ref: '#/components/schemas/custom_properties'
+        disabled:
+          type: boolean
+          description: >
+            Indicates whether an employee is disabled or not in Fyle.
+
+            During POST call, If set to `TRUE`, an active employee account will
+            be disabled.
+
+            Setting to `FALSE` will NOT enable a disabled employee.
+
+            This can only be accomplished from the web-app.
+          default: false
+        special_email:
+          type: string
+          format: email
+          description: >
+            This is an auto-generated email to which an employee can forward a
+            receipt from any of their email inboxes.
+
+            A corresponding expense will be created in their Fyle app.
+          example: receipts+john_doe_ejtj@fyle.ai
+        dwolla_customers_metadata:
+          $ref: '#/components/schemas/dwolla_cutomers_metadata'
+        annual_mileage_of_user_before_joining_fyle:
+          $ref: '#/components/schemas/annual_mileage'
+        status:
+          type: string
+          enum:
+            - PENDING_DETAILS
+            - ACTIVE
+            - DISABLED
+          example: ACTIVE
+        is_primary:
+          type: boolean
+          description: >
+            This flag indicates whether this is primary account of this employee
+            or not.
+          readOnly: true
+          example: true
+    get_employees:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/my_profile
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/objects_employees'
+    vendors:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          description: >
+            This id provided by Fyle to identify a vendor from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        display_name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the vendor.
+          example: Uber
+        other_names:
+          type: string
+          maxLength: 255
+          description: Represents other name of the vendor.
+          example: Formula One
+        creator_id:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the creator of vendor.
+          example: SYSTEM
+        verified:
+          type: boolean
+          description: |
+            This indicates if the vendor is verified.
+          default: true
+          example: true
+        default_category:
+          type: string
+          description: >
+            This represents the default category associated with the current
+            vendor.
+          example: Courier
+    get_vendors:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/vendors
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/vendors'
+    categories:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 10
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
+          readOnly: true
+          example: '2391'
+        org_id:
+          $ref: '#/components/schemas/org_id'
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        name:
+          type: string
+          maxLength: 255
+          description: Represents the name of the project.
+          example: Fast and Furious
+        fyle_category:
+          type: string
+          maxLength: 255
+          description: Represents the name of the fyle category.
+          example: Formula One
+        sub_category:
+          type: string
+          maxLength: 513
+          description: |
+            Represents the sub category of a given category.
+          example: One
+        code:
+          type: string
+          maxLength: 255
+          description: |
+            This represents the code of project.
+          example: FF-032
+        enabled:
+          type: boolean
+          description: >
+            This indicates if the project is enabled for use within the
+            organisation.
+          default: true
+          example: true
+        creator_id:
+          type: string
+          description: |
+            This represents the id of user who created the category.
+          example: ouEsdfdq
+        last_updated_by:
+          type: string
+          description: |
+            This represents the id of user who updated the category.
+          example: ouGgsdfdq
+    get_categories:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        offset:
+          $ref: '#/components/schemas/offset'
+        limit:
+          $ref: '#/components/schemas/limit'
+        url:
+          type: string
+          example: /v4/fyler/categories
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/categories'
+    currencies:
+      type: object
+      properties:
+        AED:
+          type: string
+          example: United Arab Emirates Dirham
+        AFN:
+          type: string
+          example: Afghan Afghani
+        ALL:
+          type: string
+          example: Albanian Lek
+        AMD:
+          type: string
+          example: Armenian Dram
+        ANG:
+          type: string
+          example: Netherlands Antillean Guilder
+        AOA:
+          type: string
+          example: Angolan Kwanza
+        ARS:
+          type: string
+          example: Argentine Peso
+        AUD:
+          type: string
+          example: Australian Dollar
+        AWG:
+          type: string
+          example: Aruban Florin
+        AZN:
+          type: string
+          example: Azerbaijani Manat
+        BAM:
+          type: string
+          example: Bosnia-Herzegovina Convertible Mark
+        BBD:
+          type: string
+          example: Barbadian Dollar
+        BDT:
+          type: string
+          example: Bangladeshi Taka
+        BGN:
+          type: string
+          example: Bulgarian Lev
+        BHD:
+          type: string
+          example: Bahraini Dinar
+        BIF:
+          type: string
+          example: Burundian Franc
+        BMD:
+          type: string
+          example: Bermudan Dollar
+        BND:
+          type: string
+          example: Brunei Dollar
+        BOB:
+          type: string
+          example: Bolivian Boliviano
+        BRL:
+          type: string
+          example: Brazilian Real
+        BSD:
+          type: string
+          example: Bahamian Dollar
+        BTC:
+          type: string
+          example: Bitcoin
+        BTN:
+          type: string
+          example: Bhutanese Ngultrum
+        BWP:
+          type: string
+          example: Botswanan Pula
+        BYN:
+          type: string
+          example: New Belarusian Ruble
+        BYR:
+          type: string
+          example: Belarusian Ruble
+        BZD:
+          type: string
+          example: Belize Dollar
+        CAD:
+          type: string
+          example: Canadian Dollar
+        CDF:
+          type: string
+          example: Congolese Franc
+        CHF:
+          type: string
+          example: Swiss Franc
+        CLF:
+          type: string
+          example: Chilean Unit of Account (UF)
+        CLP:
+          type: string
+          example: Chilean Peso
+        CNY:
+          type: string
+          example: Chinese Yuan
+        COP:
+          type: string
+          example: Colombian Peso
+        CRC:
+          type: string
+          example: Costa Rican Colón
+        CUC:
+          type: string
+          example: Cuban Convertible Peso
+        CUP:
+          type: string
+          example: Cuban Peso
+        CVE:
+          type: string
+          example: Cape Verdean Escudo
+        CZK:
+          type: string
+          example: Czech Republic Koruna
+        DJF:
+          type: string
+          example: Djiboutian Franc
+        DKK:
+          type: string
+          example: Danish Krone
+        DOP:
+          type: string
+          example: Dominican Peso
+        DZD:
+          type: string
+          example: Algerian Dinar
+        EGP:
+          type: string
+          example: Egyptian Pound
+        ERN:
+          type: string
+          example: Eritrean Nakfa
+        ETB:
+          type: string
+          example: Ethiopian Birr
+        EUR:
+          type: string
+          example: Euro
+        FJD:
+          type: string
+          example: Fijian Dollar
+        FKP:
+          type: string
+          example: Falkland Islands Pound
+        GBP:
+          type: string
+          example: British Pound Sterling
+        GEL:
+          type: string
+          example: Georgian Lari
+        GGP:
+          type: string
+          example: Guernsey Pound
+        GHS:
+          type: string
+          example: Ghanaian Cedi
+        GIP:
+          type: string
+          example: Gibraltar Pound
+        GMD:
+          type: string
+          example: Gambian Dalasi
+        GNF:
+          type: string
+          example: Guinean Franc
+        GTQ:
+          type: string
+          example: Guatemalan Quetzal
+        GYD:
+          type: string
+          example: Guyanaese Dollar
+        HKD:
+          type: string
+          example: Hong Kong Dollar
+        HNL:
+          type: string
+          example: Honduran Lempira
+        HRK:
+          type: string
+          example: Croatian Kuna
+        HTG:
+          type: string
+          example: Haitian Gourde
+        HUF:
+          type: string
+          example: Hungarian Forint
+        IDR:
+          type: string
+          example: Indonesian Rupiah
+        ILS:
+          type: string
+          example: Israeli New Sheqel
+        IMP:
+          type: string
+          example: Manx pound
+        INR:
+          type: string
+          example: Indian Rupee
+        IQD:
+          type: string
+          example: Iraqi Dinar
+        IRR:
+          type: string
+          example: Iranian Rial
+        ISK:
+          type: string
+          example: Icelandic Króna
+        JEP:
+          type: string
+          example: Jersey Pound
+        JMD:
+          type: string
+          example: Jamaican Dollar
+        JOD:
+          type: string
+          example: Jordanian Dinar
+        JPY:
+          type: string
+          example: Japanese Yen
+        KES:
+          type: string
+          example: Kenyan Shilling
+        KGS:
+          type: string
+          example: Kyrgystani Som
+        KHR:
+          type: string
+          example: Cambodian Riel
+        KMF:
+          type: string
+          example: Comorian Franc
+        KPW:
+          type: string
+          example: North Korean Won
+        KRW:
+          type: string
+          example: South Korean Won
+        KWD:
+          type: string
+          example: Kuwaiti Dinar
+        KYD:
+          type: string
+          example: Cayman Islands Dollar
+        KZT:
+          type: string
+          example: Kazakhstani Tenge
+        LAK:
+          type: string
+          example: Laotian Kip
+        LBP:
+          type: string
+          example: Lebanese Pound
+        LKR:
+          type: string
+          example: Sri Lankan Rupee
+        LRD:
+          type: string
+          example: Liberian Dollar
+        LSL:
+          type: string
+          example: Lesotho Loti
+        LTL:
+          type: string
+          example: Lithuanian Litas
+        LVL:
+          type: string
+          example: Latvian Lats
+        LYD:
+          type: string
+          example: Libyan Dinar
+        MAD:
+          type: string
+          example: Moroccan Dirham
+        MDL:
+          type: string
+          example: Moldovan Leu
+        MGA:
+          type: string
+          example: Malagasy Ariary
+        MKD:
+          type: string
+          example: Macedonian Denar
+        MMK:
+          type: string
+          example: Myanma Kyat
+        MNT:
+          type: string
+          example: Mongolian Tugrik
+        MOP:
+          type: string
+          example: Macanese Pataca
+        MRO:
+          type: string
+          example: Mauritanian Ouguiya
+        MUR:
+          type: string
+          example: Mauritian Rupee
+        MVR:
+          type: string
+          example: Maldivian Rufiyaa
+        MWK:
+          type: string
+          example: Malawian Kwacha
+        MXN:
+          type: string
+          example: Mexican Peso
+        MYR:
+          type: string
+          example: Malaysian Ringgit
+        MZN:
+          type: string
+          example: Mozambican Metical
+        NAD:
+          type: string
+          example: Namibian Dollar
+        NGN:
+          type: string
+          example: Nigerian Naira
+        NIO:
+          type: string
+          example: Nicaraguan Córdoba
+        NOK:
+          type: string
+          example: Norwegian Krone
+        NPR:
+          type: string
+          example: Nepalese Rupee
+        NZD:
+          type: string
+          example: New Zealand Dollar
+        OMR:
+          type: string
+          example: Omani Rial
+        PAB:
+          type: string
+          example: Panamanian Balboa
+        PEN:
+          type: string
+          example: Peruvian Nuevo Sol
+        PGK:
+          type: string
+          example: Papua New Guinean Kina
+        PHP:
+          type: string
+          example: Philippine Peso
+        PKR:
+          type: string
+          example: Pakistani Rupee
+        PLN:
+          type: string
+          example: Polish Zloty
+        PYG:
+          type: string
+          example: Paraguayan Guarani
+        QAR:
+          type: string
+          example: Qatari Rial
+        RON:
+          type: string
+          example: Romanian Leu
+        RSD:
+          type: string
+          example: Serbian Dinar
+        RUB:
+          type: string
+          example: Russian Ruble
+        RWF:
+          type: string
+          example: Rwandan Franc
+        SAR:
+          type: string
+          example: Saudi Riyal
+        SBD:
+          type: string
+          example: Solomon Islands Dollar
+        SCR:
+          type: string
+          example: Seychellois Rupee
+        SDG:
+          type: string
+          example: Sudanese Pound
+        SEK:
+          type: string
+          example: Swedish Krona
+        SGD:
+          type: string
+          example: Singapore Dollar
+        SHP:
+          type: string
+          example: Saint Helena Pound
+        SLL:
+          type: string
+          example: Sierra Leonean Leone
+        SOS:
+          type: string
+          example: Somali Shilling
+        SRD:
+          type: string
+          example: Surinamese Dollar
+        STD:
+          type: string
+          example: São Tomé and Príncipe Dobra
+        SVC:
+          type: string
+          example: Salvadoran Colón
+        SYP:
+          type: string
+          example: Syrian Pound
+        SZL:
+          type: string
+          example: Swazi Lilangeni
+        THB:
+          type: string
+          example: Thai Baht
+        TJS:
+          type: string
+          example: Tajikistani Somoni
+        TMT:
+          type: string
+          example: Turkmenistani Manat
+        TND:
+          type: string
+          example: Tunisian Dinar
+        TOP:
+          type: string
+          example: Tongan Paʻanga
+        TRY:
+          type: string
+          example: Turkish Lira
+        TTD:
+          type: string
+          example: Trinidad and Tobago Dollar
+        TWD:
+          type: string
+          example: New Taiwan Dollar
+        TZS:
+          type: string
+          example: Tanzanian Shilling
+        UAH:
+          type: string
+          example: Ukrainian Hryvnia
+        UGX:
+          type: string
+          example: Ugandan Shilling
+        USD:
+          type: string
+          example: United States Dollar
+        UYU:
+          type: string
+          example: Uruguayan Peso
+        UZS:
+          type: string
+          example: Uzbekistan Som
+        VEF:
+          type: string
+          example: Venezuelan Bolívar Fuerte
+        VND:
+          type: string
+          example: Vietnamese Dong
+        VUV:
+          type: string
+          example: Vanuatu Vatu
+        WST:
+          type: string
+          example: Samoan Tala
+        XAF:
+          type: string
+          example: CFA Franc BEAC
+        XAG:
+          type: string
+          example: Silver (troy ounce)
+        XAU:
+          type: string
+          example: Gold (troy ounce)
+        XCD:
+          type: string
+          example: East Caribbean Dollar
+        XDR:
+          type: string
+          example: Special Drawing Rights
+        XOF:
+          type: string
+          example: CFA Franc BCEAO
+        XPF:
+          type: string
+          example: CFP Franc
+        YER:
+          type: string
+          example: Yemeni Rial
+        ZAR:
+          type: string
+          example: South African Rand
+        ZMK:
+          type: string
+          example: Zambian Kwacha (pre-2013)
+        ZMW:
+          type: string
+          example: Zambian Kwacha
+        ZWL:
+          type: string
+          example: Zimbabwean Dollar
+    get_currencies:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/currencies
+        data:
+          $ref: '#/components/schemas/currencies'
+    exchange_rate:
+      type: object
+      properties:
+        exchange_rate:
+          type: number
+          description: |
+            This represents the exchange rate between the given currencies.
+          example: 64.12
+    get_exchange_rate:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/exchange_rate
+        data:
+          $ref: '#/components/schemas/exchange_rate'
+    total_amount:
+      type: number
+      description: |
+        This field indicates the total amount of user expenses.
+      example: 1234.56
+    total_count:
+      type: integer
+      description: |
+        This field indicates the total count of user expenses.
+      example: 12
+    expense:
+      type: object
+      properties:
+        total_amount:
+          $ref: '#/components/schemas/total_amount'
+        total_count:
+          $ref: '#/components/schemas/total_count'
+        reimbursible_total:
+          type: number
+          description: |
+            This field indicates the total of reimbursible expenses.
+          example: 453
+        non_reimbursible_total:
+          type: number
+          description: |
+            This field indicates the total of non reimbursible expenses.
+          example: 765
+    stats_expense:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/expense/stats
+        data:
+          $ref: '#/components/schemas/expense'
+    trip_requests:
+      type: object
+      properties:
+        count:
+          $ref: '#/components/schemas/total_count'
+    stats_trip_requests:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/trip_requests/stats
+        data:
+          $ref: '#/components/schemas/trip_requests'
+    advance_requests:
+      type: object
+      properties:
+        total_amount:
+          $ref: '#/components/schemas/total_amount'
+        total_count:
+          $ref: '#/components/schemas/total_count'
+    stats_advance_requests:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/advance_requests/stats
+        data:
+          $ref: '#/components/schemas/advance_requests'
+    reports:
+      type: object
+      properties:
+        total_amount:
+          $ref: '#/components/schemas/total_amount'
+        total_count:
+          $ref: '#/components/schemas/total_count'
+    stats_reports:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/reports/stats
+        data:
+          $ref: '#/components/schemas/reports'
 tags:
   - name: Projects
     description: |
       These APIs gives you list of your organisation's Projects data.
+  - name: Cost Centers
+    description: |
+      These APIs gives you list of your organisation's Cost Centers data.
+  - name: Expenses
+    description: |
+      This API gives you access to your Expenses data.
+  - name: Employees
+    description: |
+      This API gives you access to manage your profile data.
+  - name: Vendors
+    description: |
+      This API gives you a list of vendors
+  - name: Categories
+    description: |
+      This API gives you list of your organisation's Categories data.
+  - name: Currencies
+    description: |
+      This API gives you list of currencies supported by Fyle.
+  - name: Exchange Rate
+    description: |
+      This API gives you exchange rate for a currency to a particular currency.
+  - name: Expense Stats
+    description: |
+      This API gives you stats of your expenses.
+  - name: Trip Requests Stats
+    description: |
+      This API gives you stats of your trip requests.
+  - name: Advance Requests Stats
+    description: |
+      This API gives you stats of your advance requests.
+  - name: Report Stats
+    description: |
+      This API gives you stats of your report.
 paths:
   /v4/fyler/projects:
     get:
@@ -444,6 +3122,420 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_projects'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/cost_centers:
+    get:
+      tags:
+        - Cost Centers
+      summary: Returns a list of cost Centers
+      operationId: GetCostCenters
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/org_id'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/cost_centers_id'
+        - $ref: '#/components/parameters/cost_centers_code'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_cost_centers'
+        '401':
+          description: Unauthoried request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/expenses:
+    get:
+      tags:
+        - Expenses
+      summary: |
+        Returns a list of expenses.
+      operationId: GetExpenses
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/org_id'
+        - $ref: '#/components/parameters/employee_email'
+        - in: query
+          name: id
+          schema:
+            type: string
+          description: |
+            Filters the objects by id. For single value use `id=eq.<value>`.
+            For mulitple values, use `id=in.(value1,value2,value3)`. <br>
+            Supported operators: `in`, `eq`, `not.in`, `not.eq`
+          example: eq.txg3053jg33
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `column_name.desc`
+          schema:
+            type: string
+          example: 'created_at.desc,id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_expenses'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+    post:
+      tags:
+        - Expenses
+      summary: upsert expenses
+      description: >
+        creates or updates expenses in bulk. This API is written in such a way
+        to support bulk operations only.
+      operationId: PostProjects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requests_expenses'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: /v4/fyler/expenses
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/post_expenses'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/bulk_error'
+                    example:
+                      - row: 1
+                        key: Expense abcd
+                        message: Invalid or duplicate project code
+                  - $ref: '#/components/schemas/json_parsing_error'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /v4/fyler/my_profile:
+    get:
+      tags:
+        - Employees
+      summary: |
+        Returns a list of employees.
+      operationId: GetEmployees
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/org_id'
+        - in: query
+          name: id
+          schema:
+            type: string
+          description: |
+            Filters the objects by id. For single value use `id=eq.<value>`.
+            For mulitple values, use `id=in.(value1,value2,value3)`. <br>
+            Supported operators: `in`, `eq`, `not.in`, `not.eq`
+          example: eq.ouvjegwriw
+        - in: query
+          name: email
+          description: |
+            This param is used to filter records based on employee email.
+            Supported operators are `in`,`eq`.<br>
+          schema:
+            type: string
+            format: email
+          example: eq.employee1@example.com
+        - in: query
+          name: order
+          description: |
+            use comma separated column names for sorting the results.
+            For sorting in descending order, use `column_name.desc`
+          schema:
+            type: string
+          example: 'created_at.desc,id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_employees'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/vendors:
+    get:
+      tags:
+        - Vendors
+      summary: Returns a list of vendors
+      operationId: GetVendors
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/id'
+        - in: query
+          name: display_name
+          description: |
+            Supported operators are `eq`, `like`, `in`.<br>
+            name=in.(value1,value2)
+          schema:
+            type: string
+            example: eq.Vendor1
+        - in: query
+          name: other_names
+          description: |
+            Supported operators are `eq`, `like`, `in`.<br>
+            name=in.(value1,value2)
+          schema:
+            type: string
+            example: eq.VendorXYZ
+        - in: query
+          name: creator_id
+          description: |
+            Supported operators are `eq`, `like`, `in`.<br>
+            name=in.(value1,value2)
+          schema:
+            type: string
+            example: eq.SYSTEM
+        - in: query
+          name: default_category
+          description: |
+            Supported operators are `eq`, `like`, `in`.<br>
+            name=in.(value1,value2)
+          schema:
+            type: string
+            example: eq.Courier
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_vendors'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/categories:
+    get:
+      tags:
+        - Categories
+      summary: Returns a list of categories
+      operationId: GetCategories
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
+        - $ref: '#/components/parameters/id'
+        - in: query
+          name: name
+          description: |
+            Supported operators are `eq`, `like`, `in`.<br>
+            name=in.(value1,value2)
+          schema:
+            type: string
+            example: eq.Category1
+        - $ref: '#/components/parameters/fyle_category'
+        - $ref: '#/components/parameters/sub_category'
+        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/code'
+        - $ref: '#/components/parameters/org_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_categories'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/currencies:
+    get:
+      tags:
+        - Currencies
+      summary: Returns a list of projects
+      operationId: GetCurrencies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_currencies'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/exchange_rate:
+    get:
+      tags:
+        - Exchange Rate
+      summary: Returns a list of projects
+      operationId: GetCurrencyExchange
+      parameters:
+        - in: query
+          name: dt
+          description: |
+            Supported operators are `eq`.<br>
+            dt=eq.(value)
+          schema:
+            type: string
+            example: eq.2020-10-26
+        - in: query
+          name: from
+          description: |
+            Supported operators are `eq`.<br>
+            from=eq.(value)
+          schema:
+            type: string
+            example: eq.USD
+        - in: query
+          name: to
+          description: |
+            Supported operators are `eq`.<br>
+            to=eq.(value)
+          schema:
+            type: string
+            example: eq.INR
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_exchange_rate'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/expense/stats:
+    get:
+      tags:
+        - Expense Stats
+      summary: Returns expense stats.
+      operationId: GetExpenseStats
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats_expense'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/trip_requests/stats:
+    get:
+      tags:
+        - Trip Requests Stats
+      summary: Returns trip requests stats.
+      operationId: GetTripRequestsStats
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats_trip_requests'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/advance_requests/stats:
+    get:
+      tags:
+        - Advance Requests Stats
+      summary: Returns advance requests stats.
+      operationId: GetAdvanceRequestsStats
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats_advance_requests'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /v4/fyler/reports/stats:
+    get:
+      tags:
+        - Report Stats
+      summary: Returns report stats.
+      operationId: GetReportStats
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats_reports'
         '401':
           description: Unauthorized request
           content:
