@@ -57,6 +57,9 @@ tags:
   - name: Report Stats
     description: |
       This API gives you stats of your report.
+  - name: Expense Custom Properties
+    description: |
+      This API gives you access to your organisation's Expenses Custom Properties data.
 
 paths:
   /v4/fyler/projects:
@@ -89,3 +92,5 @@ paths:
     $ref: 'paths/expense_comments.yaml'
   /v4/fyler/expenses/delete/bulk:
     $ref: 'paths/expenses_delete_bulk.yaml'
+  /v4/fyler/expense_custom_properties:
+    $ref: 'paths/expense_custom_properties.yaml'
