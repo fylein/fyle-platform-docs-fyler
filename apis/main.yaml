@@ -33,9 +33,6 @@ tags:
   - name: Employees
     description: |
       This API gives you access to manage your profile data.
-  - name: Orgs
-    description: |
-      This API gives you access to your current org data.
   - name: Vendors
     description: |
       This API gives you a list of vendors
@@ -70,8 +67,6 @@ paths:
     $ref: 'paths/expenses.yaml'
   /v4/fyler/my_profile:
     $ref: 'paths/employees.yaml'
-  /v4/fyler/orgs:
-    $ref: 'paths/orgs.yaml'
   /v4/fyler/vendors:
     $ref: 'paths/vendors.yaml'
   /v4/fyler/categories:
