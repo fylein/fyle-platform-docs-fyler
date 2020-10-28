@@ -63,6 +63,9 @@ tags:
   - name: Policy
     description: |
       These APIs handles the company wide policy operations.
+  - name: Reports
+    description: |
+      This API gives you access to your organisation's Expense Reports data.
 
 paths:
   /v4/fyler/projects:
@@ -99,3 +102,5 @@ paths:
     $ref: 'paths/expense_custom_properties.yaml'
   /v4/fyler/policy_test:
     $ref: 'paths/policy_test.yaml'
+  /v4/fyler/reports:
+    $ref: 'paths/reports.yaml'
