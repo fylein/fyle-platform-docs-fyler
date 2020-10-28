@@ -45,6 +45,9 @@ tags:
   - name: Currencies
     description: |
       This API gives you list of currencies supported by Fyle.
+  - name: Exchange Rate
+    description: |
+      This API gives you exchange rate for a currency to a particular currency.
 
 paths:
   /v4/fyler/projects:
@@ -63,3 +66,5 @@ paths:
     $ref: 'paths/categories.yaml'
   /v4/fyler/currencies:
     $ref: 'paths/currencies.yaml'
+  /v4/fyler/exchange_rate:
+    $ref: 'paths/exchange_rate.yaml'
