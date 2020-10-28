@@ -27,6 +27,9 @@ tags:
   - name: Expense Stats
     description: |
       This API gives you stats of your expenses.
+  - name: Advance Requests Stats
+    description: |
+      This API gives you stats of your advance requests.
   - name: Report Stats
     description: |
       This API gives you stats of your report.
@@ -36,5 +39,7 @@ paths:
     $ref: 'paths/projects.yaml'
   /v4/fyler/expense/stats:
     $ref: 'paths/stats/expense.yaml'
+  /v4/fyler/advance_requests/stats:
+    $ref: 'paths/stats/advance_requests.yaml'
   /v4/fyler/reports/stats:
     $ref: 'paths/stats/reports.yaml'
