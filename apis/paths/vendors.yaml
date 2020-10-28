@@ -1,0 +1,57 @@
+get:
+  tags:
+    - Vendors
+  summary: Returns a list of vendors
+  operationId: GetVendors
+  parameters:
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/created_at.yaml'
+    - $ref: '../schemas/requests/commons/updated_at.yaml'
+    - $ref: '../schemas/requests/commons/id.yaml'
+    - in: query
+      name: display_name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: 'eq.Vendor1'
+    - in: query
+      name: other_names
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: 'eq.VendorXYZ'
+    - in: query
+      name: creator_id
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: 'eq.SYSTEM'
+    - in: query
+      name: default_category
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: 'eq.Courier'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/vendors.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

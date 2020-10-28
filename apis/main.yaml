@@ -36,6 +36,9 @@ tags:
   - name: Orgs
     description: |
       This API gives you access to your current org data.
+  - name: Vendors
+    description: |
+      This API gives you a list of vendors
 
 paths:
   /v4/fyler/projects:
@@ -48,3 +51,5 @@ paths:
     $ref: 'paths/employees.yaml'
   /v4/fyler/orgs:
     $ref: 'paths/orgs.yaml'
+  /v4/fyler/vendors:
+    $ref: 'paths/vendors.yaml'

@@ -1,0 +1,42 @@
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 10
+    description: |
+      This id provided by Fyle to identify a vendor from this organisation.
+      This id is a numeric string.
+      This id is unique within the organisation.
+    readOnly: true
+    example: '2391'
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'
+  display_name:
+    type: string
+    maxLength: 255
+    description: Represents the name of the vendor.
+    example: Uber
+  other_names:
+    type: string
+    maxLength: 255
+    description: Represents other name of the vendor.
+    example: Formula One
+  creator_id:
+    type: string
+    maxLength: 255
+    description: |
+      This represents the creator of vendor.
+    example: SYSTEM
+  verified:
+    type: boolean
+    description: |
+      This indicates if the vendor is verified.
+    default: true
+    example: true
+  default_category:
+    type: string
+    description: |
+      This represents the default category associated with the current vendor.
+    example: Courier
