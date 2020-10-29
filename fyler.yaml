@@ -3286,7 +3286,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/expense/stats
+          example: /v4/fyler/expense_stats
         data:
           $ref: '#/components/schemas/expense'
     trip_requests:
@@ -3299,7 +3299,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/trip_requests/stats
+          example: /v4/fyler/trip_requests_stats
         data:
           $ref: '#/components/schemas/trip_requests'
     advance_requests:
@@ -3314,7 +3314,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/advance_requests/stats
+          example: /v4/fyler/advance_requests_stats
         data:
           $ref: '#/components/schemas/advance_requests'
     reports:
@@ -3329,7 +3329,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/reports/stats
+          example: /v4/fyler/reports_stats
         data:
           $ref: '#/components/schemas/reports'
     expense_comments:
@@ -4461,7 +4461,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/expense/stats:
+  /v4/fyler/expense_stats:
     get:
       tags:
         - Expense Stats
@@ -4498,7 +4498,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/trip_requests/stats:
+  /v4/fyler/trip_requests_stats:
     get:
       tags:
         - Trip Requests Stats
@@ -4519,7 +4519,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/advance_requests/stats:
+  /v4/fyler/advance_requests_stats:
     get:
       tags:
         - Advance Requests Stats
@@ -4540,7 +4540,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/reports/stats:
+  /v4/fyler/reports_stats:
     get:
       tags:
         - Report Stats
