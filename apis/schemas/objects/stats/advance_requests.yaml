@@ -1,6 +1,12 @@
 type: object
 properties:
   total_amount:
-    $ref: '../commons/total_amount.yaml'
+    type: number
+    description: |
+      This field indicates the total amount of advance requests.
+    example: 1234.56
   total_count:
-    $ref: '../commons/total_count.yaml'
+    type: integer
+    description: |
+      This field indicates the total count of advance requests.
+    example: 12
