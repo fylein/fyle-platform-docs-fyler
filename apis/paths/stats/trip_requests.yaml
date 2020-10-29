@@ -3,8 +3,8 @@ get:
     - Trip Requests Stats
   summary: Returns trip requests stats.
   operationId: GetTripRequestsStats
-  # parameters:
-
+  parameters:
+    - $ref: '../../schemas/requests/commons/state.yaml'
   responses:
     '200':
       description: OK

@@ -1,0 +1,8 @@
+in: query
+name: state
+description: |
+  Supported operators are `eq`, `in`.<br>
+  state=in.(value1,value2)
+schema:
+  type: string
+  example: 'like.DRAFT'
