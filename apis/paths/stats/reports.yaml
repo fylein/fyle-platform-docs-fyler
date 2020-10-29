@@ -3,8 +3,8 @@ get:
     - Report Stats
   summary: Returns report stats.
   operationId: GetReportStats
-  # parameters:
-
+  parameters:
+    - $ref: '../../schemas/requests/commons/state.yaml'
   responses:
     '200':
       description: OK
