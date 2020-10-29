@@ -2,6 +2,6 @@ type: object
 properties:
   url:
     type: string
-    example: '/v4/fyler/advance_requests/stats'
+    example: '/v4/fyler/advance_requests_stats'
   data:
     $ref: '../../../objects/stats/advance_requests.yaml'

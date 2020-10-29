@@ -84,13 +84,13 @@ paths:
     $ref: 'paths/currencies.yaml'
   /v4/fyler/exchange_rate:
     $ref: 'paths/exchange_rate.yaml'
-  /v4/fyler/expense/stats:
+  /v4/fyler/expense_stats:
     $ref: 'paths/stats/expense.yaml'
-  /v4/fyler/trip_requests/stats:
+  /v4/fyler/trip_requests_stats:
     $ref: 'paths/stats/trip_requests.yaml'
-  /v4/fyler/advance_requests/stats:
+  /v4/fyler/advance_requests_stats:
     $ref: 'paths/stats/advance_requests.yaml'
-  /v4/fyler/reports/stats:
+  /v4/fyler/reports_stats:
     $ref: 'paths/stats/reports.yaml'
   # /v4/fyler/expenses/{id}:
   #   $ref: 'paths/expenses.yaml'
