@@ -207,6 +207,15 @@ components:
       schema:
         type: string
         example: like.India*
+    state:
+      in: query
+      name: state
+      description: |
+        Supported operators are `eq`, `in`.<br>
+        state=in.(value1,value2)
+      schema:
+        type: string
+        example: like.DRAFT
     custom_properties_name:
       in: query
       name: name
@@ -4458,6 +4467,24 @@ paths:
         - Expense Stats
       summary: Returns expense stats.
       operationId: GetExpenseStats
+      parameters:
+        - $ref: '#/components/parameters/state'
+        - in: query
+          name: policy_amount
+          description: |
+            Supported operators are `eq`, `gte`, `lte`, `gt`, `lt`.<br>
+            policy_amount=gt.value
+          schema:
+            type: string
+            example: gt.12
+        - in: query
+          name: policy_flag
+          description: |
+            Supported operators are `eq`.<br>
+            policy_flag=eq.true
+          schema:
+            type: string
+            example: eq.true
       responses:
         '200':
           description: OK
@@ -4477,6 +4504,8 @@ paths:
         - Trip Requests Stats
       summary: Returns trip requests stats.
       operationId: GetTripRequestsStats
+      parameters:
+        - $ref: '#/components/parameters/state'
       responses:
         '200':
           description: OK
@@ -4496,6 +4525,8 @@ paths:
         - Advance Requests Stats
       summary: Returns advance requests stats.
       operationId: GetAdvanceRequestsStats
+      parameters:
+        - $ref: '#/components/parameters/state'
       responses:
         '200':
           description: OK
@@ -4515,6 +4546,8 @@ paths:
         - Report Stats
       summary: Returns report stats.
       operationId: GetReportStats
+      parameters:
+        - $ref: '#/components/parameters/state'
       responses:
         '200':
           description: OK
