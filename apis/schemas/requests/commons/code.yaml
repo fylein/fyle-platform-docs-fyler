@@ -1,0 +1,8 @@
+in: query
+name: code
+description: |
+  Supported operators are `eq`, `like`, `in`.<br>
+  code=in.(value1,value2)
+schema:
+  type: string
+  example: 'like.high*'
