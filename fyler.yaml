@@ -3978,7 +3978,7 @@ components:
       properties:
         url:
           type: string
-          example: '/v4/fyler/projects/{id}'
+          example: /v4/fyler/projects/7
         data:
           $ref: '#/components/schemas/projects'
 tags:
