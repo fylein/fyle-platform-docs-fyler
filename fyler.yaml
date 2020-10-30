@@ -2458,19 +2458,11 @@ components:
     get_employees:
       type: object
       properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /v4/fyler/my_profile
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/objects_employees'
+          $ref: '#/components/schemas/objects_employees'
     vendors:
       type: object
       properties:
@@ -4156,13 +4148,8 @@ paths:
       tags:
         - Employees
       summary: |
-        Returns a list of employees.
-      operationId: GetEmployees
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
+        Retrive employee profile
+      operationId: GetEmployee
       responses:
         '200':
           description: OK
