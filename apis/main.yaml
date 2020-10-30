@@ -104,3 +104,5 @@ paths:
     $ref: 'paths/policy_test.yaml'
   /v4/fyler/reports:
     $ref: 'paths/reports.yaml'
+  /v4/fyler/projects/{id}:
+    $ref: 'paths/projects@{id}.yaml'

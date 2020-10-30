@@ -71,33 +71,6 @@ components:
       schema:
         type: string
         example: 'gte.2020-06-01T00:00:00.000Z'
-    id:
-      in: query
-      name: id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by id. For single value use `id=eq.<value>`. For
-        multiple values, use `id=in.(value1,value2,value3)`.
-      example: eq.<id>
-    sub_project:
-      in: query
-      name: sub_project
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        sub_project=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Formula*
-    display_name:
-      in: query
-      name: display_name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        display_name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Fast*
     enabled:
       in: query
       name: enabled
@@ -107,15 +80,6 @@ components:
       schema:
         type: string
         example: eq.true
-    code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        code=in.(value1,value2)
-      schema:
-        type: string
-        example: like.high*
     org_id:
       in: query
       name: org_id
@@ -125,35 +89,6 @@ components:
       schema:
         type: string
         example: eq.orvneouegi
-    category_ids:
-      in: query
-      name: category_ids
-      description: |
-        List of strings.<br>
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{12,7}'
-    primary_approver_id:
-      in: query
-      name: primary_approver_id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by primary_approver_id. For single value use
-        `primary_approver_id=eq.<value>`. For multiple values, use
-        `primary_approver_id=in.(value1,value2,value3)`.
-      example: eq.ouX2Rv617cW0
-    secondary_approver_id:
-      in: query
-      name: secondary_approver_id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by primary_approver_id. For single value use
-        `primary_approver_id=eq.<value>`. For multiple values, use
-        `primary_approver_id=in.(value1,value2,value3)`.
-      example: eq.ouX2Rv617cW0
     name:
       in: query
       name: name
@@ -163,7 +98,7 @@ components:
       schema:
         type: string
         example: like.ABCD*
-    cost_centers_id:
+    id:
       in: query
       name: id
       description: |
@@ -172,7 +107,7 @@ components:
       schema:
         type: string
         example: eq.7
-    cost_centers_code:
+    code:
       in: query
       name: code
       description: |
@@ -189,6 +124,15 @@ components:
       schema:
         type: string
         example: eq.employee1@example.com
+    commons_id:
+      in: query
+      name: id
+      schema:
+        type: string
+      description: >-
+        Filters the objects by id. For single value use `id=eq.<value>`. For
+        multiple values, use `id=in.(value1,value2,value3)`.
+      example: eq.<id>
     fyle_category:
       in: query
       name: fyle_category
@@ -207,6 +151,15 @@ components:
       schema:
         type: string
         example: like.India*
+    commons_code:
+      in: query
+      name: code
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        code=in.(value1,value2)
+      schema:
+        type: string
+        example: like.high*
     state:
       in: query
       name: state
@@ -4020,6 +3973,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_reports'
+    'projects@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: '/v4/fyler/projects/{id}'
+        data:
+          $ref: '#/components/schemas/projects'
 tags:
   - name: Projects
     description: |
@@ -4072,30 +4033,21 @@ paths:
     get:
       tags:
         - Projects
-      summary: Returns a list of projects
+      summary: List all projects
       operationId: GetProjects
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
         - in: query
-          name: name
+          name: only_enabled
           description: |
-            Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
+            Supported operators are `eq`.<br>
+            only_enabled=eq.value
           schema:
             type: string
-            example: eq.Project1
-        - $ref: '#/components/parameters/sub_project'
-        - $ref: '#/components/parameters/display_name'
-        - $ref: '#/components/parameters/enabled'
-        - $ref: '#/components/parameters/code'
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/category_ids'
-        - $ref: '#/components/parameters/primary_approver_id'
-        - $ref: '#/components/parameters/secondary_approver_id'
+            example: eq.true
       responses:
         '200':
           description: OK
@@ -4123,8 +4075,8 @@ paths:
         - $ref: '#/components/parameters/enabled'
         - $ref: '#/components/parameters/org_id'
         - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/cost_centers_id'
-        - $ref: '#/components/parameters/cost_centers_code'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/code'
       responses:
         '200':
           description: OK
@@ -4329,7 +4281,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/commons_id'
         - in: query
           name: display_name
           description: |
@@ -4386,7 +4338,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/commons_id'
         - in: query
           name: name
           description: |
@@ -4398,7 +4350,7 @@ paths:
         - $ref: '#/components/parameters/fyle_category'
         - $ref: '#/components/parameters/sub_category'
         - $ref: '#/components/parameters/enabled'
-        - $ref: '#/components/parameters/code'
+        - $ref: '#/components/parameters/commons_code'
         - $ref: '#/components/parameters/org_id'
       responses:
         '200':
@@ -4789,6 +4741,34 @@ paths:
                 $ref: '#/components/schemas/responses_reports'
         '401':
           description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  '/v4/fyler/projects/{id}':
+    get:
+      tags:
+        - Projects
+      summary: Retrieve a project
+      operationId: RetrieveProject
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Id of the project to be retrieved.
+          schema:
+            type: string
+            example: '38'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects@{id}'
+        '401':
+          description: Unauthorized request
           content:
             application/json:
               schema:
