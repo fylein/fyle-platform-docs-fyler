@@ -4523,9 +4523,9 @@ paths:
     post:
       tags:
         - Expenses
-      summary: Delete bulk expenses.
+      summary: Delete bulk expenses
       description: |
-        This API can be used to delete multiple expense at a time.
+        It can delete multiple expense at a time.
       operationId: DeleteBulkExpense
       requestBody:
         required: true
