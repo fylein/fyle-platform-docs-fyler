@@ -1,15 +1,17 @@
 get:
   tags:
     - Cost Centers
-  summary: List all cost centers
-  operationId: GetCostCenters
+  summary: Retrieve a cost center
+  operationId: RetrieveCostCenter
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
-    - $ref: '../schemas/requests/commons/created_at.yaml'
-    - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/enabled.yaml'
-
+    - in: path
+      name: id
+      required: true
+      description: |
+        ID of the cost center to be retrieved.
+      schema:
+        type: string
+        example: 76
   responses:
     '200':
       description: OK
