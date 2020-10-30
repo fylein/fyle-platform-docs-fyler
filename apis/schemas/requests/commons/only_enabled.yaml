@@ -1,7 +1,7 @@
 in: query
 name: only_enabled
 description: |
-  This param is used to filer records by
+  This param is used to filter records.
   Supported operators are `eq`,`not.eq`.<br>
 schema:
   type: string
