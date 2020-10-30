@@ -1,7 +1,7 @@
 get:
   tags:
     - Exchange Rate
-  summary: Returns a list of projects
+  summary: Retrieve currency exchange rate
   operationId: GetCurrencyExchange
   parameters:
     - in: query
