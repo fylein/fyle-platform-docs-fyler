@@ -8,14 +8,7 @@ get:
     - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - in: query
-      name: only_enabled
-      description: |
-        Supported operators are `eq`.<br>
-        only_enabled=eq.value
-      schema:
-        type: string
-        example: 'eq.true'
+    - $ref: '../schemas/requests/commons/only_enabled.yaml'
   responses:
     '200':
       description: OK
