@@ -35,3 +35,5 @@ paths:
     $ref: 'paths/cost_centers.yaml'
   /v4/fyler/cost_centers/{id}:
     $ref: 'paths/cost_centers@{id}.yaml'
+  /v4/fyler/projects/{id}:
+    $ref: 'paths/projects@{id}.yaml'
