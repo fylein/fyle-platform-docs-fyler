@@ -1,5 +1,5 @@
 in: query
-name: enabled
+name: only_enabled
 description: |
   This param is used to filer records by
   Supported operators are `eq`,`not.eq`.<br>
