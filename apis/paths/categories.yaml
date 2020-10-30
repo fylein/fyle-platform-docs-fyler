@@ -19,7 +19,7 @@ get:
         example: 'eq.Category1'
     - $ref: '../schemas/requests/commons/fyle_category.yaml'
     - $ref: '../schemas/requests/commons/sub_category.yaml'
-    - $ref: '../schemas/requests/commons/enabled.yaml'
+    - $ref: '../schemas/requests/commons/only_enabled.yaml'
     - $ref: '../schemas/requests/commons/code.yaml'
     - $ref: '../schemas/requests/commons/org_id.yaml'
 

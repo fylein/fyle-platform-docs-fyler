@@ -71,11 +71,11 @@ components:
       schema:
         type: string
         example: 'gte.2020-06-01T00:00:00.000Z'
-    enabled:
+    only_enabled:
       in: query
-      name: enabled
+      name: only_enabled
       description: |
-        This param is used to filer records by
+        This param is used to filter records.
         Supported operators are `eq`,`not.eq`.<br>
       schema:
         type: string
@@ -4040,14 +4040,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - in: query
-          name: only_enabled
-          description: |
-            Supported operators are `eq`.<br>
-            only_enabled=eq.value
-          schema:
-            type: string
-            example: eq.true
+        - $ref: '#/components/parameters/only_enabled'
       responses:
         '200':
           description: OK
@@ -4072,7 +4065,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/org_id'
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/id'
@@ -4349,7 +4342,7 @@ paths:
             example: eq.Category1
         - $ref: '#/components/parameters/fyle_category'
         - $ref: '#/components/parameters/sub_category'
-        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/commons_code'
         - $ref: '#/components/parameters/org_id'
       responses:
@@ -4644,7 +4637,7 @@ paths:
         - $ref: '#/components/parameters/options'
         - $ref: '#/components/parameters/mandatory'
         - $ref: '#/components/parameters/org_category_ids'
-        - $ref: '#/components/parameters/enabled'
+        - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'

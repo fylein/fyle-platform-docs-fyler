@@ -10,7 +10,7 @@ get:
     - $ref: '../schemas/requests/custom_properties/options.yaml'
     - $ref: '../schemas/requests/custom_properties/mandatory.yaml'
     - $ref: '../schemas/requests/commons/org_category_ids.yaml'
-    - $ref: '../schemas/requests/commons/enabled.yaml'
+    - $ref: '../schemas/requests/commons/only_enabled.yaml'
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
