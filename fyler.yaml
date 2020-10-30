@@ -80,15 +80,6 @@ components:
       schema:
         type: string
         example: eq.true
-    org_id:
-      in: query
-      name: org_id
-      description: |
-        This param is used to filter records based org id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.orvneouegi
     id:
       in: query
       name: id
@@ -125,6 +116,15 @@ components:
       schema:
         type: string
         example: like.high*
+    org_id:
+      in: query
+      name: org_id
+      description: |
+        This param is used to filter records based org id.
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.orvneouegi
     state:
       in: query
       name: state
@@ -4190,33 +4190,6 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/org_id'
-        - in: query
-          name: id
-          schema:
-            type: string
-          description: |
-            Filters the objects by id. For single value use `id=eq.<value>`.
-            For mulitple values, use `id=in.(value1,value2,value3)`. <br>
-            Supported operators: `in`, `eq`, `not.in`, `not.eq`
-          example: eq.ouvjegwriw
-        - in: query
-          name: email
-          description: |
-            This param is used to filter records based on employee email.
-            Supported operators are `in`,`eq`.<br>
-          schema:
-            type: string
-            format: email
-          example: eq.employee1@example.com
-        - in: query
-          name: order
-          description: |
-            use comma separated column names for sorting the results.
-            For sorting in descending order, use `column_name.desc`
-          schema:
-            type: string
-          example: 'created_at.desc,id'
       responses:
         '200':
           description: OK
