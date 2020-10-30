@@ -13,7 +13,7 @@ get:
       name: q
       description: |
         Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
+        q=in.(value1,value2)
       schema:
         type: string
         example: 'eq.Vendor1'
