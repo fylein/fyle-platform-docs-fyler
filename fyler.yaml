@@ -89,6 +89,15 @@ components:
       schema:
         type: string
         example: like.DRAFT
+    sent_back:
+      in: query
+      name: sent_back
+      description: |
+        This param is used to filter records.
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: string
+        example: eq.true
     org_id:
       in: query
       name: org_id
@@ -3141,12 +3150,12 @@ components:
           $ref: '#/components/schemas/total_amount'
         total_count:
           $ref: '#/components/schemas/total_count'
-        reimbursible_total:
+        total_reimbursible:
           type: number
           description: |
             This field indicates the total of reimbursible expenses.
           example: 453
-        non_reimbursible_total:
+        total_non_reimbursible:
           type: number
           description: |
             This field indicates the total of non reimbursible expenses.
@@ -4278,7 +4287,7 @@ paths:
     get:
       tags:
         - Expense Stats
-      summary: Returns expense stats.
+      summary: Retrieve expense stats
       operationId: GetExpenseStats
       parameters:
         - $ref: '#/components/parameters/state'
@@ -4315,10 +4324,11 @@ paths:
     get:
       tags:
         - Trip Requests Stats
-      summary: Returns trip requests stats.
+      summary: Retrieve trip requests stats
       operationId: GetTripRequestsStats
       parameters:
         - $ref: '#/components/parameters/state'
+        - $ref: '#/components/parameters/sent_back'
       responses:
         '200':
           description: OK
@@ -4336,10 +4346,11 @@ paths:
     get:
       tags:
         - Advance Requests Stats
-      summary: Returns advance requests stats.
+      summary: Retrieve advance requests stats
       operationId: GetAdvanceRequestsStats
       parameters:
         - $ref: '#/components/parameters/state'
+        - $ref: '#/components/parameters/sent_back'
       responses:
         '200':
           description: OK
@@ -4357,7 +4368,7 @@ paths:
     get:
       tags:
         - Report Stats
-      summary: Returns report stats.
+      summary: Retrieve report stats
       operationId: GetReportStats
       parameters:
         - $ref: '#/components/parameters/state'

@@ -1,7 +1,7 @@
 get:
   tags:
     - Report Stats
-  summary: Returns report stats.
+  summary: Retrieve report stats
   operationId: GetReportStats
   parameters:
     - $ref: '../../schemas/requests/commons/state.yaml'
