@@ -108,5 +108,7 @@ paths:
     $ref: 'paths/cost_centers@{id}.yaml'
   /v4/fyler/expenses/{id}:
     $ref: 'paths/expenses@{id}.yaml'
+  /v4/fyler/exchange_rate:
+    $ref: 'paths/exchange_rate.yaml'
   /v4/fyler/projects/{id}:
     $ref: 'paths/projects@{id}.yaml'
