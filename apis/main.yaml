@@ -33,3 +33,5 @@ paths:
     $ref: 'paths/projects.yaml'
   /v4/fyler/categories:
     $ref: 'paths/categories.yaml'
+  /v4/fyler/projects/{id}:
+    $ref: 'paths/projects@{id}.yaml'
