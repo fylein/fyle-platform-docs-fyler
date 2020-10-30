@@ -4200,7 +4200,7 @@ paths:
     get:
       tags:
         - Categories
-      summary: Returns a list of categories
+      summary: List all categories
       operationId: GetCategories
       parameters:
         - $ref: '#/components/parameters/offset'
