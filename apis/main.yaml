@@ -48,3 +48,5 @@ paths:
     $ref: 'paths/stats/advance_requests.yaml'
   /v4/fyler/reports_stats:
     $ref: 'paths/stats/reports.yaml'
+  /v4/fyler/projects/{id}:
+    $ref: 'paths/projects@{id}.yaml'
