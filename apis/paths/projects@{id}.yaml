@@ -6,6 +6,7 @@ get:
   parameters:
     - in: path
       name: id
+      required: true
       description: |
         Id of the project to be retrieved.
       schema:
