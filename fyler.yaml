@@ -98,15 +98,6 @@ components:
       schema:
         type: string
         example: eq.true
-    org_id:
-      in: query
-      name: org_id
-      description: |
-        This param is used to filter records based org id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.orvneouegi
     name:
       in: query
       name: name
@@ -4447,9 +4438,9 @@ paths:
     post:
       tags:
         - Expenses
-      summary: Delete bulk expenses.
+      summary: Delete bulk expenses
       description: |
-        This API can be used to delete multiple expense at a time.
+        It can delete multiple expense at a time.
       operationId: DeleteBulkExpense
       requestBody:
         required: true
