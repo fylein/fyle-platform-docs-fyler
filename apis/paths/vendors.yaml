@@ -10,37 +10,13 @@ get:
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - $ref: '../schemas/requests/commons/id.yaml'
     - in: query
-      name: display_name
+      name: q
       description: |
         Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
+        q=in.(value1,value2)
       schema:
         type: string
         example: 'eq.Vendor1'
-    - in: query
-      name: other_names
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: 'eq.VendorXYZ'
-    - in: query
-      name: creator_id
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: 'eq.SYSTEM'
-    - in: query
-      name: default_category
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: 'eq.Courier'
 
   responses:
     '200':
