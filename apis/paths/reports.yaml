@@ -1,9 +1,9 @@
 post:
   tags:
     - Reports
-  summary: Creates Report
+  summary: Creates a report
   description: |
-    This API creates report.
+    It creates single report at a time.
   operationId: PostReports
   requestBody:
     required: true

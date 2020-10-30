@@ -6,15 +6,6 @@ post:
   description: |
     It creates comment on a specific expense.
   operationId: PostExpenseComments
-  parameters:
-    - in: path
-      name: id
-      required: true
-      description: |
-        Expense ID for which comment has to be created.<br>
-      schema:
-        type: string
-        example: 'txhfw8d920k'
   requestBody:
     required: true
     content:

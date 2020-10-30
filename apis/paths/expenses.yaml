@@ -2,6 +2,8 @@ get:
   tags:
     - Expenses
   summary: List all expenses
+  description: |
+
   operationId: GetExpenses
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
@@ -41,7 +43,7 @@ post:
   summary:
     Upsert expenses
   description: |
-    creates or updates expenses in bulk. This API is written in such a way to support bulk operations only.
+    Creates or updates expenses in bulk. This API is written in such a way to support bulk operations only.
   operationId: PostProjects
   requestBody:
     required: true
@@ -98,16 +100,16 @@ delete:
   tags:
     - Expenses
   summary:
-    Delete single expense.
+    Delete single expense
   description: |
-    This API can be used to delete a particular expense at a time only.
+    It delete's a single expense at a time only.
   operationId: DeleteExpense
   parameters:
     - in: query
       name: id
       required: true
       description: |
-        Expense ID that is to be deleted.<br>
+        Expense id that is to be deleted.<br>
       schema:
         type: string
         example: 'txhfw8d920k'

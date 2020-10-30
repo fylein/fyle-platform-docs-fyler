@@ -1,5 +1,10 @@
 type: object
 properties:
+  expense_id:
+    type: string
+    description: |
+      The expense id for which comment has to be created.
+    example: 'txhfw8d920k'
   notify:
     type: boolean
     description: |
@@ -16,4 +21,4 @@ properties:
         maxLength: 255
         description: Comment made on the expense.
         example: This is a food expense
-required: [ notify, status ]
+required: [ expense_id, notify, status ]

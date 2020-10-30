@@ -94,7 +94,7 @@ paths:
     $ref: 'paths/stats/reports.yaml'
   # /v4/fyler/expenses/{id}:
   #   $ref: 'paths/expenses.yaml'
-  /v4/fyler/expense_comments/{id}:
+  /v4/fyler/expense_comments:
     $ref: 'paths/expense_comments.yaml'
   /v4/fyler/expenses/delete/bulk:
     $ref: 'paths/expenses_delete_bulk.yaml'

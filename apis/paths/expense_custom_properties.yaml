@@ -1,10 +1,12 @@
 get:
   tags:
     - Expense Custom Properties
-  summary: Returns a list of expense custom Properties
+  summary: List all expense custom properties
+  description: |
+    Gives the list of all expense custom properties based on query parameters.
   operationId: GetExpenseCustomProperties
   parameters:
-    - $ref: '../schemas/requests/commons/org_id.yaml'
+    # - $ref: '../schemas/requests/commons/org_id.yaml'
     - $ref: '../schemas/requests/custom_properties/name.yaml'
     - $ref: '../schemas/requests/custom_properties/type.yaml'
     - $ref: '../schemas/requests/custom_properties/options.yaml'
