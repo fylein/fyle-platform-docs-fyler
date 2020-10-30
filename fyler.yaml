@@ -89,42 +89,6 @@ components:
         Filters the objects by id. For single value use `id=eq.<value>`. For
         multiple values, use `id=in.(value1,value2,value3)`.
       example: eq.<id>
-    fyle_category:
-      in: query
-      name: fyle_category
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        sub_project=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Formula*
-    sub_category:
-      in: query
-      name: sub_category
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        sub_project=in.(value1,value2)
-      schema:
-        type: string
-        example: like.India*
-    code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        code=in.(value1,value2)
-      schema:
-        type: string
-        example: like.high*
-    org_id:
-      in: query
-      name: org_id
-      description: |
-        This param is used to filter records based org id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.orvneouegi
     state:
       in: query
       name: state
@@ -134,6 +98,15 @@ components:
       schema:
         type: string
         example: like.DRAFT
+    org_id:
+      in: query
+      name: org_id
+      description: |
+        This param is used to filter records based org id.
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.orvneouegi
     name:
       in: query
       name: name
@@ -4247,20 +4220,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
-        - in: query
-          name: name
-          description: |
-            Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
-          schema:
-            type: string
-            example: eq.Category1
-        - $ref: '#/components/parameters/fyle_category'
-        - $ref: '#/components/parameters/sub_category'
         - $ref: '#/components/parameters/only_enabled'
-        - $ref: '#/components/parameters/code'
-        - $ref: '#/components/parameters/org_id'
       responses:
         '200':
           description: OK
