@@ -1,7 +1,7 @@
 get:
   tags:
     - Categories
-  summary: Returns a list of categories
+  summary: List all categories
   operationId: GetCategories
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
