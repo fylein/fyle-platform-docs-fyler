@@ -106,5 +106,7 @@ paths:
     $ref: 'paths/reports.yaml'
   /v4/fyler/cost_centers/{id}:
     $ref: 'paths/cost_centers@{id}.yaml'
+  /v4/fyler/expenses/{id}:
+    $ref: 'paths/expenses@{id}.yaml'
   /v4/fyler/projects/{id}:
     $ref: 'paths/projects@{id}.yaml'

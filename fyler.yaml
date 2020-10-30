@@ -89,15 +89,6 @@ components:
       schema:
         type: string
         example: eq.orvneouegi
-    employee_email:
-      in: query
-      name: employee_email
-      description: |
-        This param is used to filer records based employee email.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.employee1@example.com
     id:
       in: query
       name: id
@@ -1301,10 +1292,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/expenses'
-        test:
-          type: boolean
-          example: false
-          default: false
       required:
         - data
     commons_created_at:
@@ -3955,6 +3942,14 @@ components:
           example: /v4/fyler/cost_centers/76
         data:
           $ref: '#/components/schemas/cost_centers'
+    'expenses@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/expenses/65
+        data:
+          $ref: '#/components/schemas/expenses'
     'projects@{id}':
       type: object
       properties:
@@ -4065,33 +4060,27 @@ paths:
     get:
       tags:
         - Expenses
-      summary: |
-        Returns a list of expenses.
+      summary: List all expenses
       operationId: GetExpenses
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/employee_email'
         - in: query
-          name: id
+          name: external_id
+          description: |
+            Supported operators are `eq`, `in`.<br>
           schema:
             type: string
-          description: |
-            Filters the objects by id. For single value use `id=eq.<value>`.
-            For mulitple values, use `id=in.(value1,value2,value3)`. <br>
-            Supported operators: `in`, `eq`, `not.in`, `not.eq`
-          example: eq.txg3053jg33
+            example: ouZG1PEFYUISAQMkAGY2MDdmN2M4LWM1NjEtNGQ4MS05Y
         - in: query
-          name: order
+          name: invoice_number
           description: |
-            use comma separated column names for sorting the results.
-            For sorting in descending order, use `column_name.desc`
+            Supported operators are `eq`, `in`, `like`.<br>
           schema:
             type: string
-          example: 'created_at.desc,id'
+            example: CRN4684556772
       responses:
         '200':
           description: OK
@@ -4108,7 +4097,7 @@ paths:
     post:
       tags:
         - Expenses
-      summary: upsert expenses
+      summary: Upsert expenses
       description: >
         creates or updates expenses in bulk. This API is written in such a way
         to support bulk operations only.
@@ -4740,6 +4729,34 @@ paths:
                 $ref: '#/components/schemas/cost_centers@{id}'
         '401':
           description: Unauthoried request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  '/v4/fyler/expenses/{id}':
+    get:
+      tags:
+        - Expenses
+      summary: Retrive an expense
+      operationId: RetriveExpense
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Id of the expense to be retrieved.
+          schema:
+            type: string
+            example: tx43545dds
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/expenses@{id}'
+        '401':
+          description: Unauthorised request
           content:
             application/json:
               schema:
