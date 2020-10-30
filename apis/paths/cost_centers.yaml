@@ -1,7 +1,7 @@
 get:
   tags:
     - Cost Centers
-  summary: Returns a list of cost Centers
+  summary: List all cost centers
   operationId: GetCostCenters
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
@@ -9,10 +9,6 @@ get:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - $ref: '../schemas/requests/commons/only_enabled.yaml'
-    - $ref: '../schemas/requests/commons/org_id.yaml'
-    - $ref: '../schemas/requests/cost_centers/name.yaml'
-    - $ref: '../schemas/requests/cost_centers/id.yaml'
-    - $ref: '../schemas/requests/cost_centers/code.yaml'
 
   responses:
     '200':

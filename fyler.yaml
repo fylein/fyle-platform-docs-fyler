@@ -89,32 +89,6 @@ components:
       schema:
         type: string
         example: eq.orvneouegi
-    name:
-      in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.ABCD*
-    id:
-      in: query
-      name: id
-      description: |
-        This param is used to filter cost center record based on cost center id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.7
-    code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `in`,`eq`,`like`.<br>
-      schema:
-        type: string
-        example: eq.CC01
     employee_email:
       in: query
       name: employee_email
@@ -124,7 +98,7 @@ components:
       schema:
         type: string
         example: eq.employee1@example.com
-    commons_id:
+    id:
       in: query
       name: id
       schema:
@@ -151,7 +125,7 @@ components:
       schema:
         type: string
         example: like.India*
-    commons_code:
+    code:
       in: query
       name: code
       description: |
@@ -169,7 +143,7 @@ components:
       schema:
         type: string
         example: like.DRAFT
-    custom_properties_name:
+    name:
       in: query
       name: name
       description: |
@@ -3973,6 +3947,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_reports'
+    'cost_centers@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: /v4/fyler/cost_centers/76
+        data:
+          $ref: '#/components/schemas/cost_centers'
     'projects@{id}':
       type: object
       properties:
@@ -4058,7 +4040,7 @@ paths:
     get:
       tags:
         - Cost Centers
-      summary: Returns a list of cost Centers
+      summary: List all cost centers
       operationId: GetCostCenters
       parameters:
         - $ref: '#/components/parameters/offset'
@@ -4066,10 +4048,6 @@ paths:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/only_enabled'
-        - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/id'
-        - $ref: '#/components/parameters/code'
       responses:
         '200':
           description: OK
@@ -4274,7 +4252,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/commons_id'
+        - $ref: '#/components/parameters/id'
         - in: query
           name: display_name
           description: |
@@ -4331,7 +4309,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/commons_id'
+        - $ref: '#/components/parameters/id'
         - in: query
           name: name
           description: |
@@ -4343,7 +4321,7 @@ paths:
         - $ref: '#/components/parameters/fyle_category'
         - $ref: '#/components/parameters/sub_category'
         - $ref: '#/components/parameters/only_enabled'
-        - $ref: '#/components/parameters/commons_code'
+        - $ref: '#/components/parameters/code'
         - $ref: '#/components/parameters/org_id'
       responses:
         '200':
@@ -4632,7 +4610,7 @@ paths:
       operationId: GetExpenseCustomProperties
       parameters:
         - $ref: '#/components/parameters/org_id'
-        - $ref: '#/components/parameters/custom_properties_name'
+        - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/type'
         - $ref: '#/components/parameters/options'
         - $ref: '#/components/parameters/mandatory'
@@ -4734,6 +4712,34 @@ paths:
                 $ref: '#/components/schemas/responses_reports'
         '401':
           description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  '/v4/fyler/cost_centers/{id}':
+    get:
+      tags:
+        - Cost Centers
+      summary: Retrieve a cost center
+      operationId: RetrieveCostCenter
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            ID of the cost center to be retrieved.
+          schema:
+            type: string
+            example: 76
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cost_centers@{id}'
+        '401':
+          description: Unauthoried request
           content:
             application/json:
               schema:
