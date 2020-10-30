@@ -80,51 +80,6 @@ components:
       schema:
         type: string
         example: eq.true
-    id:
-      in: query
-      name: id
-      schema:
-        type: string
-      description: >-
-        Filters the objects by id. For single value use `id=eq.<value>`. For
-        multiple values, use `id=in.(value1,value2,value3)`.
-      example: eq.<id>
-    fyle_category:
-      in: query
-      name: fyle_category
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        sub_project=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Formula*
-    sub_category:
-      in: query
-      name: sub_category
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        sub_project=in.(value1,value2)
-      schema:
-        type: string
-        example: like.India*
-    code:
-      in: query
-      name: code
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        code=in.(value1,value2)
-      schema:
-        type: string
-        example: like.high*
-    org_id:
-      in: query
-      name: org_id
-      description: |
-        This param is used to filter records based org id.
-        Supported operators are `in`,`eq`.<br>
-      schema:
-        type: string
-        example: eq.orvneouegi
     state:
       in: query
       name: state
@@ -134,6 +89,15 @@ components:
       schema:
         type: string
         example: like.DRAFT
+    org_id:
+      in: query
+      name: org_id
+      description: |
+        This param is used to filter records based org id.
+        Supported operators are `in`,`eq`.<br>
+      schema:
+        type: string
+        example: eq.orvneouegi
     name:
       in: query
       name: name
@@ -2485,19 +2449,11 @@ components:
     get_employees:
       type: object
       properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /v4/fyler/my_profile
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/objects_employees'
+          $ref: '#/components/schemas/objects_employees'
     vendors:
       type: object
       properties:
@@ -4194,13 +4150,8 @@ paths:
       tags:
         - Employees
       summary: |
-        Returns a list of employees.
-      operationId: GetEmployees
-      parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
+        Retrive employee profile
+      operationId: GetEmployee
       responses:
         '200':
           description: OK
@@ -4218,46 +4169,21 @@ paths:
     get:
       tags:
         - Vendors
-      summary: Returns a list of vendors
+      summary: List all vendors
       operationId: GetVendors
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
         - in: query
-          name: display_name
+          name: q
           description: |
             Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
+            q=in.(value1,value2)
           schema:
             type: string
             example: eq.Vendor1
-        - in: query
-          name: other_names
-          description: |
-            Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
-          schema:
-            type: string
-            example: eq.VendorXYZ
-        - in: query
-          name: creator_id
-          description: |
-            Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
-          schema:
-            type: string
-            example: eq.SYSTEM
-        - in: query
-          name: default_category
-          description: |
-            Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
-          schema:
-            type: string
-            example: eq.Courier
       responses:
         '200':
           description: OK
@@ -4275,27 +4201,14 @@ paths:
     get:
       tags:
         - Categories
-      summary: Returns a list of categories
+      summary: List all categories
       operationId: GetCategories
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/id'
-        - in: query
-          name: name
-          description: |
-            Supported operators are `eq`, `like`, `in`.<br>
-            name=in.(value1,value2)
-          schema:
-            type: string
-            example: eq.Category1
-        - $ref: '#/components/parameters/fyle_category'
-        - $ref: '#/components/parameters/sub_category'
         - $ref: '#/components/parameters/only_enabled'
-        - $ref: '#/components/parameters/code'
-        - $ref: '#/components/parameters/org_id'
       responses:
         '200':
           description: OK
@@ -4313,7 +4226,7 @@ paths:
     get:
       tags:
         - Currencies
-      summary: Returns a list of projects
+      summary: List all currencies
       operationId: GetCurrencies
       responses:
         '200':
@@ -4332,7 +4245,7 @@ paths:
     get:
       tags:
         - Exchange Rate
-      summary: Returns a list of projects
+      summary: Retrieve currency exchange rate
       operationId: GetCurrencyExchange
       parameters:
         - in: query

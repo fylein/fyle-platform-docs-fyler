@@ -1,27 +1,14 @@
 get:
   tags:
     - Categories
-  summary: Returns a list of categories
+  summary: List all categories
   operationId: GetCategories
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/id.yaml'
-    - in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: 'eq.Category1'
-    - $ref: '../schemas/requests/commons/fyle_category.yaml'
-    - $ref: '../schemas/requests/commons/sub_category.yaml'
     - $ref: '../schemas/requests/commons/only_enabled.yaml'
-    - $ref: '../schemas/requests/commons/code.yaml'
-    - $ref: '../schemas/requests/commons/org_id.yaml'
 
   responses:
     '200':
