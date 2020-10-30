@@ -2,9 +2,9 @@ post:
   tags:
     - Policy
   summary:
-    Test's the policy against an expense
+    Test policy on a expense
   description: |
-    It run the Organization defined policy for the expenses and returns any violation that occurred.
+    It run's the organization defined policy for the expense and returns any violation that occurred.
   operationId: PostPolicyTest
   requestBody:
     required: true

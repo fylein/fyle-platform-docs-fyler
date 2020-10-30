@@ -9,7 +9,7 @@ properties:
           type: string
           maxLength: 255
           description: |
-            This id is provided by Fyler itself.
+            Takes the id given by the fyler itself. In case of report type is `TRIP` this field is mandatory.
           example: '121'
         from_dt:
           $ref: '../../objects/commons/from_dt.yaml'
@@ -36,13 +36,13 @@ properties:
           maxLength: 255
           description: |
             The name of the client app which is creating the expense.
-            if its a thrid party app, it prefixed with TPA_.
+            If its a thrid party app, its prefixed with TPA_.
           example: WEBAPP
         report_type:
           type: string
           maxLength: 255
           description: |
-            Represents what's the report type that the Fyler is submitting.
+            Indicates what's the type of report that the fyler is submitting.
           enum:
             - BASIC
             - TRIP
@@ -50,4 +50,4 @@ properties:
     type: boolean
     example: false
     default: false
-required: [ data ]
+required: [ data, source, report_type, purpose ]

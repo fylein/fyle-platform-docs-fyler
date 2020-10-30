@@ -135,7 +135,7 @@ components:
         example: 'cs.{food,travel}'
     mandatory:
       in: query
-      name: mandatory
+      name: only_mandatory
       description: |
         This param is used to filer records by
         Supported operators are `eq`,`not.eq`.<br>
@@ -3229,6 +3229,11 @@ components:
     expense_comments:
       type: object
       properties:
+        expense_id:
+          type: string
+          description: |
+            The expense id for which comment has to be created.
+          example: txhfw8d920k
         notify:
           type: boolean
           description: |
@@ -3246,6 +3251,7 @@ components:
               description: Comment made on the expense.
               example: This is a food expense
       required:
+        - expense_id
         - notify
         - status
     report_id:
@@ -3664,8 +3670,9 @@ components:
               trip_request_id:
                 type: string
                 maxLength: 255
-                description: |
-                  This id is provided by Fyler itself.
+                description: >
+                  Takes the id given by the fyler itself. In case of report type
+                  is `TRIP` this field is mandatory.
                 example: '121'
               from_dt:
                 $ref: '#/components/schemas/from_dt'
@@ -3692,13 +3699,13 @@ components:
                 maxLength: 255
                 description: |
                   The name of the client app which is creating the expense.
-                  if its a thrid party app, it prefixed with TPA_.
+                  If its a thrid party app, its prefixed with TPA_.
                 example: WEBAPP
               report_type:
                 type: string
                 maxLength: 255
                 description: >
-                  Represents what's the report type that the Fyler is
+                  Indicates what's the type of report that the fyler is
                   submitting.
                 enum:
                   - BASIC
@@ -3709,6 +3716,9 @@ components:
           default: false
       required:
         - data
+        - source
+        - report_type
+        - purpose
     amount:
       type: integer
       description: |
@@ -4026,6 +4036,7 @@ paths:
       tags:
         - Expenses
       summary: List all expenses
+      description: ''
       operationId: GetExpenses
       parameters:
         - $ref: '#/components/parameters/offset'
@@ -4064,7 +4075,7 @@ paths:
         - Expenses
       summary: Upsert expenses
       description: >
-        creates or updates expenses in bulk. This API is written in such a way
+        Creates or updates expenses in bulk. This API is written in such a way
         to support bulk operations only.
       operationId: PostProjects
       requestBody:
@@ -4117,16 +4128,16 @@ paths:
     delete:
       tags:
         - Expenses
-      summary: Delete single expense.
+      summary: Delete single expense
       description: |
-        This API can be used to delete a particular expense at a time only.
+        It delete's a single expense at a time only.
       operationId: DeleteExpense
       parameters:
         - in: query
           name: id
           required: true
           description: |
-            Expense ID that is to be deleted.<br>
+            Expense id that is to be deleted.<br>
           schema:
             type: string
             example: txhfw8d920k
@@ -4385,7 +4396,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  '/v4/fyler/expense_comments/{id}':
+  /v4/fyler/expense_comments:
     post:
       tags:
         - Expenses
@@ -4393,15 +4404,6 @@ paths:
       description: |
         It creates comment on a specific expense.
       operationId: PostExpenseComments
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: |
-            Expense ID for which comment has to be created.<br>
-          schema:
-            type: string
-            example: txhfw8d920k
       requestBody:
         required: true
         content:
@@ -4492,10 +4494,12 @@ paths:
     get:
       tags:
         - Expense Custom Properties
-      summary: Returns a list of expense custom Properties
+      summary: List all expense custom properties
+      description: >
+        Gives the list of all expense custom properties based on query
+        parameters.
       operationId: GetExpenseCustomProperties
       parameters:
-        - $ref: '#/components/parameters/org_id'
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/type'
         - $ref: '#/components/parameters/options'
@@ -4523,9 +4527,9 @@ paths:
     post:
       tags:
         - Policy
-      summary: Test's the policy against an expense
+      summary: Test policy on a expense
       description: >
-        It run the Organization defined policy for the expenses and returns any
+        It run's the organization defined policy for the expense and returns any
         violation that occurred.
       operationId: PostPolicyTest
       requestBody:
@@ -4579,9 +4583,9 @@ paths:
     post:
       tags:
         - Reports
-      summary: Creates Report
+      summary: Creates a report
       description: |
-        This API creates report.
+        It creates single report at a time.
       operationId: PostReports
       requestBody:
         required: true

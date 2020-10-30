@@ -1,5 +1,5 @@
 in: query
-name: mandatory
+name: only_mandatory
 description: |
   This param is used to filer records by
   Supported operators are `eq`,`not.eq`.<br>
