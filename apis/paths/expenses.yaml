@@ -1,34 +1,27 @@
 get:
   tags:
     - Expenses
-  summary: |
-    Returns a list of expenses.
+  summary: List all expenses
   operationId: GetExpenses
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/org_id.yaml'
-    - $ref: '../schemas/requests/commons/employee_email.yaml'
     - in: query
-      name: id
+      name: external_id
+      description: |
+        Supported operators are `eq`, `in`.<br>
       schema:
         type: string
-      description: |
-        Filters the objects by id. For single value use `id=eq.<value>`.
-        For mulitple values, use `id=in.(value1,value2,value3)`. <br>
-        Supported operators: `in`, `eq`, `not.in`, `not.eq`
-      example: eq.txg3053jg33
+        example: 'ouZG1PEFYUISAQMkAGY2MDdmN2M4LWM1NjEtNGQ4MS05Y'
     - in: query
-      name: order
+      name: invoice_number
       description: |
-        use comma separated column names for sorting the results.
-        For sorting in descending order, use `column_name.desc`
+        Supported operators are `eq`, `in`, `like`.<br>
       schema:
         type: string
-      example: 'created_at.desc,id'
-
+        example: 'CRN4684556772'
   responses:
     '200':
       description: OK
@@ -46,7 +39,7 @@ post:
   tags:
     - Expenses
   summary:
-    upsert expenses
+    Upsert expenses
   description: |
     creates or updates expenses in bulk. This API is written in such a way to support bulk operations only.
   operationId: PostProjects

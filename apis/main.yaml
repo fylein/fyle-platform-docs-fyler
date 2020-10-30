@@ -33,3 +33,7 @@ paths:
     $ref: 'paths/projects.yaml'
   /v4/fyler/expenses:
     $ref: 'paths/expenses.yaml'
+  /v4/fyler/expenses/{id}:
+    $ref: 'paths/expenses@{id}.yaml'
+  /v4/fyler/projects/{id}:
+    $ref: 'paths/projects@{id}.yaml'
