@@ -8,7 +8,7 @@ properties:
     $ref: '../commons/limit.yaml'
   url:
     type: string
-    example: '/v4/fyler/policy_test'
+    example: '/fyler/policy_test'
   data:
     type: array
     items:

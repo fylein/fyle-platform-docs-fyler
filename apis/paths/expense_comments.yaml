@@ -1,6 +1,6 @@
 post:
   tags:
-    - Expenses
+    - Expense Comments
   summary:
     Upsert expense comments
   description: |

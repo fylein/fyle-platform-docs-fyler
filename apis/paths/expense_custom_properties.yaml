@@ -1,7 +1,7 @@
 get:
   tags:
     - Expense Custom Properties
-  summary: List all expense custom properties
+  summary: List expense custom properties
   description: |
     Gives the list of all expense custom properties based on query parameters.
   operationId: GetExpenseCustomProperties

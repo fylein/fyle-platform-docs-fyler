@@ -1,7 +1,7 @@
 get:
   tags:
     - Expenses
-  summary: Retrive an expense
+  summary: Retrieve an expense
   operationId: RetriveExpense
   parameters:
     - in: path

@@ -1,7 +1,7 @@
 get:
   tags:
     - Currencies
-  summary: List all currencies
+  summary: List currencies
   operationId: GetCurrencies
   responses:
     '200':

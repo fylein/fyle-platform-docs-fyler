@@ -30,6 +30,9 @@ tags:
   - name: Expenses
     description: |
       This API gives you access to your Expenses data.
+  - name: Expense Comments
+    description: |
+      This API gives you access to comment on a particular expense.
   - name: Employees
     description: |
       This API gives you access to manage your profile data.
@@ -68,45 +71,43 @@ tags:
       This API gives you access to your organisation's Expense Reports data.
 
 paths:
-  /v4/fyler/projects:
+  /fyler/projects:
     $ref: 'paths/projects.yaml'
-  /v4/fyler/cost_centers:
+  /fyler/cost_centers:
     $ref: 'paths/cost_centers.yaml'
-  /v4/fyler/expenses:
+  /fyler/expenses:
     $ref: 'paths/expenses.yaml'
-  /v4/fyler/my_profile:
+  /fyler/my_profile:
     $ref: 'paths/employees.yaml'
-  /v4/fyler/vendors:
+  /fyler/vendors:
     $ref: 'paths/vendors.yaml'
-  /v4/fyler/categories:
+  /fyler/categories:
     $ref: 'paths/categories.yaml'
-  /v4/fyler/currencies:
+  /fyler/currencies:
     $ref: 'paths/currencies.yaml'
-  /v4/fyler/exchange_rate:
+  /fyler/exchange_rate:
     $ref: 'paths/exchange_rate.yaml'
-  /v4/fyler/expense_stats:
+  /fyler/expense_stats:
     $ref: 'paths/stats/expense.yaml'
-  /v4/fyler/trip_requests_stats:
+  /fyler/trip_requests_stats:
     $ref: 'paths/stats/trip_requests.yaml'
-  /v4/fyler/advance_requests_stats:
+  /fyler/advance_requests_stats:
     $ref: 'paths/stats/advance_requests.yaml'
-  /v4/fyler/reports_stats:
+  /fyler/reports_stats:
     $ref: 'paths/stats/reports.yaml'
-  # /v4/fyler/expenses/{id}:
-  #   $ref: 'paths/expenses.yaml'
-  /v4/fyler/expense_comments:
+  /fyler/expense_comments:
     $ref: 'paths/expense_comments.yaml'
-  /v4/fyler/expenses/delete/bulk:
+  /fyler/expenses/delete/bulk:
     $ref: 'paths/expenses_delete_bulk.yaml'
-  /v4/fyler/expense_custom_properties:
+  /fyler/expense_custom_properties:
     $ref: 'paths/expense_custom_properties.yaml'
-  /v4/fyler/policy_test:
+  /fyler/policy_test:
     $ref: 'paths/policy_test.yaml'
-  /v4/fyler/reports:
+  /fyler/reports:
     $ref: 'paths/reports.yaml'
-  /v4/fyler/cost_centers/{id}:
+  /fyler/cost_centers/{id}:
     $ref: 'paths/cost_centers@{id}.yaml'
-  /v4/fyler/expenses/{id}:
+  /fyler/expenses/{id}:
     $ref: 'paths/expenses@{id}.yaml'
-  /v4/fyler/projects/{id}:
+  /fyler/projects/{id}:
     $ref: 'paths/projects@{id}.yaml'

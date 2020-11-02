@@ -2,6 +2,6 @@ type: object
 properties:
   url:
     type: string
-    example: '/v4/fyler/currencies'
+    example: '/fyler/currencies'
   data:
     $ref: '../../objects/currencies.yaml'

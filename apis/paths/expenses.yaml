@@ -1,13 +1,9 @@
 get:
   tags:
     - Expenses
-  summary: List all expenses
-  description: |
-
+  summary: List expenses
   operationId: GetExpenses
   parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - in: query
@@ -24,6 +20,9 @@ get:
       schema:
         type: string
         example: 'CRN4684556772'
+    - $ref: '../schemas/requests/commons/order.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
   responses:
     '200':
       description: OK
@@ -41,10 +40,10 @@ post:
   tags:
     - Expenses
   summary:
-    Upsert expenses
+    Create or Update expenses
   description: |
     Creates or updates expenses in bulk. This API is written in such a way to support bulk operations only.
-  operationId: PostProjects
+  operationId: PostExpenses
   requestBody:
     required: true
     content:

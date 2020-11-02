@@ -3,7 +3,7 @@ properties:
   id:
     type: string
     maxLength: 10
-    example: '16570'
+    example: '18'
     description: |
       This id provided by Fyle to identify a category from this organisation.
       This id is a numeric string.

@@ -1,0 +1,12 @@
+type: object
+readOnly: true
+properties:
+  id:
+    type: string
+    example: '24242'
+  name:
+    type: string
+    maxLength: 255
+    example: 'Uber'
+    description: |
+      String denoting the name of the vendor to which the Expense was made.
