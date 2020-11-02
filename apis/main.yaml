@@ -6,7 +6,7 @@ info:
     name: Integrations
     email: support@fyle.in
 servers:
-  - url: 'https://accounts.fylehq.com'
+  - url: 'https://platform.fylehq.com/v1'
     description: Live Server
 
 components:
