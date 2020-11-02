@@ -118,41 +118,6 @@ components:
       schema:
         type: string
         example: like.Add*
-    type:
-      in: query
-      name: type
-      description: |
-        Supported operators are `eq`, `in`.<br>
-      schema:
-        type: string
-        example: eq.SELECT
-    options:
-      in: query
-      name: options
-      description: |
-        List of strings.<br>
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{food,travel}'
-    mandatory:
-      in: query
-      name: only_mandatory
-      description: |
-        This param is used to filer records by
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-    org_category_ids:
-      in: query
-      name: org_category_ids
-      description: |
-        List of strings.<br>
-        Supported operators are `eq`,`cs`.<br>
-      schema:
-        type: string
-        example: 'cs.{12,7}'
   schemas:
     '401':
       type: object
@@ -1796,7 +1761,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: '/v4/fyler/expenses/{id}'
+          example: '/fyler/expenses/{id}'
         data:
           type: array
           items:
@@ -3378,32 +3343,6 @@ components:
                 type: string
                 maxLength: 255
                 description: State of the comment.
-    expenses_delete_bulk:
-      type: array
-      description: |
-        Contains the list of expense id's.
-      items:
-        type: string
-        maxLength: 255
-        description: |
-          Expense Id.
-        example: txdg28d2k0k
-    post_expenses_delete_bulk:
-      type: object
-      properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
-        url:
-          type: string
-          example: /fyler/expenses/delete/bulk
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/expenses'
     name:
       type: string
       description: |
@@ -3738,7 +3677,7 @@ components:
                 type: string
                 maxLength: 255
                 description: |
-                  This is an auto-generated field by `/v4/fyler/purpose`
+                  This is an auto-generated field by `/fyler/purpose`.
                 example: '#4:  Oct 2020'
               source:
                 type: string
@@ -4143,7 +4082,7 @@ paths:
                 properties:
                   url:
                     type: string
-                    example: /v4/fyler/expenses
+                    example: /fyler/expenses
                   data:
                     type: array
                     items:
@@ -4491,53 +4430,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /fyler/expenses/delete/bulk:
-    post:
-      tags:
-        - Expenses
-      summary: Delete bulk expenses
-      description: |
-        It can delete multiple expense at a time.
-      operationId: DeleteBulkExpense
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/expenses_delete_bulk'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/post_expenses_delete_bulk'
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/bulk_error'
-                    example:
-                      - row: 1
-                        key: Comment
-                        message: Invalid comment
-                  - $ref: '#/components/schemas/json_parsing_error'
-        '401':
-          description: Unauthorized request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403'
   /fyler/expense_custom_properties:
     get:
       tags:
@@ -4548,16 +4440,12 @@ paths:
         parameters.
       operationId: GetExpenseCustomProperties
       parameters:
+        - $ref: '#/components/parameters/created_at'
+        - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/type'
-        - $ref: '#/components/parameters/options'
-        - $ref: '#/components/parameters/mandatory'
-        - $ref: '#/components/parameters/org_category_ids'
         - $ref: '#/components/parameters/only_enabled'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
       responses:
         '200':
           description: OK
@@ -4596,7 +4484,7 @@ paths:
                 properties:
                   url:
                     type: string
-                    example: /v4/fyler/policy_test
+                    example: /fyler/policy_test
                   data:
                     type: array
                     items:
