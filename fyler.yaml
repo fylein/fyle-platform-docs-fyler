@@ -826,6 +826,15 @@ components:
 
             Ex - If you pass SLACK_APP, it will be saved as TPA_SLACK_APP. If
             not passed, source is saved as TPA.
+        source_account:
+          type: object
+          properties:
+            type:
+              type: string
+              example: PERSONAL_ACCOUNT
+            id:
+              type: string
+              example: acct0vTfdNQrT
         currency:
           type: string
           maxLength: 3
@@ -4042,6 +4051,17 @@ paths:
           schema:
             type: string
             example: CRN4684556772
+        - in: query
+          name: source_account
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+                description: |
+                  Supported operators are `eq`, `in`.<br>
+                  source_account.type=eq.PERSONAL_ACCOUNT
+                example: eq.PERSONAL_ACCOUNT
         - $ref: '#/components/parameters/order'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
