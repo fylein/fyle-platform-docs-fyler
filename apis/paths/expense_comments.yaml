@@ -2,7 +2,7 @@ post:
   tags:
     - Expense Comments
   summary:
-    Create a comment on expense
+    Creates a comment on expense
   description: |
     It creates comment on a specific expense.
   operationId: PostExpenseComments
