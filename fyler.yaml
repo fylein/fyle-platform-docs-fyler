@@ -3981,7 +3981,7 @@ paths:
       tags:
         - Projects
       summary: Retrieve a project
-      operationId: RetrieveProject
+      operationId: 00-RetrieveProject
       parameters:
         - in: path
           name: id
@@ -4009,7 +4009,7 @@ paths:
       tags:
         - Projects
       summary: List projects
-      operationId: GetProjects
+      operationId: 01-GetProjects
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
@@ -4035,7 +4035,7 @@ paths:
       tags:
         - Cost Centers
       summary: Retrieve a cost center
-      operationId: RetrieveCostCenter
+      operationId: 00-RetrieveCostCenter
       parameters:
         - in: path
           name: id
@@ -4063,7 +4063,7 @@ paths:
       tags:
         - Cost Centers
       summary: List cost centers
-      operationId: GetCostCenters
+      operationId: 01-GetCostCenters
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
