@@ -31,6 +31,15 @@ properties:
       The name of the client app which is creating the expense.
       if its a thrid party app, it prefixed with TPA_.
       Ex - If you pass SLACK_APP, it will be saved as TPA_SLACK_APP. If not passed, source is saved as TPA.
+  source_account:
+    type: object
+    properties:
+      type:
+        type: string
+        example: PERSONAL_ACCOUNT
+      id:
+        type: string
+        example: acct0vTfdNQrT
   currency:
     type: string
     maxLength: 3
