@@ -4623,7 +4623,7 @@ paths:
       tags:
         - Projects
       summary: Retrieve a project
-      operationId: 01-RetrieveProject
+      operationId: RetrieveProject
       parameters:
         - in: path
           name: id
