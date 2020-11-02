@@ -4266,7 +4266,7 @@ paths:
     get:
       tags:
         - Vendors
-      summary: List all vendors
+      summary: List vendors
       operationId: GetVendors
       parameters:
         - $ref: '#/components/parameters/offset'
