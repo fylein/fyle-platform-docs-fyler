@@ -61,7 +61,7 @@ post:
             properties:
               url:
                 type: string
-                example: '/v4/fyler/expenses'
+                example: '/fyler/expenses'
               data:
                 type: array
                 items:
