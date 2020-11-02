@@ -1,0 +1,12 @@
+type: object
+properties:
+  total_amount:
+    type: number
+    description: |
+      This field indicates the total amount of advance requests.
+    example: 1234.56
+  count:
+    type: integer
+    description: |
+      This field indicates the total count of advance requests.
+    example: 12

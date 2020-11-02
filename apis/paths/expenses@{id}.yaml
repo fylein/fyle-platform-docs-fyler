@@ -1,0 +1,28 @@
+get:
+  tags:
+    - Expenses
+  summary: Retrieve an expense
+  operationId: RetriveExpense
+  parameters:
+    - in: path
+      name: id
+      required: true
+      description: |
+        Id of the expense to be retrieved.
+      schema:
+        type: string
+        example: 'tx43545dds'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/expenses@{id}.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

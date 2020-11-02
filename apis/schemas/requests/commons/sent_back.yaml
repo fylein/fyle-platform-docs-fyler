@@ -1,0 +1,8 @@
+in: query
+name: sent_back
+description: |
+  This param is used to filter records.
+  Supported operators are `eq`,`not.eq`.<br>
+schema:
+  type: string
+  example: 'eq.true'

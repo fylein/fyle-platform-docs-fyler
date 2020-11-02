@@ -1,0 +1,55 @@
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 10
+    description: |
+      This id provided by Fyle to identify a project from this organisation.
+      This id is a numeric string.
+      This id is unique within the organisation.
+    readOnly: true
+    example: '2391'
+  org_id:
+    $ref: './commons/org_id.yaml'
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'
+  name:
+    type: string
+    maxLength: 255
+    description: Represents the name of the project.
+    example: Fast and Furious
+  fyle_category:
+    type: string
+    maxLength: 255
+    description: Represents the name of the fyle category.
+    example: Formula One
+  sub_category:
+    type: string
+    maxLength: 513
+    description: |
+      Represents the sub category of a given category.
+    example: One
+  code:
+    type: string
+    maxLength: 255
+    description: |
+      This represents the code of project.
+    example: FF-032
+  enabled:
+    type: boolean
+    description: |
+      This indicates if the project is enabled for use within the organisation.
+    default: true
+    example: true
+  creator_id:
+    type: string
+    description: |
+      This represents the id of user who created the category.
+    example: "ouEsdfdq"
+  last_updated_by:
+    type: string
+    description: |
+      This represents the id of user who updated the category.
+    example: "ouGgsdfdq"

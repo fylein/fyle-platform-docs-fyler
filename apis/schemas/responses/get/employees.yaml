@@ -1,0 +1,7 @@
+type: object
+properties:
+  url:
+    type: string
+    example: '/fyler/my_profile'
+  data:
+    $ref: '../../objects/employees.yaml'

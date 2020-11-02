@@ -1,0 +1,38 @@
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 255
+    description: |
+      This is provided by Fyle to identify a cost center from this organisation.
+    readOnly: true
+    example: '1'
+  name:
+    type: string
+    maxLength: 255
+    description: |
+      This represents the name of the cost center.
+    example: 'sales & marketing'
+  code:
+    type: string
+    maxLength: 255
+    description: |
+      This represents the code of cost center.
+    example: 'sm-cc'
+  description:
+    type: string
+    maxLength: 255
+    description: |
+      This field provides a decription about the cost center.
+    example: 'Initial Cost center'
+  enabled:
+    type: boolean
+    description: |
+      This field specifies if the current cost center is enabled or not.
+    example: true
+  org_id:
+    $ref: './commons/org_id.yaml'
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'

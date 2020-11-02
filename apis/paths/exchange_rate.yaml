@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Exchange Rate
+  summary: Retrieve currency exchange rate
+  operationId: GetCurrencyExchange
+  parameters:
+    - in: query
+      name: date
+      description: |
+        Supported operators are `eq`.<br>
+        dt=eq.(value)
+      schema:
+        type: string
+        example: 'eq.2020-10-26'
+    - in: query
+      name: from
+      description: |
+        Supported operators are `eq`.<br>
+        from=eq.(value)
+      schema:
+        type: string
+        example: 'eq.USD'
+    - in: query
+      name: to
+      description: |
+        Supported operators are `eq`.<br>
+        to=eq.(value)
+      schema:
+        type: string
+        example: 'eq.INR'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/exchange_rate.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

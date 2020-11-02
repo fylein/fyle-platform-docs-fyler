@@ -1,0 +1,27 @@
+get:
+  tags:
+    - Cost Centers
+  summary: Retrieve a cost center
+  operationId: RetrieveCostCenter
+  parameters:
+    - in: path
+      name: id
+      required: true
+      description: |
+        ID of the cost center to be retrieved.
+      schema:
+        type: string
+        example: 76
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/cost_centers@{id}.yaml'
+    '401':
+      description: Unauthoried request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

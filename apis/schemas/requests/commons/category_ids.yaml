@@ -1,0 +1,8 @@
+in: query
+name: category_ids
+description: |
+  List of strings.<br>
+  Supported operators are `eq`,`cs`.<br>
+schema:
+  type: string
+  example: 'cs.{12,7}'

@@ -1,0 +1,26 @@
+get:
+  tags:
+    - Cost Centers
+  summary: List cost centers
+  operationId: GetCostCenters
+  parameters:
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+    - $ref: '../schemas/requests/commons/only_enabled.yaml'
+    - $ref: '../schemas/requests/commons/order.yaml'
+    - $ref: '../schemas/requests/commons/created_at.yaml'
+    - $ref: '../schemas/requests/commons/updated_at.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/cost_centers.yaml'
+    '401':
+      description: Unauthoried request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
