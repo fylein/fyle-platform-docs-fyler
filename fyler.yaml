@@ -58,10 +58,21 @@ components:
       name: only_enabled
       description: |
         This param is used to filter records.
-        Supported operators are `eq`,`not.eq`.<br>
+        Supported operators are `eq`.<br>
       schema:
         type: string
         example: eq.true
+        default: true
+    order:
+      in: query
+      name: order
+      description: |
+        use comma separated column names for sorting the results.
+        For sorting in descending order, use `column_name.desc`
+      schema:
+        type: string
+      example: 'created_at.desc,id'
+      default: 'updated_at.desc,id'
     offset:
       in: query
       name: offset
@@ -79,7 +90,7 @@ components:
       schema:
         type: integer
         example: 100
-        default: 200
+        default: 50
     state:
       in: query
       name: state
@@ -194,11 +205,6 @@ components:
       description: |
         The unique id of the Organization to which the object is associated.
       example: orwruogwnngg
-    org_name:
-      type: string
-      description: |
-        The Name of the Organization to which the object is associated.
-      example: Ministry of Magic
     created_at:
       type: string
       format: date-time
@@ -225,7 +231,7 @@ components:
         id:
           type: string
           maxLength: 10
-          example: '16570'
+          example: '18'
           description: >
             This id provided by Fyle to identify a category from this
             organisation.
@@ -262,6 +268,14 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          maxLength: 255
+          description: |
+            This id helps to identify employees in other organisations.
+            It is always prefixed with the string `us`.
+            It is unique per email.
+          example: usIYTLwzlaGu
         email:
           type: string
           format: email
@@ -297,8 +311,6 @@ components:
           example: '2391'
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -397,7 +409,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/projects
+          example: /fyler/projects
         data:
           type: array
           items:
@@ -438,8 +450,6 @@ components:
           example: true
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -455,7 +465,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/cost_centers
+          example: /fyler/cost_centers
         data:
           type: array
           items:
@@ -475,15 +485,15 @@ components:
       description: Details of the employee to whom this object belongs to.
       readOnly: true
       properties:
-        user_id:
+        id:
           type: string
           maxLength: 255
           description: |
             This id helps to identify employees in other organisations.
-            It is always prefixed with the string `us`.
+            It is always prefixed with the string `ou`.
             It is unique per email.
-          example: usIYTLwzlaGu
-        employee_code:
+          example: outGt9ju6qP
+        code:
           type: string
           maxLength: 255
           example: E84122
@@ -525,7 +535,7 @@ components:
             `Given example is a fake number. We don't know who might answer your
             call.`
           example: +1-202-555-0167
-        joining_dt:
+        joining_at:
           type: string
           format: date
           example: '2018-10-31'
@@ -540,6 +550,17 @@ components:
     project:
       type: object
       properties:
+        id:
+          type: string
+          maxLength: 10
+          example: '1234'
+          description: >
+            This id provided by Fyle to identify a project from this
+            organisation.
+
+            This id is a numeric string.
+
+            This id is unique within the organisation.
         name:
           type: string
           maxLength: 255
@@ -572,7 +593,7 @@ components:
       properties:
         id:
           type: string
-          example: '11539'
+          example: '4321'
         name:
           type: string
           maxLength: 255
@@ -584,6 +605,14 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          maxLength: 255
+          description: |
+            This id helps to identify reports in an organisations.
+            It is always prefixed with the string `rp`.
+            It is unique per report.
+          example: rpIYTLwzlaGu
         purpose:
           type: string
         approved_at:
@@ -629,6 +658,20 @@ components:
         trip_request_id:
           type: string
           description: An ID of the TripRequest associated with it
+    vendor:
+      type: object
+      readOnly: true
+      properties:
+        id:
+          type: string
+          example: '24242'
+        name:
+          type: string
+          maxLength: 255
+          example: Uber
+          description: >
+            String denoting the name of the vendor to which the Expense was
+            made.
     location:
       type: object
       properties:
@@ -875,7 +918,6 @@ components:
         tax:
           type: number
           description: Tax amount as set by your organisation.
-          deprecated: true
         foreign_currency:
           type: string
           maxLength: 3
@@ -901,7 +943,7 @@ components:
             organistation is used then `amount`, `foreign_currency`,
             `foreign_amount` are mandatory.
           example: 138962.05
-        created_by:
+        creator_id:
           type: string
           maxLength: 255
           description: >
@@ -929,7 +971,7 @@ components:
             The ID generated by Fyle to uniquely identify the CostCenter, to
             which the Expense belongs. <br>
           example: '4321'
-        cost_centers:
+        cost_center:
           $ref: '#/components/schemas/cost_center'
         category_id:
           type: string
@@ -955,22 +997,6 @@ components:
             The state of the Expense. This field shall be ignored in POST calls
             when creating/updating an Expense.
           readOnly: true
-        fund_source:
-          type: string
-          enum:
-            - PERSONAL
-            - ADVANCE
-            - CCC
-          description: >-
-            The fund source of the Expense. This field shall be ignored in POST
-            calls when creating/updating an Expense.
-          readOnly: true
-        payment_id:
-          type: string
-        source_account_id:
-          type: string
-        source_account_type:
-          type: string
         invoice_number:
           type: string
           description: |
@@ -1051,17 +1077,13 @@ components:
           type: boolean
           deprecated: true
         vendor:
-          type: string
-          example: Uber
-          maxLength: 255
-          description: |
-            String denoting the name of the vendor to which the Expense was made
+          $ref: '#/components/schemas/vendor'
         vendor_id:
           type: string
-          example: 24242r
+          example: '24242'
           maxLength: 255
           description: |
-            String denoting the id of the vendor to which the Expense was made
+            String denoting the id of the vendor to which the Expense was made.
         locations:
           description: >
             This field will be present for travel related categories. To add to
@@ -1106,24 +1128,34 @@ components:
           example: '2019-07-27T00:00:00.000Z'
         distance:
           type: number
+          example: 22.1
         distance_unit:
           type: string
+          example: KM
         num_days:
           type: integer
+          example: 2
         mileage_calculated_distance:
           type: number
+          example: 32
         mileage_calculated_amount:
           type: number
+          example: 234.2
         mileage_vehicle_type:
           type: string
+          example: TWO_WHEELER
         mileage_rate:
           type: number
+          example: 4.3
         mileage_is_round_trip:
           type: boolean
+          example: false
         hotel_is_breakfast_provided:
           type: boolean
+          example: true
         per_diem_rate_id:
           type: string
+          example: '1104'
         per_diem_rate:
           $ref: '#/components/schemas/perdiem'
         activity_details:
@@ -1211,10 +1243,13 @@ components:
           example: NO_RISK
         external_id:
           type: string
+          example: dsadsfdsf
         split_group_id:
           type: string
+          example: txaCp7lQvyb1
         split_group_user_amount:
-          type: string
+          type: number
+          example: 32206.6
         external_expense:
           type: object
         corporate_credit_card_transaction:
@@ -1229,8 +1264,6 @@ components:
               state: APPROVAL_PENDING
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         actions:
           $ref: '#/components/schemas/expense_actions'
     get_expenses:
@@ -1244,7 +1277,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/expenses
+          example: /fyler/expenses
         data:
           type: array
           items:
@@ -1283,7 +1316,7 @@ components:
       description: |
         The unique id of the Organization to which the object is associated.
       example: orNVthTo2Zyo
-    commons_org_name:
+    org_name:
       type: string
       description: |
         The name of the Organization to which the object is associated.
@@ -1720,7 +1753,7 @@ components:
         org_id:
           $ref: '#/components/schemas/commons_org_id'
         org_name:
-          $ref: '#/components/schemas/commons_org_name'
+          $ref: '#/components/schemas/org_name'
         actions:
           $ref: '#/components/schemas/expense_actions'
     bulk_error:
@@ -1772,6 +1805,14 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          maxLength: 10
+          example: lvlnvJUe9k6Vx
+          description: |
+            This id provided by Fyle to identify a level from this organisation.
+            It is always prefixed with the string `lvl`.
+            This id is unique within the organisation.
         name:
           type: string
           description: |
@@ -1795,6 +1836,17 @@ components:
       type: object
       readOnly: true
       properties:
+        id:
+          type: string
+          maxLength: 10
+          example: dept9in4oIHpdR
+          description: >
+            This id provided by Fyle to identify a department from this
+            organisation.
+
+            It is always prefixed with the string `dept`.
+
+            This id is unique within the organisation.
         name:
           type: string
           example: Sales
@@ -2007,13 +2059,18 @@ components:
               $ref: '#/components/schemas/allowed'
             enabled:
               $ref: '#/components/schemas/enabled'
+    commons_org_name:
+      type: string
+      description: |
+        The Name of the Organization to which the object is associated.
+      example: Ministry of Magic
     orgs:
       type: object
       properties:
         id:
           $ref: '#/components/schemas/org_id'
         name:
-          $ref: '#/components/schemas/org_name'
+          $ref: '#/components/schemas/commons_org_name'
         domain:
           type: string
           maxLength: 255
@@ -2451,7 +2508,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/my_profile
+          example: /fyler/my_profile
         data:
           $ref: '#/components/schemas/objects_employees'
     vendors:
@@ -2512,7 +2569,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/vendors
+          example: /fyler/vendors
         data:
           type: array
           items:
@@ -2588,7 +2645,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/categories
+          example: /fyler/categories
         data:
           type: array
           items:
@@ -3105,7 +3162,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/currencies
+          example: /fyler/currencies
         data:
           $ref: '#/components/schemas/currencies'
     exchange_rate:
@@ -3121,7 +3178,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/exchange_rate
+          example: /fyler/exchange_rate
         data:
           $ref: '#/components/schemas/exchange_rate'
     total_amount:
@@ -3139,7 +3196,7 @@ components:
       properties:
         total_amount:
           $ref: '#/components/schemas/total_amount'
-        total_count:
+        count:
           $ref: '#/components/schemas/total_count'
         total_reimbursible:
           type: number
@@ -3156,7 +3213,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/expense_stats
+          example: /fyler/expense_stats
         data:
           $ref: '#/components/schemas/expense'
     trip_requests:
@@ -3172,7 +3229,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/trip_requests_stats
+          example: /fyler/trip_requests_stats
         data:
           $ref: '#/components/schemas/trip_requests'
     advance_requests:
@@ -3183,7 +3240,7 @@ components:
           description: |
             This field indicates the total amount of advance requests.
           example: 1234.56
-        total_count:
+        count:
           type: integer
           description: |
             This field indicates the total count of advance requests.
@@ -3193,7 +3250,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/advance_requests_stats
+          example: /fyler/advance_requests_stats
         data:
           $ref: '#/components/schemas/advance_requests'
     reports:
@@ -3204,7 +3261,7 @@ components:
           description: |
             This field indicates the total amount of report.
           example: 1234.56
-        total_count:
+        count:
           type: integer
           description: |
             This field indicates the total amount of report.
@@ -3214,7 +3271,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/reports_stats
+          example: /fyler/reports_stats
         data:
           $ref: '#/components/schemas/reports'
     expense_comments:
@@ -3272,7 +3329,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/expenses_comments
+          example: /fyler/expense_comments
         data:
           type: array
           items:
@@ -3342,7 +3399,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/expenses/delete/bulk
+          example: /fyler/expenses/delete/bulk
         data:
           type: array
           items:
@@ -3413,8 +3470,6 @@ components:
           $ref: '#/components/schemas/mandatory'
         org_id:
           $ref: '#/components/schemas/org_id'
-        org_name:
-          $ref: '#/components/schemas/org_name'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -3430,7 +3485,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/expense_custom_properties
+          example: /fyler/expense_custom_properties
         data:
           type: array
           items:
@@ -3602,7 +3657,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/policy_test
+          example: /fyler/policy_test
         data:
           type: array
           items:
@@ -3878,8 +3933,6 @@ components:
             $ref: '#/components/schemas/expense_location'
         report_approvals:
           type: object
-        org_name:
-          $ref: '#/components/schemas/org_name'
         org_id:
           $ref: '#/components/schemas/org_id'
         export_info:
@@ -3895,7 +3948,7 @@ components:
           $ref: '#/components/schemas/limit'
         url:
           type: string
-          example: /v4/fyler/reports
+          example: /fyler/reports
         data:
           type: array
           items:
@@ -3905,7 +3958,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/cost_centers/76
+          example: /fyler/cost_centers/76
         data:
           $ref: '#/components/schemas/cost_centers'
     'expenses@{id}':
@@ -3913,7 +3966,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/expenses/65
+          example: /fyler/expenses/65
         data:
           $ref: '#/components/schemas/expenses'
     'projects@{id}':
@@ -3921,7 +3974,7 @@ components:
       properties:
         url:
           type: string
-          example: /v4/fyler/projects/7
+          example: /fyler/projects/7
         data:
           $ref: '#/components/schemas/projects'
 tags:
@@ -3934,6 +3987,9 @@ tags:
   - name: Expenses
     description: |
       This API gives you access to your Expenses data.
+  - name: Expense Comments
+    description: |
+      This API gives you access to comment on a particular expense.
   - name: Employees
     description: |
       This API gives you access to manage your profile data.
@@ -3972,16 +4028,17 @@ tags:
     description: |
       This API gives you access to your organisation's Expense Reports data.
 paths:
-  /v4/fyler/projects:
+  /fyler/projects:
     get:
       tags:
         - Projects
-      summary: List all projects
+      summary: List projects
       operationId: GetProjects
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/order'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
       responses:
@@ -3997,18 +4054,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/cost_centers:
+  /fyler/cost_centers:
     get:
       tags:
         - Cost Centers
-      summary: List all cost centers
+      summary: List cost centers
       operationId: GetCostCenters
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/order'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/only_enabled'
       responses:
         '200':
           description: OK
@@ -4022,15 +4080,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/expenses:
+  /fyler/expenses:
     get:
       tags:
         - Expenses
-      summary: List all expenses
+      summary: List expenses
       operationId: GetExpenses
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - in: query
@@ -4047,6 +4103,9 @@ paths:
           schema:
             type: string
             example: CRN4684556772
+        - $ref: '#/components/parameters/order'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -4063,11 +4122,11 @@ paths:
     post:
       tags:
         - Expenses
-      summary: Upsert expenses
+      summary: Create or Update expenses
       description: >
         Creates or updates expenses in bulk. This API is written in such a way
         to support bulk operations only.
-      operationId: PostProjects
+      operationId: PostExpenses
       requestBody:
         required: true
         content:
@@ -4144,12 +4203,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/my_profile:
+  /fyler/my_profile:
     get:
       tags:
         - Employees
-      summary: |
-        Retrive employee profile
+      summary: Retrieve employee profile
       operationId: GetEmployee
       responses:
         '200':
@@ -4164,7 +4222,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/vendors:
+  /fyler/vendors:
     get:
       tags:
         - Vendors
@@ -4196,18 +4254,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/categories:
+  /fyler/categories:
     get:
       tags:
         - Categories
-      summary: List all categories
+      summary: List categories
       operationId: GetCategories
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
@@ -4221,11 +4279,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/currencies:
+  /fyler/currencies:
     get:
       tags:
         - Currencies
-      summary: List all currencies
+      summary: List currencies
       operationId: GetCurrencies
       responses:
         '200':
@@ -4240,7 +4298,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/exchange_rate:
+  /fyler/exchange_rate:
     get:
       tags:
         - Exchange Rate
@@ -4284,7 +4342,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/expense_stats:
+  /fyler/expense_stats:
     get:
       tags:
         - Expense Stats
@@ -4321,7 +4379,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/trip_requests_stats:
+  /fyler/trip_requests_stats:
     get:
       tags:
         - Trip Requests Stats
@@ -4343,7 +4401,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/advance_requests_stats:
+  /fyler/advance_requests_stats:
     get:
       tags:
         - Advance Requests Stats
@@ -4365,7 +4423,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/reports_stats:
+  /fyler/reports_stats:
     get:
       tags:
         - Report Stats
@@ -4386,10 +4444,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/expense_comments:
+  /fyler/expense_comments:
     post:
       tags:
-        - Expenses
+        - Expense Comments
       summary: Upsert expense comments
       description: |
         It creates comment on a specific expense.
@@ -4433,7 +4491,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/fyler/expenses/delete/bulk:
+  /fyler/expenses/delete/bulk:
     post:
       tags:
         - Expenses
@@ -4480,11 +4538,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/fyler/expense_custom_properties:
+  /fyler/expense_custom_properties:
     get:
       tags:
         - Expense Custom Properties
-      summary: List all expense custom properties
+      summary: List expense custom properties
       description: >
         Gives the list of all expense custom properties based on query
         parameters.
@@ -4513,7 +4571,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /v4/fyler/policy_test:
+  /fyler/policy_test:
     post:
       tags:
         - Policy
@@ -4569,7 +4627,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /v4/fyler/reports:
+  /fyler/reports:
     post:
       tags:
         - Reports
@@ -4596,7 +4654,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  '/v4/fyler/cost_centers/{id}':
+  '/fyler/cost_centers/{id}':
     get:
       tags:
         - Cost Centers
@@ -4624,11 +4682,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  '/v4/fyler/expenses/{id}':
+  '/fyler/expenses/{id}':
     get:
       tags:
         - Expenses
-      summary: Retrive an expense
+      summary: Retrieve an expense
       operationId: RetriveExpense
       parameters:
         - in: path
@@ -4652,7 +4710,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  '/v4/fyler/projects/{id}':
+  '/fyler/projects/{id}':
     get:
       tags:
         - Projects
