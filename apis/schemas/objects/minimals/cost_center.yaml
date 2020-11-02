@@ -3,7 +3,7 @@ readOnly: true
 properties:
   id:
     type: string
-    example: '11539'
+    example: '4321'
   name:
     type: string
     maxLength: 255

@@ -113,8 +113,6 @@ properties:
       $ref: 'expense_location.yaml'
   report_approvals:
     type: object
-  org_name:
-    $ref: 'commons/org_name.yaml'
   org_id:
     $ref: 'commons/org_id.yaml'
   export_info:

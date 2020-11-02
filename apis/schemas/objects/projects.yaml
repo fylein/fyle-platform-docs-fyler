@@ -11,8 +11,6 @@ properties:
     example: '2391'
   org_id:
     $ref: './commons/org_id.yaml'
-  org_name:
-    $ref: './commons/org_name.yaml'
   created_at:
     $ref: './commons/created_at.yaml'
   updated_at:

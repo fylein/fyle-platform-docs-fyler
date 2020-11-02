@@ -8,7 +8,7 @@ properties:
     $ref: '../commons/limit.yaml'
   url:
     type: string
-    example: '/v4/fyler/expense_custom_properties'
+    example: '/fyler/expense_custom_properties'
   data:
     type: array
     items:

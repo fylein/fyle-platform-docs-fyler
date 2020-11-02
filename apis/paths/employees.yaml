@@ -1,8 +1,7 @@
 get:
   tags:
     - Employees
-  summary: |
-    Retrive employee profile
+  summary: Retrieve employee profile
   operationId: GetEmployee
 
   responses:

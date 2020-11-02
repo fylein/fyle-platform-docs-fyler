@@ -2,7 +2,7 @@ type: object
 properties:
   total_amount:
     $ref: '../commons/total_amount.yaml'
-  total_count:
+  count:
     $ref: '../commons/total_count.yaml'
   total_reimbursible:
     type: number
