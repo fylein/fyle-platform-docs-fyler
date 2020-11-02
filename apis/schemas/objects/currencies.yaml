@@ -1,506 +1,172 @@
 type: object
-properties:
-  AED:
-    type: string 
-    example: "United Arab Emirates Dirham"
-  AFN:
-    type: string 
-    example: "Afghan Afghani"
-  ALL:
-    type: string 
-    example: "Albanian Lek"
-  AMD:
-    type: string 
-    example: "Armenian Dram"
-  ANG:
-    type: string 
-    example: "Netherlands Antillean Guilder"
-  AOA:
-    type: string 
-    example: "Angolan Kwanza"
-  ARS:
-    type: string 
-    example: "Argentine Peso"
-  AUD:
-    type: string 
-    example: "Australian Dollar"
-  AWG:
-    type: string 
-    example: "Aruban Florin"
-  AZN:
-    type: string 
-    example: "Azerbaijani Manat"
-  BAM:
-    type: string 
-    example: "Bosnia-Herzegovina Convertible Mark"
-  BBD:
-    type: string 
-    example: "Barbadian Dollar"
-  BDT:
-    type: string 
-    example: "Bangladeshi Taka"
-  BGN:
-    type: string 
-    example: "Bulgarian Lev"
-  BHD:
-    type: string 
-    example: "Bahraini Dinar"
-  BIF:
-    type: string 
-    example: "Burundian Franc"
-  BMD:
-    type: string 
-    example: "Bermudan Dollar"
-  BND:
-    type: string 
-    example: "Brunei Dollar"
-  BOB:
-    type: string 
-    example: "Bolivian Boliviano"
-  BRL:
-    type: string 
-    example: "Brazilian Real"
-  BSD:
-    type: string 
-    example: "Bahamian Dollar"
-  BTC:
-    type: string 
-    example: "Bitcoin"
-  BTN:
-    type: string 
-    example: "Bhutanese Ngultrum"
-  BWP:
-    type: string 
-    example: "Botswanan Pula"
-  BYN:
-    type: string 
-    example: "New Belarusian Ruble"
-  BYR:
-    type: string 
-    example: "Belarusian Ruble"
-  BZD:
-    type: string 
-    example: "Belize Dollar"
-  CAD:
-    type: string 
-    example: "Canadian Dollar"
-  CDF:
-    type: string 
-    example: "Congolese Franc"
-  CHF:
-    type: string 
-    example: "Swiss Franc"
-  CLF:
-    type: string 
-    example: "Chilean Unit of Account (UF)"
-  CLP:
-    type: string 
-    example: "Chilean Peso"
-  CNY:
-    type: string 
-    example: "Chinese Yuan"
-  COP:
-    type: string 
-    example: "Colombian Peso"
-  CRC:
-    type: string 
-    example: "Costa Rican Colón"
-  CUC:
-    type: string 
-    example: "Cuban Convertible Peso"
-  CUP:
-    type: string 
-    example: "Cuban Peso"
-  CVE:
-    type: string 
-    example: "Cape Verdean Escudo"
-  CZK:
-    type: string 
-    example: "Czech Republic Koruna"
-  DJF:
-    type: string 
-    example: "Djiboutian Franc"
-  DKK:
-    type: string 
-    example: "Danish Krone"
-  DOP:
-    type: string 
-    example: "Dominican Peso"
-  DZD:
-    type: string 
-    example: "Algerian Dinar"
-  EGP:
-    type: string 
-    example: "Egyptian Pound"
-  ERN:
-    type: string 
-    example: "Eritrean Nakfa"
-  ETB:
-    type: string 
-    example: "Ethiopian Birr"
-  EUR:
-    type: string 
-    example: Euro
-  FJD:
-    type: string 
-    example: "Fijian Dollar"
-  FKP:
-    type: string 
-    example: "Falkland Islands Pound"
-  GBP:
-    type: string 
-    example: "British Pound Sterling"
-  GEL:
-    type: string 
-    example: "Georgian Lari"
-  GGP:
-    type: string 
-    example: "Guernsey Pound"
-  GHS:
-    type: string 
-    example: "Ghanaian Cedi"
-  GIP:
-    type: string 
-    example: "Gibraltar Pound"
-  GMD:
-    type: string 
-    example: "Gambian Dalasi"
-  GNF:
-    type: string 
-    example: "Guinean Franc"
-  GTQ:
-    type: string 
-    example: "Guatemalan Quetzal"
-  GYD:
-    type: string 
-    example: "Guyanaese Dollar"
-  HKD:
-    type: string 
-    example: "Hong Kong Dollar"
-  HNL:
-    type: string 
-    example: "Honduran Lempira"
-  HRK:
-    type: string 
-    example: "Croatian Kuna"
-  HTG:
-    type: string 
-    example: "Haitian Gourde"
-  HUF:
-    type: string 
-    example: "Hungarian Forint"
-  IDR:
-    type: string 
-    example: "Indonesian Rupiah"
-  ILS:
-    type: string 
-    example: "Israeli New Sheqel"
-  IMP:
-    type: string 
-    example: "Manx pound"
-  INR:
-    type: string 
-    example: "Indian Rupee"
-  IQD:
-    type: string 
-    example: "Iraqi Dinar"
-  IRR:
-    type: string 
-    example: "Iranian Rial"
-  ISK:
-    type: string 
-    example: "Icelandic Króna"
-  JEP:
-    type: string 
-    example: "Jersey Pound"
-  JMD:
-    type: string 
-    example: "Jamaican Dollar"
-  JOD:
-    type: string 
-    example: "Jordanian Dinar"
-  JPY:
-    type: string 
-    example: "Japanese Yen"
-  KES:
-    type: string 
-    example: "Kenyan Shilling"
-  KGS:
-    type: string 
-    example: "Kyrgystani Som"
-  KHR:
-    type: string 
-    example: "Cambodian Riel"
-  KMF:
-    type: string 
-    example: "Comorian Franc"
-  KPW:
-    type: string 
-    example: "North Korean Won"
-  KRW:
-    type: string 
-    example: "South Korean Won"
-  KWD:
-    type: string 
-    example: "Kuwaiti Dinar"
-  KYD:
-    type: string 
-    example: "Cayman Islands Dollar"
-  KZT:
-    type: string 
-    example: "Kazakhstani Tenge"
-  LAK:
-    type: string 
-    example: "Laotian Kip"
-  LBP:
-    type: string 
-    example: "Lebanese Pound"
-  LKR:
-    type: string 
-    example: "Sri Lankan Rupee"
-  LRD:
-    type: string 
-    example: "Liberian Dollar"
-  LSL:
-    type: string 
-    example: "Lesotho Loti"
-  LTL:
-    type: string 
-    example: "Lithuanian Litas"
-  LVL:
-    type: string 
-    example: "Latvian Lats"
-  LYD:
-    type: string 
-    example: "Libyan Dinar"
-  MAD:
-    type: string 
-    example: "Moroccan Dirham"
-  MDL:
-    type: string 
-    example: "Moldovan Leu"
-  MGA:
-    type: string 
-    example: "Malagasy Ariary"
-  MKD:
-    type: string 
-    example: "Macedonian Denar"
-  MMK:
-    type: string 
-    example: "Myanma Kyat"
-  MNT:
-    type: string 
-    example: "Mongolian Tugrik"
-  MOP:
-    type: string 
-    example: "Macanese Pataca"
-  MRO:
-    type: string 
-    example: "Mauritanian Ouguiya"
-  MUR:
-    type: string 
-    example: "Mauritian Rupee"
-  MVR:
-    type: string 
-    example: "Maldivian Rufiyaa"
-  MWK:
-    type: string 
-    example: "Malawian Kwacha"
-  MXN:
-    type: string 
-    example: "Mexican Peso"
-  MYR:
-    type: string 
-    example: "Malaysian Ringgit"
-  MZN:
-    type: string 
-    example: "Mozambican Metical"
-  NAD:
-    type: string 
-    example: "Namibian Dollar"
-  NGN:
-    type: string 
-    example: "Nigerian Naira"
-  NIO:
-    type: string 
-    example: "Nicaraguan Córdoba"
-  NOK:
-    type: string 
-    example: "Norwegian Krone"
-  NPR:
-    type: string 
-    example: "Nepalese Rupee"
-  NZD:
-    type: string 
-    example: "New Zealand Dollar"
-  OMR:
-    type: string 
-    example: "Omani Rial"
-  PAB:
-    type: string 
-    example: "Panamanian Balboa"
-  PEN:
-    type: string 
-    example: "Peruvian Nuevo Sol"
-  PGK:
-    type: string 
-    example: "Papua New Guinean Kina"
-  PHP:
-    type: string 
-    example: "Philippine Peso"
-  PKR:
-    type: string 
-    example: "Pakistani Rupee"
-  PLN:
-    type: string 
-    example: "Polish Zloty"
-  PYG:
-    type: string 
-    example: "Paraguayan Guarani"
-  QAR:
-    type: string 
-    example: "Qatari Rial"
-  RON:
-    type: string 
-    example: "Romanian Leu"
-  RSD:
-    type: string 
-    example: "Serbian Dinar"
-  RUB:
-    type: string 
-    example: "Russian Ruble"
-  RWF:
-    type: string 
-    example: "Rwandan Franc"
-  SAR:
-    type: string 
-    example: "Saudi Riyal"
-  SBD:
-    type: string 
-    example: "Solomon Islands Dollar"
-  SCR:
-    type: string 
-    example: "Seychellois Rupee"
-  SDG:
-    type: string 
-    example: "Sudanese Pound"
-  SEK:
-    type: string 
-    example: "Swedish Krona"
-  SGD:
-    type: string 
-    example: "Singapore Dollar"
-  SHP:
-    type: string 
-    example: "Saint Helena Pound"
-  SLL:
-    type: string 
-    example: "Sierra Leonean Leone"
-  SOS:
-    type: string 
-    example: "Somali Shilling"
-  SRD:
-    type: string 
-    example: "Surinamese Dollar"
-  STD:
-    type: string 
-    example: "São Tomé and Príncipe Dobra"
-  SVC:
-    type: string 
-    example: "Salvadoran Colón"
-  SYP:
-    type: string 
-    example: "Syrian Pound"
-  SZL:
-    type: string 
-    example: "Swazi Lilangeni"
-  THB:
-    type: string 
-    example: "Thai Baht"
-  TJS:
-    type: string 
-    example: "Tajikistani Somoni"
-  TMT:
-    type: string 
-    example: "Turkmenistani Manat"
-  TND:
-    type: string 
-    example: "Tunisian Dinar"
-  TOP:
-    type: string 
-    example: "Tongan Paʻanga"
-  TRY:
-    type: string 
-    example: "Turkish Lira"
-  TTD:
-    type: string 
-    example: "Trinidad and Tobago Dollar"
-  TWD:
-    type: string 
-    example: "New Taiwan Dollar"
-  TZS:
-    type: string 
-    example: "Tanzanian Shilling"
-  UAH:
-    type: string 
-    example: "Ukrainian Hryvnia"
-  UGX:
-    type: string 
-    example: "Ugandan Shilling"
-  USD:
-    type: string 
-    example: "United States Dollar"
-  UYU:
-    type: string 
-    example: "Uruguayan Peso"
-  UZS:
-    type: string 
-    example: "Uzbekistan Som"
-  VEF:
-    type: string 
-    example: "Venezuelan Bolívar Fuerte"
-  VND:
-    type: string 
-    example: "Vietnamese Dong"
-  VUV:
-    type: string 
-    example: "Vanuatu Vatu"
-  WST:
-    type: string 
-    example: "Samoan Tala"
-  XAF:
-    type: string 
-    example: "CFA Franc BEAC"
-  XAG:
-    type: string 
-    example: "Silver (troy ounce)"
-  XAU:
-    type: string 
-    example: "Gold (troy ounce)"
-  XCD:
-    type: string 
-    example: "East Caribbean Dollar"
-  XDR:
-    type: string 
-    example: "Special Drawing Rights"
-  XOF:
-    type: string 
-    example: "CFA Franc BCEAO"
-  XPF:
-    type: string 
-    example: "CFP Franc"
-  YER:
-    type: string 
-    example: "Yemeni Rial"
-  ZAR:
-    type: string 
-    example: "South African Rand"
-  ZMK:
-    type: string 
-    example: "Zambian Kwacha (pre-2013)"
-  ZMW:
-    type: string 
-    example: "Zambian Kwacha"
-  ZWL:
-    type: string 
-    example: "Zimbabwean Dollar"
+additionalProperties:
+  type: string
+example:
+  AED: "United Arab Emirates Dirham"
+  AFN: "Afghan Afghani"
+  ALL: "Albanian Lek"
+  AMD: "Armenian Dram"
+  ANG: "Netherlands Antillean Guilder"
+  AOA: "Angolan Kwanza"
+  ARS: "Argentine Peso"
+  AUD: "Australian Dollar"
+  AWG: "Aruban Florin"
+  AZN: "Azerbaijani Manat"
+  BAM: "Bosnia-Herzegovina Convertible Mark"
+  BBD: "Barbadian Dollar"
+  BDT: "Bangladeshi Taka"
+  BGN: "Bulgarian Lev"
+  BHD: "Bahraini Dinar"
+  BIF: "Burundian Franc"
+  BMD: "Bermudan Dollar"
+  BND: "Brunei Dollar"
+  BOB: "Bolivian Boliviano"
+  BRL: "Brazilian Real"
+  BSD: "Bahamian Dollar"
+  BTC: "Bitcoin"
+  BTN: "Bhutanese Ngultrum"
+  BWP: "Botswanan Pula"
+  BYN: "New Belarusian Ruble"
+  BYR: "Belarusian Ruble"
+  BZD: "Belize Dollar"
+  CAD: "Canadian Dollar"
+  CDF: "Congolese Franc"
+  CHF: "Swiss Franc"
+  CLF: "Chilean Unit of Account (UF)"
+  CLP: "Chilean Peso"
+  CNY: "Chinese Yuan"
+  COP: "Colombian Peso"
+  CRC: "Costa Rican Colón"
+  CUC: "Cuban Convertible Peso"
+  CUP: "Cuban Peso"
+  CVE: "Cape Verdean Escudo"
+  CZK: "Czech Republic Koruna"
+  DJF: "Djiboutian Franc"
+  DKK: "Danish Krone"
+  DOP: "Dominican Peso"
+  DZD: "Algerian Dinar"
+  EGP: "Egyptian Pound"
+  ERN: "Eritrean Nakfa"
+  ETB: "Ethiopian Birr"
+  EUR: Euro
+  FJD: "Fijian Dollar"
+  FKP: "Falkland Islands Pound"
+  GBP: "British Pound Sterling"
+  GEL: "Georgian Lari"
+  GGP: "Guernsey Pound"
+  GHS: "Ghanaian Cedi"
+  GIP: "Gibraltar Pound"
+  GMD: "Gambian Dalasi"
+  GNF: "Guinean Franc"
+  GTQ: "Guatemalan Quetzal"
+  GYD: "Guyanaese Dollar"
+  HKD: "Hong Kong Dollar"
+  HNL: "Honduran Lempira"
+  HRK: "Croatian Kuna"
+  HTG: "Haitian Gourde"
+  HUF: "Hungarian Forint"
+  IDR: "Indonesian Rupiah"
+  ILS: "Israeli New Sheqel"
+  IMP: "Manx pound"
+  INR: "Indian Rupee"
+  IQD: "Iraqi Dinar"
+  IRR: "Iranian Rial"
+  ISK: "Icelandic Króna"
+  JEP: "Jersey Pound"
+  JMD: "Jamaican Dollar"
+  JOD: "Jordanian Dinar"
+  JPY: "Japanese Yen"
+  KES: "Kenyan Shilling"
+  KGS: "Kyrgystani Som"
+  KHR: "Cambodian Riel"
+  KMF: "Comorian Franc"
+  KPW: "North Korean Won"
+  KRW: "South Korean Won"
+  KWD: "Kuwaiti Dinar"
+  KYD: "Cayman Islands Dollar"
+  KZT: "Kazakhstani Tenge"
+  LAK: "Laotian Kip"
+  LBP: "Lebanese Pound"
+  LKR: "Sri Lankan Rupee"
+  LRD: "Liberian Dollar"
+  LSL: "Lesotho Loti"
+  LTL: "Lithuanian Litas"
+  LVL: "Latvian Lats"
+  LYD: "Libyan Dinar"
+  MAD: "Moroccan Dirham"
+  MDL: "Moldovan Leu"
+  MGA: "Malagasy Ariary"
+  MKD: "Macedonian Denar"
+  MMK: "Myanma Kyat"
+  MNT: "Mongolian Tugrik"
+  MOP: "Macanese Pataca"
+  MRO: "Mauritanian Ouguiya"
+  MUR: "Mauritian Rupee"
+  MVR: "Maldivian Rufiyaa"
+  MWK: "Malawian Kwacha"
+  MXN: "Mexican Peso"
+  MYR: "Malaysian Ringgit"
+  MZN: "Mozambican Metical"
+  NAD: "Namibian Dollar"
+  NGN: "Nigerian Naira"
+  NIO: "Nicaraguan Córdoba"
+  NOK: "Norwegian Krone"
+  NPR: "Nepalese Rupee"
+  NZD: "New Zealand Dollar"
+  OMR: "Omani Rial"
+  PAB: "Panamanian Balboa"
+  PEN: "Peruvian Nuevo Sol"
+  PGK: "Papua New Guinean Kina"
+  PHP: "Philippine Peso"
+  PKR: "Pakistani Rupee"
+  PLN: "Polish Zloty"
+  PYG: "Paraguayan Guarani"
+  QAR: "Qatari Rial"
+  RON: "Romanian Leu"
+  RSD: "Serbian Dinar"
+  RUB: "Russian Ruble"
+  RWF: "Rwandan Franc"
+  SAR: "Saudi Riyal"
+  SBD: "Solomon Islands Dollar"
+  SCR: "Seychellois Rupee"
+  SDG: "Sudanese Pound"
+  SEK: "Swedish Krona"
+  SGD: "Singapore Dollar"
+  SHP: "Saint Helena Pound"
+  SLL: "Sierra Leonean Leone"
+  SOS: "Somali Shilling"
+  SRD: "Surinamese Dollar"
+  STD: "São Tomé and Príncipe Dobra"
+  SVC: "Salvadoran Colón"
+  SYP: "Syrian Pound"
+  SZL: "Swazi Lilangeni"
+  THB: "Thai Baht"
+  TJS: "Tajikistani Somoni"
+  TMT: "Turkmenistani Manat"
+  TND: "Tunisian Dinar"
+  TOP: "Tongan Paʻanga"
+  TRY: "Turkish Lira"
+  TTD: "Trinidad and Tobago Dollar"
+  TWD: "New Taiwan Dollar"
+  TZS: "Tanzanian Shilling"
+  UAH: "Ukrainian Hryvnia"
+  UGX: "Ugandan Shilling"
+  USD: "United States Dollar"
+  UYU: "Uruguayan Peso"
+  UZS: "Uzbekistan Som"
+  VEF: "Venezuelan Bolívar Fuerte"
+  VND: "Vietnamese Dong"
+  VUV: "Vanuatu Vatu"
+  WST: "Samoan Tala"
+  XAF: "CFA Franc BEAC"
+  XAG: "Silver (troy ounce)"
+  XAU: "Gold (troy ounce)"
+  XCD: "East Caribbean Dollar"
+  XDR: "Special Drawing Rights"
+  XOF: "CFA Franc BCEAO"
+  XPF: "CFP Franc"
+  YER: "Yemeni Rial"
+  ZAR: "South African Rand"
+  ZMK: "Zambian Kwacha (pre-2013)"
+  ZMW: "Zambian Kwacha"
+  ZWL: "Zimbabwean Dollar"
