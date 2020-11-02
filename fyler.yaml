@@ -4052,16 +4052,13 @@ paths:
             type: string
             example: CRN4684556772
         - in: query
-          name: source_account
+          name: source_account.type
           schema:
-            type: object
-            properties:
-              type:
-                type: string
-                description: |
-                  Supported operators are `eq`, `in`.<br>
-                  source_account.type=eq.PERSONAL_ACCOUNT
-                example: eq.PERSONAL_ACCOUNT
+            type: string
+            description: |
+              Supported operators are `eq`, `in`.<br>
+              source_account.type=eq.PERSONAL_ACCOUNT
+            example: eq.PERSONAL_ACCOUNT
         - $ref: '#/components/parameters/order'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
