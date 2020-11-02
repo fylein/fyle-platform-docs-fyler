@@ -3981,7 +3981,7 @@ paths:
       tags:
         - Projects
       summary: List projects
-      operationId: GetProjects
+      operationId: 00-GetProjects
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
