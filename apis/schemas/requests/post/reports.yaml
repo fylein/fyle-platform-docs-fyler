@@ -29,7 +29,7 @@ properties:
           type: string
           maxLength: 255
           description: |
-            This is an auto-generated field by `/v4/fyler/purpose`
+            This is an auto-generated field by `/fyler/purpose`.
           example: '#4:  Oct 2020'
         source:
           type: string

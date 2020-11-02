@@ -97,8 +97,6 @@ paths:
     $ref: 'paths/stats/reports.yaml'
   /fyler/expense_comments:
     $ref: 'paths/expense_comments.yaml'
-  /fyler/expenses/delete/bulk:
-    $ref: 'paths/expenses_delete_bulk.yaml'
   /fyler/expense_custom_properties:
     $ref: 'paths/expense_custom_properties.yaml'
   /fyler/policy_test:
