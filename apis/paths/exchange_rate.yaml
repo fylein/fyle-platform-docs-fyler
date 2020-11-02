@@ -5,7 +5,7 @@ get:
   operationId: GetCurrencyExchange
   parameters:
     - in: query
-      name: dt
+      name: date
       description: |
         Supported operators are `eq`.<br>
         dt=eq.(value)
