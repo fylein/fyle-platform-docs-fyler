@@ -2,7 +2,7 @@ in: query
 name: only_enabled
 description: |
   This param is used to filter records.
-  Supported operators are `eq`,`not.eq`.<br>
+  Supported operators are `eq`.<br>
 schema:
   type: string
   example: 'eq.true'
