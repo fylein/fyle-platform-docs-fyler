@@ -4154,7 +4154,7 @@ paths:
     post:
       tags:
         - Expense Comments
-      summary: Upsert expense comments
+      summary: Create or Update expense comments
       description: |
         It creates comment on a specific expense.
       operationId: PostExpenseComments
