@@ -1,10 +1,11 @@
 get:
   tags:
     - Trip Requests Stats
-  summary: Returns trip requests stats.
+  summary: Retrieve trip requests stats
   operationId: GetTripRequestsStats
   parameters:
     - $ref: '../../schemas/requests/commons/state.yaml'
+    - $ref: '../../schemas/requests/commons/sent_back.yaml'
   responses:
     '200':
       description: OK

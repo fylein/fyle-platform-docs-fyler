@@ -2,13 +2,8 @@ get:
   tags:
     - Employees
   summary: |
-    Returns a list of employees.
-  operationId: GetEmployees
-  parameters:
-    - $ref: '../schemas/requests/commons/offset.yaml'
-    - $ref: '../schemas/requests/commons/limit.yaml'
-    - $ref: '../schemas/requests/commons/created_at.yaml'
-    - $ref: '../schemas/requests/commons/updated_at.yaml'
+    Retrive employee profile
+  operationId: GetEmployee
 
   responses:
     '200':

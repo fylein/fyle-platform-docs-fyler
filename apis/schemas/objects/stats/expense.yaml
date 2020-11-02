@@ -4,12 +4,12 @@ properties:
     $ref: '../commons/total_amount.yaml'
   total_count:
     $ref: '../commons/total_count.yaml'
-  reimbursible_total:
+  total_reimbursible:
     type: number
     description: |
       This field indicates the total of reimbursible expenses.
     example: 453
-  non_reimbursible_total:
+  total_non_reimbursible:
     type: number
     description: |
       This field indicates the total of non reimbursible expenses.
