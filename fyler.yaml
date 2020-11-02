@@ -19,24 +19,6 @@ components:
           scopes:
             fyler.*: Grant all FYLER actions
   parameters:
-    offset:
-      in: query
-      name: offset
-      description: |
-        offset is used to skip that many number of objects before counting. <br>
-      schema:
-        type: integer
-        example: 10
-    limit:
-      in: query
-      name: limit
-      description: >
-        A limit on the number of objects to be returned. Allowed values are from
-        1 to 200.
-      schema:
-        type: integer
-        example: 100
-        default: 200
     created_at:
       in: query
       name: created_at
@@ -80,6 +62,24 @@ components:
       schema:
         type: string
         example: eq.true
+    offset:
+      in: query
+      name: offset
+      description: |
+        offset is used to skip that many number of objects before counting. <br>
+      schema:
+        type: integer
+        example: 10
+    limit:
+      in: query
+      name: limit
+      description: >
+        A limit on the number of objects to be returned. Allowed values are from
+        1 to 200.
+      schema:
+        type: integer
+        example: 100
+        default: 200
     state:
       in: query
       name: state
@@ -3979,11 +3979,11 @@ paths:
       summary: List all projects
       operationId: GetProjects
       parameters:
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - $ref: '#/components/parameters/only_enabled'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: OK
