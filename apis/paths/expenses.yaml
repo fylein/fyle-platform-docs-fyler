@@ -2,8 +2,6 @@ get:
   tags:
     - Expenses
   summary: List all expenses
-  description: |
-
   operationId: GetExpenses
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
