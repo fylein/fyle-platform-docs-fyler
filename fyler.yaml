@@ -18,106 +18,6 @@ components:
           tokenUrl: 'https://accounts.fylehq.com/oauth/token'
           scopes:
             fyler.*: Grant all FYLER actions
-  parameters:
-    created_at:
-      in: query
-      name: created_at
-      description: >
-        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
-        RHS dot pattern.<br>
-
-        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
-
-        created_at=gte.2020-06-01T00:00:00.000Z filters all employees created on
-        or after 1st Jun 2020.<br>
-
-        created_at=gte.2020-06-01T00:00:00.000Z&created_at=lt.2020-07-01T00:00:00.000Z
-        filters objects `created` in the month of Jun 2020.<br>
-      schema:
-        type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
-    updated_at:
-      in: query
-      name: updated_at
-      description: >
-        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
-        RHS dot pattern.<br>
-
-        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
-
-        updated_at=gte.2020-06-01T00:00:00.000Z filters all employees updated on
-        or after 1st Jun 2020.<br>
-
-        updated_at=gte.2020-06-01T00:00:00.000Z&updated_at=lt.2020-07-01T00:00:00.000Z
-        filters objects `updated` in the month of Jun 2020.<br>
-      schema:
-        type: string
-        example: 'gte.2020-06-01T00:00:00.000Z'
-    only_enabled:
-      in: query
-      name: only_enabled
-      description: |
-        This param is used to filter records.
-        Supported operators are `eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-        default: true
-    order:
-      in: query
-      name: order
-      description: |
-        use comma separated column names for sorting the results.
-        For sorting in descending order, use `column_name.desc`
-      schema:
-        type: string
-      example: 'created_at.desc,id'
-      default: 'updated_at.desc,id'
-    offset:
-      in: query
-      name: offset
-      description: |
-        offset is used to skip that many number of objects before counting. <br>
-      schema:
-        type: integer
-        example: 10
-    limit:
-      in: query
-      name: limit
-      description: >
-        A limit on the number of objects to be returned. Allowed values are from
-        1 to 200.
-      schema:
-        type: integer
-        example: 100
-        default: 50
-    state:
-      in: query
-      name: state
-      description: |
-        Supported operators are `eq`, `in`.<br>
-        state=in.(value1,value2)
-      schema:
-        type: string
-        example: like.DRAFT
-    sent_back:
-      in: query
-      name: sent_back
-      description: |
-        This param is used to filter records.
-        Supported operators are `eq`,`not.eq`.<br>
-      schema:
-        type: string
-        example: eq.true
-    name:
-      in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Add*
   schemas:
     '401':
       type: object
@@ -141,30 +41,6 @@ components:
           description: >
             This error means current user does not have enough permissions to
             perform this operation.
-    count:
-      description: |
-        The total number of objects that can be requested.
-      type: integer
-      example: 10000
-    offset:
-      description: >
-        offset is used to skip that many number of objects before counting. <br>
-
-        For example, if there are 2000 objects, <br>
-
-        The first request will have offset as 0 and limit as 1000 to return
-        first 1000 objects. <br>
-
-        The second request will have offset as 1000 and limit as 1000 to return
-        next 1000 objects. <br>
-      type: integer
-      example: 10
-      default: 200
-    limit:
-      description: |
-        The actual number of objects that are returned in the response.
-      type: integer
-      example: 100
     org_id:
       type: string
       description: |
@@ -363,6 +239,38 @@ components:
           description: |
             Employee Id of the secondary approver.
           example: ourjgeugv3vg
+    'projects@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/projects/7
+        data:
+          $ref: '#/components/schemas/projects'
+    count:
+      description: |
+        The total number of objects that can be requested.
+      type: integer
+      example: 10000
+    offset:
+      description: >
+        offset is used to skip that many number of objects before counting. <br>
+
+        For example, if there are 2000 objects, <br>
+
+        The first request will have offset as 0 and limit as 1000 to return
+        first 1000 objects. <br>
+
+        The second request will have offset as 1000 and limit as 1000 to return
+        next 1000 objects. <br>
+      type: integer
+      example: 10
+      default: 200
+    limit:
+      description: |
+        The actual number of objects that are returned in the response.
+      type: integer
+      example: 100
     get_projects:
       type: object
       properties:
@@ -419,6 +327,14 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
+    'cost_centers@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/cost_centers/76
+        data:
+          $ref: '#/components/schemas/cost_centers'
     get_cost_centers:
       type: object
       properties:
@@ -1240,6 +1156,14 @@ components:
           $ref: '#/components/schemas/org_id'
         actions:
           $ref: '#/components/schemas/expense_actions'
+    'expenses@{id}':
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/expenses/65
+        data:
+          $ref: '#/components/schemas/expenses'
     get_expenses:
       type: object
       properties:
@@ -3901,30 +3825,106 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_reports'
-    'cost_centers@{id}':
-      type: object
-      properties:
-        url:
-          type: string
-          example: /fyler/cost_centers/76
-        data:
-          $ref: '#/components/schemas/cost_centers'
-    'expenses@{id}':
-      type: object
-      properties:
-        url:
-          type: string
-          example: /fyler/expenses/65
-        data:
-          $ref: '#/components/schemas/expenses'
-    'projects@{id}':
-      type: object
-      properties:
-        url:
-          type: string
-          example: /fyler/projects/7
-        data:
-          $ref: '#/components/schemas/projects'
+  parameters:
+    created_at:
+      in: query
+      name: created_at
+      description: >
+        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
+        RHS dot pattern.<br>
+
+        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+
+        created_at=gte.2020-06-01T00:00:00.000Z filters all employees created on
+        or after 1st Jun 2020.<br>
+
+        created_at=gte.2020-06-01T00:00:00.000Z&created_at=lt.2020-07-01T00:00:00.000Z
+        filters objects `created` in the month of Jun 2020.<br>
+      schema:
+        type: string
+        example: 'gte.2020-06-01T00:00:00.000Z'
+    updated_at:
+      in: query
+      name: updated_at
+      description: >
+        Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in
+        RHS dot pattern.<br>
+
+        Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+
+        updated_at=gte.2020-06-01T00:00:00.000Z filters all employees updated on
+        or after 1st Jun 2020.<br>
+
+        updated_at=gte.2020-06-01T00:00:00.000Z&updated_at=lt.2020-07-01T00:00:00.000Z
+        filters objects `updated` in the month of Jun 2020.<br>
+      schema:
+        type: string
+        example: 'gte.2020-06-01T00:00:00.000Z'
+    only_enabled:
+      in: query
+      name: only_enabled
+      description: |
+        This param is used to filter records.
+        Supported operators are `eq`.<br>
+      schema:
+        type: string
+        example: eq.true
+        default: true
+    order:
+      in: query
+      name: order
+      description: |
+        use comma separated column names for sorting the results.
+        For sorting in descending order, use `column_name.desc`
+      schema:
+        type: string
+      example: 'created_at.desc,id'
+      default: 'updated_at.desc,id'
+    offset:
+      in: query
+      name: offset
+      description: |
+        offset is used to skip that many number of objects before counting. <br>
+      schema:
+        type: integer
+        example: 10
+    limit:
+      in: query
+      name: limit
+      description: >
+        A limit on the number of objects to be returned. Allowed values are from
+        1 to 200.
+      schema:
+        type: integer
+        example: 100
+        default: 50
+    state:
+      in: query
+      name: state
+      description: |
+        Supported operators are `eq`, `in`.<br>
+        state=in.(value1,value2)
+      schema:
+        type: string
+        example: like.DRAFT
+    sent_back:
+      in: query
+      name: sent_back
+      description: |
+        This param is used to filter records.
+        Supported operators are `eq`,`not.eq`.<br>
+      schema:
+        type: string
+        example: eq.true
+    name:
+      in: query
+      name: name
+      description: |
+        Supported operators are `eq`, `like`, `in`.<br>
+        name=in.(value1,value2)
+      schema:
+        type: string
+        example: like.Add*
 tags:
   - name: Projects
     description: |
@@ -3976,6 +3976,34 @@ tags:
     description: |
       This API gives you access to your organisation's Expense Reports data.
 paths:
+  '/fyler/projects/{id}':
+    get:
+      tags:
+        - Projects
+      summary: Retrieve a project
+      operationId: RetrieveProject
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Id of the project to be retrieved.
+          schema:
+            type: string
+            example: '38'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects@{id}'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
   /fyler/projects:
     get:
       tags:
@@ -4002,6 +4030,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
+  '/fyler/cost_centers/{id}':
+    get:
+      tags:
+        - Cost Centers
+      summary: Retrieve a cost center
+      operationId: RetrieveCostCenter
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            ID of the cost center to be retrieved.
+          schema:
+            type: string
+            example: 76
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cost_centers@{id}'
+        '401':
+          description: Unauthoried request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
   /fyler/cost_centers:
     get:
       tags:
@@ -4024,6 +4080,34 @@ paths:
                 $ref: '#/components/schemas/get_cost_centers'
         '401':
           description: Unauthoried request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  '/fyler/expenses/{id}':
+    get:
+      tags:
+        - Expenses
+      summary: Retrieve an expense
+      operationId: RetriveExpense
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Id of the expense to be retrieved.
+          schema:
+            type: string
+            example: tx43545dds
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/expenses@{id}'
+        '401':
+          description: Unauthorised request
           content:
             application/json:
               schema:
@@ -4558,90 +4642,6 @@ paths:
                 $ref: '#/components/schemas/responses_reports'
         '401':
           description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-  '/fyler/cost_centers/{id}':
-    get:
-      tags:
-        - Cost Centers
-      summary: Retrieve a cost center
-      operationId: RetrieveCostCenter
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: |
-            ID of the cost center to be retrieved.
-          schema:
-            type: string
-            example: 76
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/cost_centers@{id}'
-        '401':
-          description: Unauthoried request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-  '/fyler/expenses/{id}':
-    get:
-      tags:
-        - Expenses
-      summary: Retrieve an expense
-      operationId: RetriveExpense
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: |
-            Id of the expense to be retrieved.
-          schema:
-            type: string
-            example: tx43545dds
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/expenses@{id}'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-  '/fyler/projects/{id}':
-    get:
-      tags:
-        - Projects
-      summary: Retrieve a project
-      operationId: RetrieveProject
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: |
-            Id of the project to be retrieved.
-          schema:
-            type: string
-            example: '38'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/projects@{id}'
-        '401':
-          description: Unauthorized request
           content:
             application/json:
               schema:
