@@ -22,11 +22,11 @@ get:
         example: 'CRN4684556772'
     - in: query
       name: source_account.type
-      schema:
-        type: string
-        description: |
+      description: |
           Supported operators are `eq`, `in`.<br>
           source_account.type=eq.PERSONAL_ACCOUNT
+      schema:
+        type: string
         example: 'eq.PERSONAL_ACCOUNT'
     - $ref: '../schemas/requests/commons/order.yaml'
     - $ref: '../schemas/requests/commons/offset.yaml'
