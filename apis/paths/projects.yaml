@@ -2,7 +2,7 @@ get:
   tags:
     - Projects
   summary: List projects
-  operationId: GetProjects
+  operationId: 01-GetProjects
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'

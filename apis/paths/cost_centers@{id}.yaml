@@ -2,7 +2,7 @@ get:
   tags:
     - Cost Centers
   summary: Retrieve a cost center
-  operationId: RetrieveCostCenter
+  operationId: 00-RetrieveCostCenter
   parameters:
     - in: path
       name: id

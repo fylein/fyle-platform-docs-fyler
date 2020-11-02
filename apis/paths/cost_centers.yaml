@@ -2,7 +2,7 @@ get:
   tags:
     - Cost Centers
   summary: List cost centers
-  operationId: GetCostCenters
+  operationId: 01-GetCostCenters
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
