@@ -4,8 +4,4 @@ properties:
     type: array
     items:
       $ref: '../objects/expenses.yaml'
-  test:
-    type: boolean
-    example: false
-    default: false
 required: [ data ]

@@ -2,14 +2,16 @@ type: object
 description: Details of the employee to whom this object belongs to.
 readOnly: true
 properties:
-  id:
+  user_id:
     type: string
     maxLength: 255
     description: |
       This id helps to identify employees in other organisations.
-      It is always prefixed with the string `ou`.
+      It is always prefixed with the string `us`.
       It is unique per email.
-    example: 'outGt9ju6qP'
+    example: 'usIYTLwzlaGu'
+  email:
+    $ref: '../commons/email.yaml'
   code:
     type: string
     maxLength: 255
@@ -45,7 +47,7 @@ properties:
       Mobile number of the employee.
       `Given example is a fake number. We don't know who might answer your call.`
     example: '+1-202-555-0167'
-  joining_at:
+  joined_at:
     type: string
     format: date
     example: '2018-10-31'

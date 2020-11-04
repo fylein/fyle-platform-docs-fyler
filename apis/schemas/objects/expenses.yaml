@@ -16,7 +16,7 @@ properties:
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
-    $ref: 'minimals/employees.yaml'
+    $ref: 'minimals/employee.yaml'
   spent_at:
     type: string
     format: date-time

@@ -43,11 +43,5 @@ properties:
           maxLength: 255
           description: |
             Indicates what's the type of report that the fyler is submitting.
-          enum:
-            - BASIC
-            - TRIP
-  test:
-    type: boolean
-    example: false
-    default: false
-required: [ data, source, report_type, purpose ]
+          enum: [ BASIC, TRIP]
+required: [ data ]

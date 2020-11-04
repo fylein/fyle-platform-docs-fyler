@@ -2,10 +2,6 @@ type: object
 properties:
   count:
     $ref: '../commons/count.yaml'
-  offset:
-    $ref: '../commons/offset.yaml'
-  limit:
-    $ref: '../commons/limit.yaml'
   url:
     type: string
     example: '/fyler/expense_comments'

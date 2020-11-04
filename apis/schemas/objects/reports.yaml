@@ -10,15 +10,8 @@ properties:
     example: 'rpevetgn3kl'
   employee_id:
     $ref: 'commons/employee_id.yaml'
-  employee_email:
-    type: string
-    maxLength: 127
-    format: email
-    description: |
-      Email address of the Employee for whom the expense was/will-be created. Once an Expense is created, the value of this field cannot be changed and is immutable. <br>
-    example: john.doe@example.com
   employee:
-    $ref: './minimals/employees.yaml'
+    $ref: 'minimals/employee.yaml'
   created_at:
     $ref: 'commons/created_at.yaml'
   updated_at:
@@ -53,7 +46,8 @@ properties:
     readOnly: true
   verified:
     type: boolean
-    description: Indicates whether the Report is verified or not
+    description: |
+      Indicates whether the Report is verified or not.
     readOnly: true
   verified_at:
     type: string
@@ -79,9 +73,9 @@ properties:
     type: string
     format: date-time
     description: |
-      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the report approved was settled. <br>
+      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the report was settled. <br>
     example: '2017-07-21T17:32:28Z'
-  num_transactions:
+  num_expenses:
     type: integer
   expense_ids:
     type: array
@@ -89,8 +83,13 @@ properties:
       type: string
   verification_state:
     type: string
-  created_by:
-    type: string
+  creator_id:
+    $ref: 'commons/creator_id.yaml'
+  creator:
+    allOf:
+      - $ref: 'minimals/employee.yaml'
+    description: |
+      Details of employee who created this report.
   trip_request_id:
     type: string
   physical_bill:
@@ -103,17 +102,23 @@ properties:
     type: boolean
   type:
     type: string
-  from_dt:
+  started_at:
     type: string
-  to_dt:
+  ended_at:
     type: string
   locations:
     type: array
     items:
-      $ref: 'expense_location.yaml'
+      $ref: 'location.yaml'
   report_approvals:
-    type: object
+    type: array
+    items:
+      allOf:
+        - $ref: 'commons/approvals.yaml'
+        - type: object
+          properties:
+            rank:
+              type: integer
+              example: 1
   org_id:
     $ref: 'commons/org_id.yaml'
-  export_info:
-    $ref: 'minimals/export_info.yaml'
