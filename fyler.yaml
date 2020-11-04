@@ -361,19 +361,31 @@ components:
         This id is always prefixed with `ou`.
       readOnly: true
       example: outGt9ju6qP
-    employees:
+    email:
+      type: string
+      format: email
+      maxLength: 127
+      example: john.doe@example.com
+      description: >
+        An immutable field that represents the email address.
+
+        Must be compliant with <a href="https://www.ietf.org/rfc/rfc822.txt">RFC
+        822.</a>
+    employee:
       type: object
       description: Details of the employee to whom this object belongs to.
       readOnly: true
       properties:
-        id:
+        user_id:
           type: string
           maxLength: 255
           description: |
             This id helps to identify employees in other organisations.
-            It is always prefixed with the string `ou`.
+            It is always prefixed with the string `us`.
             It is unique per email.
-          example: outGt9ju6qP
+          example: usIYTLwzlaGu
+        email:
+          $ref: '#/components/schemas/email'
         code:
           type: string
           maxLength: 255
@@ -416,7 +428,7 @@ components:
             `Given example is a fake number. We don't know who might answer your
             call.`
           example: +1-202-555-0167
-        joining_at:
+        joined_at:
           type: string
           format: date
           example: '2018-10-31'
@@ -649,18 +661,18 @@ components:
       type: object
       description: |
         siginifies all the approvals of a particular object.
-      additionalProperties:
-        type: object
-        properties:
-          state:
-            type: string
-            enum:
-              - APPROVED
-              - APPROVAL_PENDING
-              - APPROVAL_DISABLED
+      properties:
+        approver_id:
+          type: string
+        state:
+          type: string
+          enum:
+            - APPROVED
+            - APPROVAL_PENDING
+            - APPROVAL_DISABLED
       example:
-        oueoblnegf:
-          state: APPROVED
+        approver_id: oueoblnegf
+        state: APPROVED
     expense_actions:
       type: object
       properties:
@@ -720,7 +732,7 @@ components:
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
-          $ref: '#/components/schemas/employees'
+          $ref: '#/components/schemas/employee'
         spent_at:
           type: string
           format: date-time
@@ -2046,7 +2058,7 @@ components:
         electricCar:
           type: number
           example: 0
-    objects_employees:
+    employees:
       type: object
       properties:
         id:
@@ -2408,7 +2420,7 @@ components:
           type: string
           example: /fyler/my_profile
         data:
-          $ref: '#/components/schemas/objects_employees'
+          $ref: '#/components/schemas/employees'
     vendors:
       type: object
       properties:
@@ -2841,31 +2853,32 @@ components:
     expense_comments:
       type: object
       properties:
-        expense_id:
-          type: string
-          description: |
-            The expense id for which comment has to be created.
-          example: txhfw8d920k
-        notify:
-          type: boolean
-          description: |
-            This indicates whether it should be notified or not.
-          default: true
-          example: true
-        status:
+        data:
           type: object
-          description: |
-            This indicates whether it should be notified or not.
           properties:
-            comment:
+            expense_id:
               type: string
-              maxLength: 255
-              description: Comment made on the expense.
-              example: This is a food expense
+              description: |
+                The expense id for which comment has to be created.
+              example: txhfw8d920k
+            notify:
+              type: boolean
+              description: |
+                This indicates whether it should be notified or not.
+              default: true
+              example: true
+            status:
+              type: object
+              description: |
+                This indicates whether it should be notified or not.
+              properties:
+                comment:
+                  type: string
+                  maxLength: 255
+                  description: Comment made on the expense.
+                  example: This is a food expense
       required:
-        - expense_id
-        - notify
-        - status
+        - data
     report_id:
       type: string
       maxLength: 255
@@ -2887,10 +2900,6 @@ components:
       properties:
         count:
           $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /fyler/expense_comments
@@ -3035,10 +3044,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/expenses'
-        test:
-          type: boolean
-          example: false
-          default: false
       required:
         - data
     currency:
@@ -3189,10 +3194,6 @@ components:
       properties:
         count:
           $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /fyler/policy_test
@@ -3294,49 +3295,22 @@ components:
                 enum:
                   - BASIC
                   - TRIP
-        test:
-          type: boolean
-          example: false
-          default: false
       required:
         - data
-        - source
-        - report_type
-        - purpose
     amount:
       type: integer
       description: |
         Amount value of the object.
       example: 100
-    export_info:
-      type: object
+    creator_id:
+      type: string
+      maxLength: 255
+      description: >
+        An unique ID, generated by Fyle, for identifying the Employee who
+        created the object. Once an object is created, the value of this field
+        cannot be changed and is immutable.<br>
+      example: ou12345Zdfx
       readOnly: true
-      description: Accounting export information for this object.
-      properties:
-        exported:
-          type: boolean
-          description: >
-            Signifies whether this object has been exported to external
-            accounting system or not.
-          example: true
-        exported_at:
-          type: string
-          description: >
-            <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339,
-            section 5.6 compliant timestamp.</a>
-
-            Signifies when this object was exported to external accounting
-            system or not.
-          example: '2020-06-01T13:14:54.804Z'
-        exported_ids:
-          type: array
-          items:
-            type: string
-          description: |
-            Array of export IDs 
-          example:
-            - tpe7sY2bHfl8
-            - tpe7fs7wvLU9
     objects_reports:
       type: object
       properties:
@@ -3350,17 +3324,8 @@ components:
           example: rpevetgn3kl
         employee_id:
           $ref: '#/components/schemas/employee_id'
-        employee_email:
-          type: string
-          maxLength: 127
-          format: email
-          description: >
-            Email address of the Employee for whom the expense was/will-be
-            created. Once an Expense is created, the value of this field cannot
-            be changed and is immutable. <br>
-          example: john.doe@example.com
         employee:
-          $ref: '#/components/schemas/employees'
+          $ref: '#/components/schemas/employee'
         created_at:
           $ref: '#/components/schemas/created_at'
         updated_at:
@@ -3401,7 +3366,8 @@ components:
           readOnly: true
         verified:
           type: boolean
-          description: Indicates whether the Report is verified or not
+          description: |
+            Indicates whether the Report is verified or not.
           readOnly: true
         verified_at:
           type: string
@@ -3437,9 +3403,9 @@ components:
           description: >
             RFC 3339, section 5.6
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the report approved was settled. <br>
+            timestamp on which the report was settled. <br>
           example: '2017-07-21T17:32:28Z'
-        num_transactions:
+        num_expenses:
           type: integer
         expense_ids:
           type: array
@@ -3447,8 +3413,13 @@ components:
             type: string
         verification_state:
           type: string
-        created_by:
-          type: string
+        creator_id:
+          $ref: '#/components/schemas/creator_id'
+        creator:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who created this report.
         trip_request_id:
           type: string
         physical_bill:
@@ -3461,29 +3432,31 @@ components:
           type: boolean
         type:
           type: string
-        from_dt:
+        started_at:
           type: string
-        to_dt:
+        ended_at:
           type: string
         locations:
           type: array
           items:
-            $ref: '#/components/schemas/expense_location'
+            $ref: '#/components/schemas/location'
         report_approvals:
-          type: object
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/approvals'
+              - type: object
+                properties:
+                  rank:
+                    type: integer
+                    example: 1
         org_id:
           $ref: '#/components/schemas/org_id'
-        export_info:
-          $ref: '#/components/schemas/export_info'
     responses_reports:
       type: object
       properties:
         count:
           $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
         url:
           type: string
           example: /fyler/reports
