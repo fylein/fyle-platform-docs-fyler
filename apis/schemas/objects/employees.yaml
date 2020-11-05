@@ -65,7 +65,7 @@ properties:
       This field shall be ignored in POST calls to create/update employees.
     readOnly: true
     example: '2020-06-01T16:19:00.000Z'
-  onboarded:
+  is_onboarded:
     type: boolean
     description: |
       This flag indicates whether an employee has completed the onboarding flow or not.
@@ -105,7 +105,7 @@ properties:
       Mobile number of the employee.
       `Given example is a fake number. We don't know who might answer your call.`
     example: '+1-202-555-0167'
-  mobile_verified:
+  is_mobile_verified:
     type: boolean
     description: |
     default: false
@@ -264,7 +264,7 @@ properties:
       $ref: 'minimals/perdiem.yaml'
   custom_properties:
     $ref: 'custom_properties.yaml'
-  enabled:
+  is_enabled:
     type: boolean
     description: |
       Indicates whether an employee is enabled or not in Fyle.
@@ -283,7 +283,7 @@ properties:
       - ACTIVE
       - DISABLED
     example: ACTIVE
-  primary_account:
+  is_primary_account:
     type: boolean
     description: |
       This flag indicates whether this is primary account of this employee or not.

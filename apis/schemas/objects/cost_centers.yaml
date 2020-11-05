@@ -25,7 +25,7 @@ properties:
     description: |
       This field provides a decription about the cost center.
     example: 'Initial Cost center'
-  enabled:
+  is_enabled:
     type: boolean
     description: |
       This field specifies if the current cost center is enabled or not.

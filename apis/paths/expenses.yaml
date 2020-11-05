@@ -5,14 +5,6 @@ get:
   operationId: GetExpenses
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
-    - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - in: query
-      name: external_expense_id
-      description: |
-        Supported operators are `eq`, `in`.<br>
-      schema:
-        type: string
-        example: 'ouZG1PEFYUISAQMkAGY2MDdmN2M4LWM1NjEtNGQ4MS05Y'
     - in: query
       name: invoice_number
       description: |

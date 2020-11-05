@@ -29,7 +29,7 @@ properties:
     description: |
       This represents the creator of vendor.
     example: SYSTEM
-  verified:
+  is_verified:
     type: boolean
     description: |
       This indicates if the vendor is verified.

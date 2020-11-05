@@ -6,13 +6,6 @@ properties:
     example: tx12345
     description: An unique string to identify the Expense. Ignore this field when used as part of a POST request to create an Expense.
     readOnly: true
-  employee_email:
-    type: string
-    maxLength: 127
-    format: email
-    description: |
-      Email address of the Employee for whom the expense was/will-be created. Once an Expense is created, the value of this field cannot be changed and is immutable. <br>
-    example: john.doe@example.com
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
@@ -31,6 +24,9 @@ properties:
       The name of the client app which is creating the expense.
       if its a thrid party app, it prefixed with TPA_.
       Ex - If you pass SLACK_APP, it will be saved as TPA_SLACK_APP. If not passed, source is saved as TPA.
+  source_account_id:
+    type: string
+    example: acct0vTfdNQrT
   source_account:
     type: object
     properties:
@@ -62,12 +58,6 @@ properties:
       The transaction amount as claimed by user.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
     example: 1984.18
-  policy_amount:
-    type: number
-    description: |
-      The transaction amount which is modified by policy.
-      The amount will be in the currency that the organization is setup with in case of GET requests. <br>
-    example: 1500.0
   admin_amount:
     type: number
     description: |
@@ -144,11 +134,11 @@ properties:
     type: string
     description: |
       invoice number from the receipt.
-  billable:
+  is_billable:
     type: boolean
     example: true
     description: This fields marks whether a given expense is billable a not.
-  reimbursable:
+  is_reimbursable:
     type: boolean
     example: true
   created_at:
@@ -169,15 +159,15 @@ properties:
     type: string
     description: |
       Unique id given by Fyle to identify an Expense Report.
+  report:
+    $ref: 'minimals/report.yaml'
   reported_at:
     type: string
     format: date-time
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Expense was submitted via a Report to the Approvers.
       If the Expense is not added to a Report yet or if the Report is not yet submitted, this could be null.
-  report:
-    $ref: 'minimals/report.yaml'
-  physical_bill:
+  is_physical_bill_received:
     type: boolean
     description: |
       This field indicated whether physicall bill was received or not.
@@ -188,23 +178,11 @@ properties:
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp indicating when the Expense's physicall bill was submitted.
       If the Expense's bill is not required to be submitted, then this could be null.
-  verified:
+  is_verified:
     type: boolean
     description: |
       Indicates whether the Expense is verified or not
     readOnly: true
-  verification_state:
-    type: string
-  verified_at:
-    type: string
-    format: date-time
-    description: |
-      RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Expense was verified.
-      If the Expense is not verified yet, this could be null. <br>
-    readOnly: true
-  skip_reimbursement:
-    type: boolean
-    deprecated: true
   vendor:
     $ref: 'minimals/vendor.yaml'
   vendor_id:
@@ -270,10 +248,10 @@ properties:
   mileage_rate:
     type: number
     example: 4.3
-  mileage_is_round_trip:
+  is_mileage_round_trip:
     type: boolean
     example: false
-  hotel_is_breakfast_provided:
+  is_hotel_breakfast_provided:
     type: boolean
     example: true
   per_diem_rate_id:
@@ -283,9 +261,9 @@ properties:
     $ref: 'minimals/perdiem.yaml'
   activity_details:
     type: string
-  activity_policy_pending:
+  is_activity_policy_pending:
     type: boolean
-  num_files:
+  num_attachments:
     type: integer
     description: |
       Number of files attached to this Expenses.
@@ -303,38 +281,37 @@ properties:
       $ref: 'minimals/file.yaml'
   custom_properties:
     $ref: 'custom_properties.yaml'
-  user_can_delete:
-    type: boolean
-    description: |
-      This field describes whether a user can delete this expenses.
-      This is flag is set as false when travel agent creates expenses on your behalf.
-    example: true
-  policy_flag:
-    type: boolean
-    description:
-      This field indicates whether policy execution has flagged this expenses or not.
-    example: false
-  manual_flag:
+  policy:
+    type: object
+    properties:
+      is_flagged:
+        type: boolean
+        description:
+          This field indicates whether policy execution has flagged this expenses or not.
+        example: false
+      state:
+        type: string
+        enum:
+          - FAILED
+          - SUCCESS
+          - RUNNING
+        description: |
+          This fields shows policy execution state for this expenses.
+          If this field is null then its policy has not yet run on this expenses.
+      amount:
+        type: number
+        description: |
+          The transaction amount which is modified by policy.
+          The amount will be in the currency that the organization is setup with in case of GET requests. <br>
+        example: 1500.0
+  is_manual_flagged:
     type: boolean
     description: |
       This field indicates whether this expenses was manually flagged by approver or finance or admin.
     example: true
-  policy_state:
-    type: string
-    enum:
-      - FAILED
-      - SUCCESS
-      - RUNNING
-    description: |
-      This fields shows policy execution state for this expenses.
-      If this field is null then its policy has not yet run on this expenses.
-  extracted_data:
-    type: object
-  transcribed_data:
-    type: object
-  user_review_needed:
+  is_user_review_needed:
     type: boolean
-  mandatory_fields_present:
+  is_mandatory_fields_present:
     type: boolean
   transcription_state:
     type: string
@@ -344,7 +321,7 @@ properties:
       - FAILURE
       - NO_WORK
     example: SUCCESS
-  receipt_required:
+  is_receipt_required:
     type: boolean
   is_holiday_expense:
     type: boolean
@@ -355,19 +332,62 @@ properties:
       - MODERATE_RISK
       - NO_RISK
     example: NO_RISK
-  external_id:
-    type: string
-    example: "dsadsfdsf"
   split_group_id:
     type: string
     example: "txaCp7lQvyb1"
   split_group_user_amount:
     type: number
     example: 32206.6
-  external_expense:
-    type: object
+  corporate_credit_card_transaction_id:
+    type: string
+    example: ccce9A14G1rw4YJl
   corporate_credit_card_transaction:
     type: object
+    properties:
+      id:
+        type: string
+        example: ccce9A14G1rw4YJl
+      state:
+        type: string
+        example: IN_PROGRESS
+      account_number:
+        type: string
+        example: orffTTssrk_****38992
+      group_id:
+        type: string
+        example: ccceQjFQNz8RcB
+      is_personal:
+        type: boolean
+        example: false
+      currency:
+        type: string
+        example: INR
+      settlement_id:
+        type: string
+        example: set9dnCTcpTN
+      employee_id:
+        $ref: 'commons/employee_id.yaml'
+      amount:
+        type: integer
+        example: 546.23
+      vendor:
+        type: string
+        example: CELEX TECHNOLOGIES PVT
+      payment_id:
+        type: string
+        example: payfjgdfgKy9eYj
+      created_at:
+        $ref: 'commons/created_at.yaml'
+      updated_at:
+        $ref: 'commons/created_at.yaml'
+      txn_dt:
+        type: string
+        format: date-time
+        description: |
+          <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC 3339, section 5.6 compliant timestamp.</a>
+          Signifies when this transaction was created.
+        readOnly: true
+        example: '2020-06-01T13:14:54.804Z'
   transaction_approvals:
     allOf:
       - $ref: 'commons/approvals.yaml'

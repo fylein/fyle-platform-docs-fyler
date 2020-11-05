@@ -314,10 +314,6 @@ properties:
     description: |
       This fields shows policy execution state for this expenses.
       If this field is null then its policy has not yet run on this expenses.
-  extracted_data:
-    type: object
-  transcribed_data:
-    type: object
   user_review_needed:
     type: boolean
   mandatory_fields_present:

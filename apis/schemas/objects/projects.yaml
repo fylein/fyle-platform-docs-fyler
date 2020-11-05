@@ -44,7 +44,7 @@ properties:
     description: |
       This represents the description of project.
     example: Win the trophy
-  enabled:
+  is_enabled:
     type: boolean
     description: |
       This indicates if the project is enabled for use within the organisation.
