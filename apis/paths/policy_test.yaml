@@ -19,15 +19,7 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              url:
-                type: string
-                example: '/fyler/policy_test'
-              data:
-                type: array
-                items:
-                  $ref: '../schemas/responses/post/policy_test.yaml'
+            $ref: '../schemas/responses/post/policy_test.yaml'
 
     '401':
       description: Unauthorised request

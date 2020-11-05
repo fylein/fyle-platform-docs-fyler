@@ -7,7 +7,7 @@ get:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - in: query
-      name: external_id
+      name: external_expense_id
       description: |
         Supported operators are `eq`, `in`.<br>
       schema:
@@ -16,7 +16,7 @@ get:
     - in: query
       name: invoice_number
       description: |
-        Supported operators are `eq`, `in`, `like`.<br>
+        Supported operators are `eq`, `in`.<br>
       schema:
         type: string
         example: 'CRN4684556772'
@@ -48,7 +48,7 @@ post:
   tags:
     - Expenses
   summary:
-    Create or Update expenses
+    Create or update expense
   description: |
     Creates or updates expenses in bulk. This API is written in such a way to support bulk operations only.
   operationId: PostExpenses
@@ -103,35 +103,3 @@ post:
                     key: Expense abcd
                     message: Invalid or duplicate project code
               - $ref: '../schemas/errors/json_parsing_error.yaml'
-delete:
-  tags:
-    - Expenses
-  summary:
-    Delete single expense
-  description: |
-    It delete's a single expense at a time only.
-  operationId: DeleteExpense
-  parameters:
-    - in: query
-      name: id
-      required: true
-      description: |
-        Expense id that is to be deleted.<br>
-      schema:
-        type: string
-        example: 'txhfw8d920k'
-
-  responses:
-    '200':
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '../schemas/responses/delete/expenses.yaml'
-
-    '401':
-      description: Unauthorised request
-      content:
-        application/json:
-          schema:
-            $ref: '../schemas/errors/401.yaml'

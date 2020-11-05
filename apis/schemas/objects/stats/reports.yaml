@@ -5,7 +5,7 @@ properties:
     description: |
       This field indicates the total amount of report.
     example: 1234.56
-  count:
+  total_count:
     type: integer
     description: |
       This field indicates the total amount of report.

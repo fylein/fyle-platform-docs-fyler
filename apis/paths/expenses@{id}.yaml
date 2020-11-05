@@ -26,3 +26,35 @@ get:
         application/json:
           schema:
             $ref: '../schemas/errors/401.yaml'
+delete:
+  tags:
+    - Expenses
+  summary:
+    Delete an expense
+  description: |
+    It delete's a single expense at a time only.
+  operationId: DeleteExpense
+  parameters:
+    - in: path
+      name: id
+      required: true
+      description: |
+        Id of the expense to be deleted.<br>
+      schema:
+        type: string
+        example: 'txhfw8d920k'
+
+  responses:
+    '200':
+      description: OK
+      # content:
+      #   application/json:
+      #     schema:
+      #       $ref: '../schemas/responses/delete/expenses.yaml'
+
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

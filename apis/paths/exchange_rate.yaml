@@ -8,23 +8,23 @@ get:
       name: date
       description: |
         Supported operators are `eq`.<br>
-        dt=eq.(value)
+        date=eq.(value)
       schema:
         type: string
         example: 'eq.2020-10-26'
     - in: query
-      name: from
+      name: from_currency
       description: |
         Supported operators are `eq`.<br>
-        from=eq.(value)
+        from_currency=eq.(value)
       schema:
         type: string
         example: 'eq.USD'
     - in: query
-      name: to
+      name: to_currency
       description: |
         Supported operators are `eq`.<br>
-        to=eq.(value)
+        to_currency=eq.(value)
       schema:
         type: string
         example: 'eq.INR'

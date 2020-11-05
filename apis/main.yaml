@@ -101,8 +101,8 @@ paths:
     $ref: 'paths/stats/advance_requests.yaml'
   /fyler/reports_stats:
     $ref: 'paths/stats/reports.yaml'
-  /fyler/expense_comments:
-    $ref: 'paths/expense_comments.yaml'
+  /fyler/expense_comment:
+    $ref: 'paths/expense_comment.yaml'
   /fyler/expense_custom_properties:
     $ref: 'paths/expense_custom_properties.yaml'
   /fyler/policy_test:

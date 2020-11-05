@@ -2,7 +2,7 @@ post:
   tags:
     - Expense Comments
   summary:
-    Creates a comment on expense
+    Create a comment on an expense
   description: |
     It creates comment on a specific expense.
   operationId: PostExpenseComments
@@ -11,7 +11,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/expense_comments.yaml'
+          $ref: '../schemas/requests/expense_comment.yaml'
 
   responses:
     '200':
@@ -19,7 +19,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/post/expense_comments.yaml'
+            $ref: '../schemas/responses/post/expense_comment.yaml'
     '401':
       description: Unauthorized request
       content:

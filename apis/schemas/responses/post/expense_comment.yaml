@@ -4,7 +4,7 @@ properties:
     $ref: '../commons/count.yaml'
   url:
     type: string
-    example: '/fyler/expense_comments'
+    example: '/fyler/expense_comment'
   data:
     type: array
     items:

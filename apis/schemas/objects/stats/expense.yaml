@@ -2,9 +2,9 @@ type: object
 properties:
   total_amount:
     $ref: '../commons/total_amount.yaml'
-  count:
+  total_count:
     $ref: '../commons/total_count.yaml'
-  total_reimbursible:
+  total_reimbursable:
     type: number
     description: |
       This field indicates the total of reimbursible expenses.

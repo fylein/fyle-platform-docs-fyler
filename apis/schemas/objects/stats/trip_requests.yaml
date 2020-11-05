@@ -1,6 +1,6 @@
 type: object
 properties:
-  count:
+  total_count:
     type: integer
     description: |
       This field indicates the total count of trip requests.

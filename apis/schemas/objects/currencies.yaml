@@ -1,4 +1,6 @@
 type: object
+description: |
+  Contains (Currency code, Currency name) pairs.
 additionalProperties:
   type: string
 example:

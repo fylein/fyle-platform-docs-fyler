@@ -5,7 +5,7 @@ properties:
     description: |
       This field indicates the total amount of advance requests.
     example: 1234.56
-  count:
+  total_count:
     type: integer
     description: |
       This field indicates the total count of advance requests.

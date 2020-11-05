@@ -48,7 +48,7 @@ properties:
     description: |
       This represents the id of user who created the category.
     example: "ouEsdfdq"
-  last_updated_by:
+  last_updater:
     type: string
     description: |
       This represents the id of user who updated the category.
