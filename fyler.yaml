@@ -1757,6 +1757,19 @@ components:
       description: |
         This field indicates if the module is enabled or not.
       example: true
+    unsubscribed_events:
+      type: array
+      description: >
+        This field indicates which notifications are unsubscribed for this
+        object.
+      items:
+        type: string
+      example:
+        - ERPTS_SUBMITTED
+        - TRIP_REQUESTS_CREATED
+        - EADVANCE_REQUESTS_CREATED
+        - EADVANCE_REQUESTS_UPDATED
+        - TRIP_REQUESTS_ADD_APPROVER
     employee_settings:
       type: object
       properties:
@@ -1953,6 +1966,40 @@ components:
               $ref: '#/components/schemas/allowed'
             enabled:
               $ref: '#/components/schemas/enabled'
+        notification_settings:
+          type: object
+          properties:
+            email:
+              type: object
+              properties:
+                allowed:
+                  $ref: '#/components/schemas/allowed'
+                enabled:
+                  $ref: '#/components/schemas/enabled'
+            push_notification:
+              type: object
+              properties:
+                allowed:
+                  $ref: '#/components/schemas/allowed'
+                enabled:
+                  $ref: '#/components/schemas/enabled'
+                unsubscribed_events:
+                  $ref: '#/components/schemas/unsubscribed_events'
+            whatsapp:
+              type: object
+              properties:
+                allowed:
+                  $ref: '#/components/schemas/allowed'
+                enabled:
+                  $ref: '#/components/schemas/allowed'
+                unsubscribed_events:
+                  $ref: '#/components/schemas/unsubscribed_events'
+            notify_only_delegatee:
+              type: boolean
+              description: >
+                This field indicates if only delegatee should be informed about
+                the notifications.
+              example: false
     commons_org_name:
       type: string
       description: |
@@ -2001,47 +2048,6 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
-    dwolla_cutomers_metadata:
-      type: object
-      readOnly: true
-      properties:
-        customerMetadataId:
-          type: string
-          readOnly: true
-        customerId:
-          type: string
-          readOnly: true
-        bankAccountAdded:
-          type: boolean
-          readOnly: true
-          description: |
-            Flag which indicates whether bank account was added or not.
-          default: false
-          example: true
-    annual_mileage:
-      type: object
-      properties:
-        twoWheeler:
-          type: number
-          example: 0
-        fourWheeler:
-          type: number
-          example: 0
-        fourWheeler1:
-          type: number
-          example: 0
-        fourWheeler3:
-          type: number
-          example: 0
-        fourWheeler4:
-          type: number
-          example: 0
-        bicycle:
-          type: number
-          example: 0
-        electricCar:
-          type: number
-          example: 0
     employees:
       type: object
       properties:
@@ -2358,18 +2364,11 @@ components:
             $ref: '#/components/schemas/perdiem'
         custom_properties:
           $ref: '#/components/schemas/custom_properties'
-        disabled:
+        enabled:
           type: boolean
-          description: >
-            Indicates whether an employee is disabled or not in Fyle.
-
-            During POST call, If set to `TRUE`, an active employee account will
-            be disabled.
-
-            Setting to `FALSE` will NOT enable a disabled employee.
-
-            This can only be accomplished from the web-app.
-          default: false
+          description: |
+            Indicates whether an employee is enabled or not in Fyle.
+          default: true
         special_email:
           type: string
           format: email
@@ -2379,10 +2378,6 @@ components:
 
             A corresponding expense will be created in their Fyle app.
           example: receipts+john_doe_ejtj@fyle.ai
-        dwolla_customers_metadata:
-          $ref: '#/components/schemas/dwolla_cutomers_metadata'
-        annual_mileage_of_user_before_joining_fyle:
-          $ref: '#/components/schemas/annual_mileage'
         status:
           type: string
           enum:
@@ -2390,7 +2385,7 @@ components:
             - ACTIVE
             - DISABLED
           example: ACTIVE
-        is_primary:
+        primary_account:
           type: boolean
           description: >
             This flag indicates whether this is primary account of this employee
