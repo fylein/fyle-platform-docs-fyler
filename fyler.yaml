@@ -3278,6 +3278,10 @@ components:
                 enum:
                   - BASIC
                   - TRIP
+            required:
+              - report_type
+              - source
+              - purpose
       required:
         - data
     amount:
