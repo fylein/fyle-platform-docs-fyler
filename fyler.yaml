@@ -210,6 +210,12 @@ components:
             This list of categories that are applicable for this project.
           items:
             $ref: '#/components/schemas/category'
+        primary_approver_id:
+          type: string
+          maxLength: 255
+          description: |
+            Employee Id of the primary approver.
+          example: ou4b24ugv3vg
         primary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -219,12 +225,12 @@ components:
           example:
             full_name: primary approver
             email: primary_approver@example.com
-        primary_approver_id:
+        secondary_approver_id:
           type: string
           maxLength: 255
           description: |
-            Employee Id of the primary approver.
-          example: ou4b24ugv3vg
+            Employee Id of the secondary approver.
+          example: ourjgeugv3vg
         secondary_approver:
           allOf:
             - $ref: '#/components/schemas/user'
@@ -233,12 +239,6 @@ components:
           example:
             full_name: secondary approver
             email: secondary_approver@example.com
-        secondary_approver_id:
-          type: string
-          maxLength: 255
-          description: |
-            Employee Id of the secondary approver.
-          example: ourjgeugv3vg
     'projects@{id}':
       type: object
       properties:
@@ -1695,22 +1695,6 @@ components:
           default: 400
           example: 400
           deprecated: true
-    delete_expenses:
-      type: object
-      properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
-        url:
-          type: string
-          example: '/fyler/expenses/{id}'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/expenses'
     level:
       type: object
       readOnly: true
@@ -2539,7 +2523,7 @@ components:
           description: |
             This represents the id of user who created the category.
           example: ouEsdfdq
-        last_updated_by:
+        last_updater:
           type: string
           description: |
             This represents the id of user who updated the category.
@@ -2562,6 +2546,8 @@ components:
             $ref: '#/components/schemas/categories'
     currencies:
       type: object
+      description: |
+        Contains (Currency code, Currency name) pairs.
       additionalProperties:
         type: string
       example:
@@ -2772,9 +2758,9 @@ components:
       properties:
         total_amount:
           $ref: '#/components/schemas/total_amount'
-        count:
+        total_count:
           $ref: '#/components/schemas/total_count'
-        total_reimbursible:
+        total_reimbursable:
           type: number
           description: |
             This field indicates the total of reimbursible expenses.
@@ -2795,7 +2781,7 @@ components:
     trip_requests:
       type: object
       properties:
-        count:
+        total_count:
           type: integer
           description: |
             This field indicates the total count of trip requests.
@@ -2816,7 +2802,7 @@ components:
           description: |
             This field indicates the total amount of advance requests.
           example: 1234.56
-        count:
+        total_count:
           type: integer
           description: |
             This field indicates the total count of advance requests.
@@ -2837,7 +2823,7 @@ components:
           description: |
             This field indicates the total amount of report.
           example: 1234.56
-        count:
+        total_count:
           type: integer
           description: |
             This field indicates the total amount of report.
@@ -2850,7 +2836,7 @@ components:
           example: /fyler/reports_stats
         data:
           $ref: '#/components/schemas/reports'
-    expense_comments:
+    expense_comment:
       type: object
       properties:
         data:
@@ -2865,18 +2851,15 @@ components:
               type: boolean
               description: |
                 This indicates whether it should be notified or not.
-              default: true
               example: true
-            status:
-              type: object
-              description: |
-                This indicates whether it should be notified or not.
-              properties:
-                comment:
-                  type: string
-                  maxLength: 255
-                  description: Comment made on the expense.
-                  example: This is a food expense
+            comment:
+              type: string
+              maxLength: 255
+              description: Comment made on the expense.
+              example: This is a food expense
+          required:
+            - expense_id
+            - comment
       required:
         - data
     report_id:
@@ -2895,14 +2878,14 @@ components:
         This id is always prefixed with `tx`.
       readOnly: true
       example: txhxw8h92ks
-    post_expense_comments:
+    post_expense_comment:
       type: object
       properties:
         count:
           $ref: '#/components/schemas/count'
         url:
           type: string
-          example: /fyler/expense_comments
+          example: /fyler/expense_comment
         data:
           type: array
           items:
@@ -3751,6 +3734,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
+    delete:
+      tags:
+        - Expenses
+      summary: Delete an expense
+      description: |
+        It delete's a single expense at a time only.
+      operationId: DeleteExpense
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            Id of the expense to be deleted.<br>
+          schema:
+            type: string
+            example: txhfw8d920k
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
   /fyler/expenses:
     get:
       tags:
@@ -3761,7 +3769,7 @@ paths:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
         - in: query
-          name: external_id
+          name: external_expense_id
           description: |
             Supported operators are `eq`, `in`.<br>
           schema:
@@ -3770,7 +3778,7 @@ paths:
         - in: query
           name: invoice_number
           description: |
-            Supported operators are `eq`, `in`, `like`.<br>
+            Supported operators are `eq`, `in`.<br>
           schema:
             type: string
             example: CRN4684556772
@@ -3801,7 +3809,7 @@ paths:
     post:
       tags:
         - Expenses
-      summary: Create or Update expenses
+      summary: Create or update expense
       description: >
         Creates or updates expenses in bulk. This API is written in such a way
         to support bulk operations only.
@@ -3853,35 +3861,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-    delete:
-      tags:
-        - Expenses
-      summary: Delete single expense
-      description: |
-        It delete's a single expense at a time only.
-      operationId: DeleteExpense
-      parameters:
-        - in: query
-          name: id
-          required: true
-          description: |
-            Expense id that is to be deleted.<br>
-          schema:
-            type: string
-            example: txhfw8d920k
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/delete_expenses'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
   /fyler/my_profile:
     get:
       tags:
@@ -3988,23 +3967,23 @@ paths:
           name: date
           description: |
             Supported operators are `eq`.<br>
-            dt=eq.(value)
+            date=eq.(value)
           schema:
             type: string
             example: eq.2020-10-26
         - in: query
-          name: from
+          name: from_currency
           description: |
             Supported operators are `eq`.<br>
-            from=eq.(value)
+            from_currency=eq.(value)
           schema:
             type: string
             example: eq.USD
         - in: query
-          name: to
+          name: to_currency
           description: |
             Supported operators are `eq`.<br>
-            to=eq.(value)
+            to_currency=eq.(value)
           schema:
             type: string
             example: eq.INR
@@ -4123,11 +4102,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /fyler/expense_comments:
+  /fyler/expense_comment:
     post:
       tags:
         - Expense Comments
-      summary: Creates a comment on expense
+      summary: Create a comment on an expense
       description: |
         It creates comment on a specific expense.
       operationId: PostExpenseComments
@@ -4136,14 +4115,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/expense_comments'
+              $ref: '#/components/schemas/expense_comment'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/post_expense_comments'
+                $ref: '#/components/schemas/post_expense_comment'
         '400':
           description: Bad request
           content:
@@ -4220,15 +4199,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    example: /fyler/policy_test
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/post_policy_test'
+                $ref: '#/components/schemas/post_policy_test'
         '400':
           description: Bad request
           content:
