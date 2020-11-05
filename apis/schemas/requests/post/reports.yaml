@@ -44,4 +44,5 @@ properties:
           description: |
             Indicates what's the type of report that the fyler is submitting.
           enum: [ BASIC, TRIP]
+      required: [ report_type, source, purpose ]
 required: [ data ]
