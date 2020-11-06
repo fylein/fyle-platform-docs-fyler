@@ -12,18 +12,18 @@ properties:
     description: Comment made on the expense.
     example: This is a food expense
   created_at:
-    $ref: '../../objects/commons/created_at.yaml'
+    $ref: 'commons/created_at.yaml'
   diff:
     type: object
     description: |
       Difference between two comments
     readOnly: true
   employee_id:
-    $ref: '../../objects/commons/employee_id.yaml'
+    $ref: 'commons/employee_id.yaml'
   report_id:
-    $ref: '../../objects/commons/report_id.yaml'
+    $ref: 'commons/report_id.yaml'
   expense_id:
-    $ref: '../../objects/commons/expense_id.yaml'
+    $ref: 'commons/expense_id.yaml'
   trip_request_id:
     type: string
     maxLength: 255
