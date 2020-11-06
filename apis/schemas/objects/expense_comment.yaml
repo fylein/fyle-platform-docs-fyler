@@ -1,0 +1,42 @@
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 255
+    example: tx12345
+    description: An unique string to identify the Expense Comment. Ignore this field when used as part of a POST request to create an Expense.
+    readOnly: true
+  comment:
+    type: string
+    maxLength: 255
+    description: Comment made on the expense.
+    example: This is a food expense
+  created_at:
+    $ref: '../../objects/commons/created_at.yaml'
+  diff:
+    type: object
+    description: |
+      Difference between two comments
+    readOnly: true
+  employee_id:
+    $ref: '../../objects/commons/employee_id.yaml'
+  report_id:
+    $ref: '../../objects/commons/report_id.yaml'
+  expense_id:
+    $ref: '../../objects/commons/expense_id.yaml'
+  trip_request_id:
+    type: string
+    maxLength: 255
+    description: |
+      Trip request id if any.
+    readOnly: true
+  advance_request_id:
+    type: string
+    maxLength: 255
+    description: |
+      Advance request id if any.
+    readOnly: true
+  state:
+    type: string
+    maxLength: 255
+    description: State of the comment.
