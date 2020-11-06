@@ -16,7 +16,7 @@ properties:
     type: string
     description: |
       Contains the failure reasons.
-  flag:
+  is_flagged:
     type: boolean
     description: |
       Indicates whether expense is flagged or not.
@@ -44,7 +44,7 @@ properties:
     description: |
       Indicates the status of policy execution, whether it got executed or not.
     example: SUCCESS
-  receipt_required:
+  is_receipt_required:
     type: boolean
     description: |
       Indicates whether receipt is mandatory or not in this policy.

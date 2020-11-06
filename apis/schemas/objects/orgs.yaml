@@ -28,7 +28,7 @@ properties:
     description: |
       This field specifies the bank branch with which the organisation is associated.
     example: '2019238034424802'
-  verified:
+  is_verified:
     type: boolean
     description: |
       This field specifies if the organisation is verified or not.

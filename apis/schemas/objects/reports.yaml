@@ -44,7 +44,7 @@ properties:
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Report was approved. This field could be null if the Report was not yet approved.
     readOnly: true
-  verified:
+  is_verified:
     type: boolean
     description: |
       Indicates whether the Report is verified or not.
@@ -92,13 +92,13 @@ properties:
       Details of employee who created this report.
   trip_request_id:
     type: string
-  physical_bill:
+  is_physical_bill_received:
     type: boolean
   physical_bill_at:
     type: string
-  manual_flag:
+  is_manual_flagged:
     type: boolean
-  policy_flag:
+  is_policy_flagged:
     type: boolean
   type:
     type: string

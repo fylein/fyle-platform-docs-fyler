@@ -65,7 +65,7 @@ properties:
       This field shall be ignored in POST calls to create/update employees.
     readOnly: true
     example: '2020-06-01T16:19:00.000Z'
-  onboarded:
+  is_onboarded:
     type: boolean
     description: |
       This flag indicates whether an employee has completed the onboarding flow or not.
@@ -105,7 +105,7 @@ properties:
       Mobile number of the employee.
       `Given example is a fake number. We don't know who might answer your call.`
     example: '+1-202-555-0167'
-  mobile_verified:
+  is_mobile_verified:
     type: boolean
     description: |
     default: false
@@ -264,14 +264,11 @@ properties:
       $ref: 'minimals/perdiem.yaml'
   custom_properties:
     $ref: 'custom_properties.yaml'
-  disabled:
+  is_enabled:
     type: boolean
     description: |
-      Indicates whether an employee is disabled or not in Fyle.
-      During POST call, If set to `TRUE`, an active employee account will be disabled.
-      Setting to `FALSE` will NOT enable a disabled employee.
-      This can only be accomplished from the web-app.
-    default: false
+      Indicates whether an employee is enabled or not in Fyle.
+    default: true
   special_email:
     type: string
     format: email
@@ -279,10 +276,6 @@ properties:
       This is an auto-generated email to which an employee can forward a receipt from any of their email inboxes.
       A corresponding expense will be created in their Fyle app.
     example: 'receipts+john_doe_ejtj@fyle.ai'
-  dwolla_customers_metadata:
-    $ref: 'minimals/dwolla_cutomers_metadata.yaml'
-  annual_mileage_of_user_before_joining_fyle:
-    $ref: 'annual_mileage.yaml'
   status:
     type: string
     enum:
@@ -290,7 +283,7 @@ properties:
       - ACTIVE
       - DISABLED
     example: ACTIVE
-  is_primary:
+  is_primary_account:
     type: boolean
     description: |
       This flag indicates whether this is primary account of this employee or not.

@@ -7,7 +7,7 @@ properties:
         $ref: './commons/allowed.yaml'
       enabled:
         $ref: './commons/enabled.yaml'
-      background_enabled:
+      is_background_enabled:
         type: boolean
         description: |
           This field indicates if it is enabled in background (Not sure about this setting)
@@ -47,7 +47,7 @@ properties:
         $ref: './commons/allowed.yaml'
       enabled:
         $ref: './commons/enabled.yaml'
-      static_camera_overlay_enabled:
+      is_static_camera_overlay_enabled:
         type: boolean
         description: |
           This field indicates if camera overlay is enabled.
@@ -178,4 +178,38 @@ properties:
         $ref: './commons/allowed.yaml'
       enabled:
         $ref: './commons/enabled.yaml'
-  
+  notification_settings:
+    type: object
+    properties:
+      email:
+        type: object
+        properties:
+          allowed:
+            $ref: './commons/allowed.yaml'
+          enabled:
+            $ref: './commons/enabled.yaml'
+      push_notification:
+        type: object
+        properties:
+          allowed:
+            $ref: './commons/allowed.yaml'
+          enabled:
+            $ref: './commons/enabled.yaml'
+          unsubscribed_events:
+            $ref: './commons/unsubscribed_events.yaml'
+      whatsapp:
+        type: object
+        properties:
+          allowed:
+            $ref: './commons/allowed.yaml'
+          enabled:
+            $ref: './commons/allowed.yaml'
+          unsubscribed_events:
+            $ref: './commons/unsubscribed_events.yaml'
+      notify_only_delegatee:
+        type: boolean
+        description: |
+          This field indicates if only delegatee should be informed about the notifications.
+        example: false
+      
+    

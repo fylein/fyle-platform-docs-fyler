@@ -188,7 +188,7 @@ components:
           description: |
             This represents the description of project.
           example: Win the trophy
-        enabled:
+        is_enabled:
           type: boolean
           description: >
             This indicates if the project is enabled for use within the
@@ -316,7 +316,7 @@ components:
           description: |
             This field provides a decription about the cost center.
           example: Initial Cost center
-        enabled:
+        is_enabled:
           type: boolean
           description: |
             This field specifies if the current cost center is enabled or not.
@@ -679,30 +679,12 @@ components:
         id:
           type: string
           example: '1'
-        can_approve:
-          type: boolean
-          example: true
         can_delete:
           type: boolean
           example: false
         can_edit:
           type: boolean
           example: true
-        can_manual_flag:
-          type: boolean
-          example: false
-        can_add_approver:
-          type: boolean
-          example: true
-        can_assign:
-          type: boolean
-          example: false
-        can_verify:
-          type: boolean
-          example: true
-        can_admin_approve:
-          type: boolean
-          example: false
         can_edit_physical_bill:
           type: boolean
           example: true
@@ -720,15 +702,6 @@ components:
             An unique string to identify the Expense. Ignore this field when
             used as part of a POST request to create an Expense.
           readOnly: true
-        employee_email:
-          type: string
-          maxLength: 127
-          format: email
-          description: >
-            Email address of the Employee for whom the expense was/will-be
-            created. Once an Expense is created, the value of this field cannot
-            be changed and is immutable. <br>
-          example: john.doe@example.com
         employee_id:
           $ref: '#/components/schemas/employee_id'
         employee:
@@ -754,6 +727,9 @@ components:
 
             Ex - If you pass SLACK_APP, it will be saved as TPA_SLACK_APP. If
             not passed, source is saved as TPA.
+        source_account_id:
+          type: string
+          example: acct0vTfdNQrT
         source_account:
           type: object
           properties:
@@ -799,14 +775,6 @@ components:
             The amount will be in the currency that the organization is setup
             with in case of GET requests. <br>
           example: 1984.18
-        policy_amount:
-          type: number
-          description: >
-            The transaction amount which is modified by policy.
-
-            The amount will be in the currency that the organization is setup
-            with in case of GET requests. <br>
-          example: 1500
         admin_amount:
           type: number
           description: >
@@ -903,11 +871,11 @@ components:
           type: string
           description: |
             invoice number from the receipt.
-        billable:
+        is_billable:
           type: boolean
           example: true
           description: This fields marks whether a given expense is billable a not.
-        reimbursable:
+        is_reimbursable:
           type: boolean
           example: true
         created_at:
@@ -929,6 +897,8 @@ components:
           type: string
           description: |
             Unique id given by Fyle to identify an Expense Report.
+        report:
+          $ref: '#/components/schemas/report'
         reported_at:
           type: string
           format: date-time
@@ -940,9 +910,7 @@ components:
 
             If the Expense is not added to a Report yet or if the Report is not
             yet submitted, this could be null.
-        report:
-          $ref: '#/components/schemas/report'
-        physical_bill:
+        is_physical_bill_received:
           type: boolean
           description: |
             This field indicated whether physicall bill was received or not.
@@ -958,26 +926,11 @@ components:
 
             If the Expense's bill is not required to be submitted, then this
             could be null.
-        verified:
+        is_verified:
           type: boolean
           description: |
             Indicates whether the Expense is verified or not
           readOnly: true
-        verification_state:
-          type: string
-        verified_at:
-          type: string
-          format: date-time
-          description: >
-            RFC 3339, section 5.6
-            "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
-            timestamp on which the Expense was verified.
-
-            If the Expense is not verified yet, this could be null. <br>
-          readOnly: true
-        skip_reimbursement:
-          type: boolean
-          deprecated: true
         vendor:
           $ref: '#/components/schemas/vendor'
         vendor_id:
@@ -1049,10 +1002,10 @@ components:
         mileage_rate:
           type: number
           example: 4.3
-        mileage_is_round_trip:
+        is_mileage_round_trip:
           type: boolean
           example: false
-        hotel_is_breakfast_provided:
+        is_hotel_breakfast_provided:
           type: boolean
           example: true
         per_diem_rate_id:
@@ -1062,9 +1015,9 @@ components:
           $ref: '#/components/schemas/perdiem'
         activity_details:
           type: string
-        activity_policy_pending:
+        is_activity_policy_pending:
           type: boolean
-        num_files:
+        num_attachments:
           type: integer
           description: |
             Number of files attached to this Expenses.
@@ -1085,44 +1038,43 @@ components:
             $ref: '#/components/schemas/file'
         custom_properties:
           $ref: '#/components/schemas/custom_properties'
-        user_can_delete:
-          type: boolean
-          description: >
-            This field describes whether a user can delete this expenses.
+        policy:
+          type: object
+          properties:
+            is_flagged:
+              type: boolean
+              description: >-
+                This field indicates whether policy execution has flagged this
+                expenses or not.
+              example: false
+            state:
+              type: string
+              enum:
+                - FAILED
+                - SUCCESS
+                - RUNNING
+              description: >
+                This fields shows policy execution state for this expenses.
 
-            This is flag is set as false when travel agent creates expenses on
-            your behalf.
-          example: true
-        policy_flag:
-          type: boolean
-          description: >-
-            This field indicates whether policy execution has flagged this
-            expenses or not.
-          example: false
-        manual_flag:
+                If this field is null then its policy has not yet run on this
+                expenses.
+            amount:
+              type: number
+              description: >
+                The transaction amount which is modified by policy.
+
+                The amount will be in the currency that the organization is
+                setup with in case of GET requests. <br>
+              example: 1500
+        is_manual_flagged:
           type: boolean
           description: >
             This field indicates whether this expenses was manually flagged by
             approver or finance or admin.
           example: true
-        policy_state:
-          type: string
-          enum:
-            - FAILED
-            - SUCCESS
-            - RUNNING
-          description: >
-            This fields shows policy execution state for this expenses.
-
-            If this field is null then its policy has not yet run on this
-            expenses.
-        extracted_data:
-          type: object
-        transcribed_data:
-          type: object
-        user_review_needed:
+        is_user_review_needed:
           type: boolean
-        mandatory_fields_present:
+        is_mandatory_fields_present:
           type: boolean
         transcription_state:
           type: string
@@ -1132,7 +1084,7 @@ components:
             - FAILURE
             - NO_WORK
           example: SUCCESS
-        receipt_required:
+        is_receipt_required:
           type: boolean
         is_holiday_expense:
           type: boolean
@@ -1143,19 +1095,64 @@ components:
             - MODERATE_RISK
             - NO_RISK
           example: NO_RISK
-        external_id:
-          type: string
-          example: dsadsfdsf
         split_group_id:
           type: string
           example: txaCp7lQvyb1
         split_group_user_amount:
           type: number
           example: 32206.6
-        external_expense:
-          type: object
+        corporate_credit_card_transaction_id:
+          type: string
+          example: ccce9A14G1rw4YJl
         corporate_credit_card_transaction:
           type: object
+          properties:
+            id:
+              type: string
+              example: ccce9A14G1rw4YJl
+            state:
+              type: string
+              example: IN_PROGRESS
+            account_number:
+              type: string
+              example: orffTTssrk_****38992
+            group_id:
+              type: string
+              example: ccceQjFQNz8RcB
+            is_personal:
+              type: boolean
+              example: false
+            currency:
+              type: string
+              example: INR
+            settlement_id:
+              type: string
+              example: set9dnCTcpTN
+            employee_id:
+              $ref: '#/components/schemas/employee_id'
+            amount:
+              type: integer
+              example: 546.23
+            vendor:
+              type: string
+              example: CELEX TECHNOLOGIES PVT
+            payment_id:
+              type: string
+              example: payfjgdfgKy9eYj
+            created_at:
+              $ref: '#/components/schemas/created_at'
+            updated_at:
+              $ref: '#/components/schemas/created_at'
+            txn_dt:
+              type: string
+              format: date-time
+              description: >
+                <a href='https://tools.ietf.org/html/rfc3339#section-5.6'>RFC
+                3339, section 5.6 compliant timestamp.</a>
+
+                Signifies when this transaction was created.
+              readOnly: true
+              example: '2020-06-01T13:14:54.804Z'
         transaction_approvals:
           allOf:
             - $ref: '#/components/schemas/approvals'
@@ -1623,10 +1620,6 @@ components:
 
             If this field is null then its policy has not yet run on this
             expenses.
-        extracted_data:
-          type: object
-        transcribed_data:
-          type: object
         user_review_needed:
           type: boolean
         mandatory_fields_present:
@@ -1757,6 +1750,19 @@ components:
       description: |
         This field indicates if the module is enabled or not.
       example: true
+    unsubscribed_events:
+      type: array
+      description: >
+        This field indicates which notifications are unsubscribed for this
+        object.
+      items:
+        type: string
+      example:
+        - ERPTS_SUBMITTED
+        - TRIP_REQUESTS_CREATED
+        - EADVANCE_REQUESTS_CREATED
+        - EADVANCE_REQUESTS_UPDATED
+        - TRIP_REQUESTS_ADD_APPROVER
     employee_settings:
       type: object
       properties:
@@ -1767,7 +1773,7 @@ components:
               $ref: '#/components/schemas/allowed'
             enabled:
               $ref: '#/components/schemas/enabled'
-            background_enabled:
+            is_background_enabled:
               type: boolean
               description: >
                 This field indicates if it is enabled in background (Not sure
@@ -1813,7 +1819,7 @@ components:
               $ref: '#/components/schemas/allowed'
             enabled:
               $ref: '#/components/schemas/enabled'
-            static_camera_overlay_enabled:
+            is_static_camera_overlay_enabled:
               type: boolean
               description: |
                 This field indicates if camera overlay is enabled.
@@ -1953,6 +1959,40 @@ components:
               $ref: '#/components/schemas/allowed'
             enabled:
               $ref: '#/components/schemas/enabled'
+        notification_settings:
+          type: object
+          properties:
+            email:
+              type: object
+              properties:
+                allowed:
+                  $ref: '#/components/schemas/allowed'
+                enabled:
+                  $ref: '#/components/schemas/enabled'
+            push_notification:
+              type: object
+              properties:
+                allowed:
+                  $ref: '#/components/schemas/allowed'
+                enabled:
+                  $ref: '#/components/schemas/enabled'
+                unsubscribed_events:
+                  $ref: '#/components/schemas/unsubscribed_events'
+            whatsapp:
+              type: object
+              properties:
+                allowed:
+                  $ref: '#/components/schemas/allowed'
+                enabled:
+                  $ref: '#/components/schemas/allowed'
+                unsubscribed_events:
+                  $ref: '#/components/schemas/unsubscribed_events'
+            notify_only_delegatee:
+              type: boolean
+              description: >
+                This field indicates if only delegatee should be informed about
+                the notifications.
+              example: false
     commons_org_name:
       type: string
       description: |
@@ -1992,7 +2032,7 @@ components:
             This field specifies the bank branch with which the organisation is
             associated.
           example: '2019238034424802'
-        verified:
+        is_verified:
           type: boolean
           description: |
             This field specifies if the organisation is verified or not.
@@ -2001,47 +2041,6 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
-    dwolla_cutomers_metadata:
-      type: object
-      readOnly: true
-      properties:
-        customerMetadataId:
-          type: string
-          readOnly: true
-        customerId:
-          type: string
-          readOnly: true
-        bankAccountAdded:
-          type: boolean
-          readOnly: true
-          description: |
-            Flag which indicates whether bank account was added or not.
-          default: false
-          example: true
-    annual_mileage:
-      type: object
-      properties:
-        twoWheeler:
-          type: number
-          example: 0
-        fourWheeler:
-          type: number
-          example: 0
-        fourWheeler1:
-          type: number
-          example: 0
-        fourWheeler3:
-          type: number
-          example: 0
-        fourWheeler4:
-          type: number
-          example: 0
-        bicycle:
-          type: number
-          example: 0
-        electricCar:
-          type: number
-          example: 0
     employees:
       type: object
       properties:
@@ -2134,7 +2133,7 @@ components:
             employees.
           readOnly: true
           example: '2020-06-01T16:19:00.000Z'
-        onboarded:
+        is_onboarded:
           type: boolean
           description: >
             This flag indicates whether an employee has completed the onboarding
@@ -2177,7 +2176,7 @@ components:
             `Given example is a fake number. We don't know who might answer your
             call.`
           example: +1-202-555-0167
-        mobile_verified:
+        is_mobile_verified:
           type: boolean
           description: ''
           default: false
@@ -2358,18 +2357,11 @@ components:
             $ref: '#/components/schemas/perdiem'
         custom_properties:
           $ref: '#/components/schemas/custom_properties'
-        disabled:
+        is_enabled:
           type: boolean
-          description: >
-            Indicates whether an employee is disabled or not in Fyle.
-
-            During POST call, If set to `TRUE`, an active employee account will
-            be disabled.
-
-            Setting to `FALSE` will NOT enable a disabled employee.
-
-            This can only be accomplished from the web-app.
-          default: false
+          description: |
+            Indicates whether an employee is enabled or not in Fyle.
+          default: true
         special_email:
           type: string
           format: email
@@ -2379,10 +2371,6 @@ components:
 
             A corresponding expense will be created in their Fyle app.
           example: receipts+john_doe_ejtj@fyle.ai
-        dwolla_customers_metadata:
-          $ref: '#/components/schemas/dwolla_cutomers_metadata'
-        annual_mileage_of_user_before_joining_fyle:
-          $ref: '#/components/schemas/annual_mileage'
         status:
           type: string
           enum:
@@ -2390,7 +2378,7 @@ components:
             - ACTIVE
             - DISABLED
           example: ACTIVE
-        is_primary:
+        is_primary_account:
           type: boolean
           description: >
             This flag indicates whether this is primary account of this employee
@@ -2440,7 +2428,7 @@ components:
           description: |
             This represents the creator of vendor.
           example: SYSTEM
-        verified:
+        is_verified:
           type: boolean
           description: |
             This indicates if the vendor is verified.
@@ -2511,7 +2499,7 @@ components:
           description: |
             This represents the code of project.
           example: FF-032
-        enabled:
+        is_enabled:
           type: boolean
           description: >
             This indicates if the project is enabled for use within the
@@ -3120,7 +3108,7 @@ components:
           type: string
           description: |
             Contains the failure reasons.
-        flag:
+        is_flagged:
           type: boolean
           description: |
             Indicates whether expense is flagged or not.
@@ -3152,7 +3140,7 @@ components:
             Indicates the status of policy execution, whether it got executed or
             not.
           example: SUCCESS
-        receipt_required:
+        is_receipt_required:
           type: boolean
           description: |
             Indicates whether receipt is mandatory or not in this policy.
@@ -3278,6 +3266,10 @@ components:
                 enum:
                   - BASIC
                   - TRIP
+            required:
+              - report_type
+              - source
+              - purpose
       required:
         - data
     amount:
@@ -3347,7 +3339,7 @@ components:
             timestamp on which the Report was approved. This field could be null
             if the Report was not yet approved.
           readOnly: true
-        verified:
+        is_verified:
           type: boolean
           description: |
             Indicates whether the Report is verified or not.
@@ -3405,13 +3397,13 @@ components:
             Details of employee who created this report.
         trip_request_id:
           type: string
-        physical_bill:
+        is_physical_bill_received:
           type: boolean
         physical_bill_at:
           type: string
-        manual_flag:
+        is_manual_flagged:
           type: boolean
-        policy_flag:
+        is_policy_flagged:
           type: boolean
         type:
           type: string
@@ -3767,14 +3759,6 @@ paths:
       operationId: GetExpenses
       parameters:
         - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - in: query
-          name: external_expense_id
-          description: |
-            Supported operators are `eq`, `in`.<br>
-          schema:
-            type: string
-            example: ouZG1PEFYUISAQMkAGY2MDdmN2M4LWM1NjEtNGQ4MS05Y
         - in: query
           name: invoice_number
           description: |
