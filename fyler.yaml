@@ -2375,7 +2375,7 @@ components:
           example: /fyler/reports_stats
         data:
           $ref: '#/components/schemas/reports'
-    expense_comment:
+    expense_comments:
       type: object
       properties:
         data:
@@ -2417,7 +2417,7 @@ components:
         This id is always prefixed with `tx`.
       readOnly: true
       example: txhxw8h92ks
-    objects_expense_comment:
+    objects_expense_comments:
       type: object
       properties:
         id:
@@ -2435,10 +2435,6 @@ components:
           example: This is a food expense
         created_at:
           $ref: '#/components/schemas/created_at'
-        diff:
-          type: object
-          description: |
-            Difference between two comments
           readOnly: true
         employee_id:
           $ref: '#/components/schemas/employee_id'
@@ -2462,18 +2458,18 @@ components:
           type: string
           maxLength: 255
           description: State of the comment.
-    post_expense_comment:
+    post_expense_comments:
       type: object
       properties:
         count:
           $ref: '#/components/schemas/count'
         url:
           type: string
-          example: /fyler/expense_comment
+          example: /fyler/expense_comments
         data:
           type: array
           items:
-            $ref: '#/components/schemas/objects_expense_comment'
+            $ref: '#/components/schemas/objects_expense_comments'
     name:
       type: string
       description: |
@@ -3638,7 +3634,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /fyler/expense_comment:
+  /fyler/expense_comments:
     post:
       tags:
         - Expense Comments
@@ -3651,14 +3647,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/expense_comment'
+              $ref: '#/components/schemas/expense_comments'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/post_expense_comment'
+                $ref: '#/components/schemas/post_expense_comments'
         '400':
           description: Bad request
           content:
