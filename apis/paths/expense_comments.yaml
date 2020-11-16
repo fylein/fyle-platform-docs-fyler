@@ -11,7 +11,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/expense_comment.yaml'
+          $ref: '../schemas/requests/expense_comments.yaml'
 
   responses:
     '200':
@@ -19,7 +19,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/post/expense_comment.yaml'
+            $ref: '../schemas/responses/post/expense_comments.yaml'
     '401':
       description: Unauthorized request
       content:

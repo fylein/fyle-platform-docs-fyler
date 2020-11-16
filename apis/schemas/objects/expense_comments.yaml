@@ -13,10 +13,10 @@ properties:
     example: This is a food expense
   created_at:
     $ref: 'commons/created_at.yaml'
-  diff:
-    type: object
-    description: |
-      Difference between two comments
+  # diff:
+  #   type: object
+  #   description: |
+  #     Difference between two comments
     readOnly: true
   employee_id:
     $ref: 'commons/employee_id.yaml'
