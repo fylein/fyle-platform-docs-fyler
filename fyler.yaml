@@ -3743,8 +3743,8 @@ paths:
                       $ref: '#/components/schemas/bulk_error'
                     example:
                       - row: 1
-                        key: Cost center abcd
-                        message: Invalid or duplicate cost center code
+                        key: Amount abcd
+                        message: Invalid amount
                   - $ref: '#/components/schemas/json_parsing_error'
         '401':
           description: Unauthorised request
