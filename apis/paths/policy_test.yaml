@@ -46,6 +46,6 @@ post:
                   $ref: '../schemas/errors/bulk_error.yaml'
                 example:
                   - row: 1
-                    key: Cost center abcd
-                    message: Invalid or duplicate cost center code
+                    key: Amount abcd
+                    message: Invalid amount
               - $ref: '../schemas/errors/json_parsing_error.yaml'
