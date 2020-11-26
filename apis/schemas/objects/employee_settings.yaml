@@ -58,7 +58,7 @@ properties:
           This indicates which field to extract from receipt.
         items:
           type: string
-        example: ["AMOUNT","CURRENCY","CATEGORY","TXN_DT"]
+        example: [ "AMOUNT","CURRENCY","CATEGORY","TXN_DT" ]
   bulk_fyle_settings:
     type: object
     properties:
@@ -141,7 +141,7 @@ properties:
       This field indicates the cost centers that can accessed by employee.
     items:
       type: integer
-    example: [1233, 343]
+    example: [ 1233, 343 ]
   currency_settings:
     type: object
     properties:
@@ -158,7 +158,7 @@ properties:
       This field indicates the project assigned to employee.
     items:
       type: integer
-    example: [1233, 343]
+    example: [ 1233, 343 ]
   in_app_chat_settings:
     type: object
     properties:

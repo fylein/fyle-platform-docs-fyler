@@ -15,8 +15,8 @@ get:
     - in: query
       name: source_account->type
       description: |
-          Supported operators are `eq`, `in`.<br>
-          source_account.type=eq.PERSONAL_ACCOUNT
+        Supported operators are `eq`, `in`.<br>
+        source_account.type=eq.PERSONAL_ACCOUNT
       schema:
         type: string
         example: 'eq.PERSONAL_ACCOUNT'

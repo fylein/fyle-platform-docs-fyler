@@ -23,7 +23,7 @@ properties:
       Contains the missing ids of Approver set for this Fyler.
     items:
       type: string
-    example: [ 'apdh2ue92u', 'ape29iwk2p']
+    example: [ 'apdh2ue92u', 'ape29iwk2p' ]
   policy_amount:
     type: number
     description: |

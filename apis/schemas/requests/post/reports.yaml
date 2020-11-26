@@ -43,6 +43,6 @@ properties:
           maxLength: 255
           description: |
             Indicates what's the type of report that the fyler is submitting.
-          enum: [ BASIC, TRIP]
+          enum: [ BASIC, TRIP ]
       required: [ report_type, source, purpose ]
 required: [ data ]
