@@ -1,0 +1,8 @@
+in: query
+name: id
+description: |
+  This param is used to filter cost center record based on cost center id.
+  Supported operators are `in`,`eq`.<br>
+schema:
+  type: string
+  example: 'eq.7'

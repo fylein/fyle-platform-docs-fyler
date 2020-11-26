@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Trip Requests Stats
+  summary: Retrieve trip requests stats
+  operationId: GetTripRequestsStats
+  parameters:
+    - $ref: '../../schemas/requests/commons/state.yaml'
+    - $ref: '../../schemas/requests/commons/sent_back.yaml'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/responses/get/stats/trip_requests.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/errors/401.yaml'

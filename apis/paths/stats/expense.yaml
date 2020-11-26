@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Expense Stats
+  summary: Retrieve expense stats
+  operationId: GetExpenseStats
+  parameters:
+    - $ref: '../../schemas/requests/commons/state.yaml'
+    - in: query
+      name: policy_amount
+      description: |
+        Supported operators are `eq`, `gte`, `lte`, `gt`, `lt`.<br>
+        policy_amount=gt.value
+      schema:
+        type: string
+        example: 'gt.12'
+    - in: query
+      name: policy_flag
+      description: |
+        Supported operators are `eq`.<br>
+        policy_flag=eq.true
+      schema:
+        type: string
+        example: 'eq.true'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/responses/get/stats/expense.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/errors/401.yaml'

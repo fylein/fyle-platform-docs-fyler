@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  version: '3.0'
+  title: Fyle REST API
+  contact:
+    name: Integrations
+    email: support@fyle.in
+servers:
+  - url: 'https://platform.fylehq.com/v1'
+    description: Live Server
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://accounts.fylehq.com/app/developers/#/oauth/authorize'
+          tokenUrl: 'https://accounts.fylehq.com/oauth/token'
+          scopes:
+            fyler.*: Grant all FYLER actions
+
+tags:
+  - name: Projects
+    description: |
+      These APIs gives you list of your organisation's Projects data.
+  - name: Cost Centers
+    description: |
+      These APIs gives you list of your organisation's Cost Centers data.
+  - name: Expenses
+    description: |
+      This API gives you access to your Expenses data.
+  - name: Expense Comments
+    description: |
+      This API gives you access to comment on a particular expense.
+  - name: Employees
+    description: |
+      This API gives you access to manage your profile data.
+  - name: Vendors
+    description: |
+      This API gives you a list of vendors
+  - name: Categories
+    description: |
+      This API gives you list of your organisation's Categories data.
+  - name: Currencies
+    description: |
+      This API gives you list of currencies supported by Fyle.
+  - name: Exchange Rate
+    description: |
+      This API gives you exchange rate for a currency to a particular currency.
+  - name: Expense Stats
+    description: |
+      This API gives you stats of your expenses.
+  - name: Trip Requests Stats
+    description: |
+      This API gives you stats of your trip requests.
+  - name: Advance Requests Stats
+    description: |
+      This API gives you stats of your advance requests.
+  - name: Report Stats
+    description: |
+      This API gives you stats of your report.
+  - name: Expense Custom Properties
+    description: |
+      This API gives you access to your organisation's Expenses Custom Properties data.
+  - name: Policy
+    description: |
+      These APIs handles the company wide policy operations.
+  - name: Reports
+    description: |
+      This API gives you access to your organisation's Expense Reports data.
+
+paths:
+  /fyler/projects/{id}:
+    $ref: 'paths/projects@{id}.yaml'
+  /fyler/projects:
+    $ref: 'paths/projects.yaml'
+  /fyler/cost_centers/{id}:
+    $ref: 'paths/cost_centers@{id}.yaml'
+  /fyler/cost_centers:
+    $ref: 'paths/cost_centers.yaml'
+  /fyler/expenses/{id}:
+    $ref: 'paths/expenses@{id}.yaml'
+  /fyler/expenses:
+    $ref: 'paths/expenses.yaml'
+  /fyler/my_profile:
+    $ref: 'paths/employees.yaml'
+  /fyler/vendors:
+    $ref: 'paths/vendors.yaml'
+  /fyler/categories:
+    $ref: 'paths/categories.yaml'
+  /fyler/currencies:
+    $ref: 'paths/currencies.yaml'
+  /fyler/exchange_rate:
+    $ref: 'paths/exchange_rate.yaml'
+  /fyler/expense_stats:
+    $ref: 'paths/stats/expense.yaml'
+  /fyler/trip_requests_stats:
+    $ref: 'paths/stats/trip_requests.yaml'
+  /fyler/advance_requests_stats:
+    $ref: 'paths/stats/advance_requests.yaml'
+  /fyler/reports_stats:
+    $ref: 'paths/stats/reports.yaml'
+  /fyler/expense_comments:
+    $ref: 'paths/expense_comments.yaml'
+  /fyler/expense_custom_properties:
+    $ref: 'paths/expense_custom_properties.yaml'
+  /fyler/policy_test:
+    $ref: 'paths/policy_test.yaml'
+  /fyler/reports:
+    $ref: 'paths/reports.yaml'

@@ -1,0 +1,7 @@
+type: object
+properties:
+  exchange_rate:
+    type: number
+    description: |
+      This represents the exchange rate between the given currencies.
+    example: 64.12

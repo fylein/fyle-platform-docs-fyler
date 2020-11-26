@@ -1,0 +1,6 @@
+type: array
+items:
+  type: string
+description: |
+  This field specifies the option values of the custom property in case on SELECT or MULTI_SELECT custom property type.
+example: [ "Chai", "Coffee" ]
