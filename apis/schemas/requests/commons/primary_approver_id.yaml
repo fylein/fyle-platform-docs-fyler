@@ -1,0 +1,8 @@
+in: query
+name: primary_approver_id
+schema:
+  type: string
+description:
+  Filters the objects by primary_approver_id. For single value use `primary_approver_id=eq.<value>`.
+  For multiple values, use `primary_approver_id=in.(value1,value2,value3)`.
+example: eq.ouX2Rv617cW0

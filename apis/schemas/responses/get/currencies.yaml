@@ -1,0 +1,7 @@
+type: object
+properties:
+  url:
+    type: string
+    example: '/fyler/currencies'
+  data:
+    $ref: '../../objects/currencies.yaml'

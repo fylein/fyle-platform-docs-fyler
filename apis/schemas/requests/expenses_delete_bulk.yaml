@@ -1,0 +1,9 @@
+type: array
+description: |
+  Contains the list of expense id's.
+items:
+  type: string
+  maxLength: 255
+  description: |
+    Expense Id.
+  example: txdg28d2k0k

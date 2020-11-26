@@ -1,0 +1,12 @@
+type: object
+properties:
+  total_amount:
+    type: number
+    description: |
+      This field indicates the total amount of report.
+    example: 1234.56
+  total_count:
+    type: integer
+    description: |
+      This field indicates the total amount of report.
+    example: 12

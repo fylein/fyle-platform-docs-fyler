@@ -1,0 +1,29 @@
+get:
+  tags:
+    - Expense Custom Properties
+  summary: List expense custom properties
+  description: |
+    Gives the list of all expense custom properties based on query parameters.
+  operationId: GetExpenseCustomProperties
+  parameters:
+    - $ref: '../schemas/requests/commons/created_at.yaml'
+    - $ref: '../schemas/requests/commons/updated_at.yaml'
+    - $ref: '../schemas/requests/custom_properties/name.yaml'
+    - $ref: '../schemas/requests/commons/only_enabled.yaml'
+    - $ref: '../schemas/requests/commons/order.yaml'
+    - $ref: '../schemas/requests/commons/offset.yaml'
+    - $ref: '../schemas/requests/commons/limit.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/expense_custom_properties.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

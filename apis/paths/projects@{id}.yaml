@@ -1,0 +1,27 @@
+get:
+  tags:
+    - Projects
+  summary: Retrieve a project
+  operationId: 00-RetrieveProject
+  parameters:
+    - in: path
+      name: id
+      required: true
+      description: |
+        Id of the project to be retrieved.
+      schema:
+        type: string
+        example: '38'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/get/projects@{id}.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

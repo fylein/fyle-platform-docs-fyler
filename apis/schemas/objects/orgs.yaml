@@ -1,0 +1,39 @@
+type: object
+properties:
+  id:
+    $ref: './commons/org_id.yaml'
+  name:
+    $ref: './commons/org_name.yaml'
+  domain:
+    type: string
+    maxLength: 255
+    description: |
+      This field specifies the domain with which the organisation is registered.
+    example: 'example.com'
+  currency:
+    type: string
+    maxLength: 255
+    description: |
+      This field specifies the default currency to be used in expenses.
+    example: 'INR'
+  branch_ifsc:
+    type: string
+    maxLength: 255
+    description: |
+      This is the IFSC code of the bank branch with which the organisation is associated.
+    example: 'HDFC0122333'
+  branch_account:
+    type: string
+    maxLength: 255
+    description: |
+      This field specifies the bank branch with which the organisation is associated.
+    example: '2019238034424802'
+  is_verified:
+    type: boolean
+    description: |
+      This field specifies if the organisation is verified or not.
+    example: true
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'

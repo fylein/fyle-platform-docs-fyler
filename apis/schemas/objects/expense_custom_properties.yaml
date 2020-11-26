@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: number
+    description: |
+      This id is provided by Fyle to identify a particular custom property.
+    readOnly: true
+    example: 7
+  name:
+    $ref: './custom_properties/name.yaml'
+  type:
+    $ref: './custom_properties/type.yaml'
+  options:
+    $ref: './custom_properties/options.yaml'
+  placeholder:
+    $ref: './custom_properties/placeholder.yaml'
+  org_category_ids:
+    $ref: './commons/org_category_ids.yaml'
+  enabled:
+    $ref: './commons/enabled.yaml'
+  mandatory:
+    $ref: './custom_properties/mandatory.yaml'
+  org_id:
+    $ref: './commons/org_id.yaml'
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'

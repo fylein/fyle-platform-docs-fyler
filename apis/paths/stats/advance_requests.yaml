@@ -1,0 +1,22 @@
+get:
+  tags:
+    - Advance Requests Stats
+  summary: Retrieve advance requests stats
+  operationId: GetAdvanceRequestsStats
+  parameters:
+    - $ref: '../../schemas/requests/commons/state.yaml'
+    - $ref: '../../schemas/requests/commons/sent_back.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/responses/get/stats/advance_requests.yaml'
+    '401':
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/errors/401.yaml'

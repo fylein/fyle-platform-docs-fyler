@@ -1,0 +1,4 @@
+type: boolean
+description: |
+  This field indicates if the module is allowed or not.
+example: true

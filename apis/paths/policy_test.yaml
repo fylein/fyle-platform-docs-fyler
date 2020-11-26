@@ -1,0 +1,51 @@
+post:
+  tags:
+    - Policy
+  summary:
+    Test policy on a expense
+  description: |
+    It run's the organization defined policy for the expense and returns any violation that occurred.
+  operationId: PostPolicyTest
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/requests/policy_test.yaml'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/post/policy_test.yaml'
+
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'
+
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/403.yaml'
+
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - type: array
+                items:
+                  $ref: '../schemas/errors/bulk_error.yaml'
+                example:
+                  - row: 1
+                    key: Amount abcd
+                    message: Invalid amount
+              - $ref: '../schemas/errors/json_parsing_error.yaml'
