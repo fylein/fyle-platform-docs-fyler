@@ -1202,9 +1202,7 @@ components:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/expenses'
+          $ref: '#/components/schemas/expenses'
       required:
         - data
     post_expenses:
@@ -3385,9 +3383,7 @@ paths:
                     type: string
                     example: /fyler/expenses
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/post_expenses'
+                    $ref: '#/components/schemas/post_expenses'
         '400':
           description: Bad request
           content:
