@@ -1,4 +1,5 @@
 type: string
+readOnly: true
 description: |
   The unique id of the Organization to which the object is associated.
 example: orwruogwnngg

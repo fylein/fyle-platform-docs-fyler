@@ -1,8 +1,6 @@
 type: object
+readOnly: true
 properties:
-  id:
-    type: string
-    example: "1"
   can_delete:
     type: boolean
     example: false

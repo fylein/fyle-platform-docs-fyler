@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  version: '3.0'
-  title: Fyle REST API
+  version: 'q.0'
+  title: Fyle - Fyler APIs
   contact:
     name: Integrations
     email: support@fyle.in
