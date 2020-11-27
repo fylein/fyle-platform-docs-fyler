@@ -99,7 +99,7 @@ properties:
     type: string
     description: |
       The unique ID of a Category to which the Expense belongs. <br>
-      Use `GET /api/tpa/v1/categories` to get the list of valid ID and Name of the Categories for the organization.
+      Use `GET /v1/fyler/categories` to get the list of valid ID and Name of the Categories for the organization.
     example: '18'
   category:
     $ref: 'minimals/category.yaml'
@@ -242,7 +242,7 @@ properties:
     readOnly: true
   attachments:
     description: |
-      This field will not be present in the response for the GET method on the `/api/tpa/v1/expenses` call.
+      returns reference to files API.
     type: array
     items:
       $ref: 'minimals/file.yaml'
