@@ -2,7 +2,7 @@ get:
   tags:
     - Projects
   summary: Retrieve a project
-  operationId: 00-RetrieveProject
+  operationId: 0-get-project
   parameters:
     - in: path
       name: id

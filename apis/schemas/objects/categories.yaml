@@ -20,7 +20,7 @@ properties:
     maxLength: 255
     description: Represents the name of the project.
     example: Fast and Furious
-  fyle_category:
+  system_category:
     type: string
     maxLength: 255
     description: Represents the name of the fyle category.

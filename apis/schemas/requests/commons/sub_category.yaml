@@ -2,7 +2,7 @@ in: query
 name: sub_category
 description: |
   Supported operators are `eq`, `like`, `in`.<br>
-  sub_project=in.(value1,value2)
+  sub_category=in.(value1,value2)
 schema:
   type: string
-  example: 'like.India*'
+  example: 'like.Bus*'

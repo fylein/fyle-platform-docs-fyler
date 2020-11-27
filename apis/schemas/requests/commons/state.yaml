@@ -5,4 +5,4 @@ description: |
   state=in.(value1,value2)
 schema:
   type: string
-  example: 'like.DRAFT'
+  example: 'in.(DRAFT)'

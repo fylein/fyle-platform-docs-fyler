@@ -5,5 +5,5 @@ description: |
   For sorting in descending order, use `column_name.desc`
 schema:
   type: string
-example: 'created_at.desc,id'
+example: 'updated_at.desc,id'
 default: 'updated_at.desc,id'

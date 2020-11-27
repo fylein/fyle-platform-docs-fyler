@@ -6,4 +6,4 @@ description: |
 schema:
   type: string
   example: 'eq.true'
-  default: true
+  default: 'eq.true'

@@ -1,8 +1,8 @@
 in: query
-name: fyle_category
+name: system_category
 description: |
   Supported operators are `eq`, `like`, `in`.<br>
-  sub_project=in.(value1,value2)
+  system_category=in.(value1,value2)
 schema:
   type: string
   example: 'like.Formula*'

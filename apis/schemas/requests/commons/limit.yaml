@@ -5,4 +5,5 @@ description: |
 schema:
   type: integer
   example: 100
+  maximum: 200
   default: 50
