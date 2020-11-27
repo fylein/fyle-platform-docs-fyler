@@ -1,7 +1,5 @@
 type: object
 properties:
   data:
-    type: array
-    items:
-      $ref: '../objects/expenses.yaml'
+    $ref: '../objects/expenses.yaml'
 required: [ data ]

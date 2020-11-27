@@ -63,9 +63,7 @@ post:
                 type: string
                 example: '/fyler/expenses'
               data:
-                type: array
-                items:
-                  $ref: '../schemas/responses/post/expenses.yaml'
+                $ref: '../schemas/responses/post/expenses.yaml'
 
     '401':
       description: Unauthorised request
