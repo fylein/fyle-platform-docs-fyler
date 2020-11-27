@@ -12,19 +12,6 @@ properties:
         description: |
           This field indicates if it is enabled in background (Not sure about this setting)
         example: false
-  cost_center_settings:
-    type: object
-    properties:
-      default_cost_center_id:
-        type: integer
-        description: |
-          This field indicates the default cost center id of organisation.
-        example: 9
-        default_cost_center_name:
-          type: integer
-          description: |
-            This field indicates the default cost center name of organisation.
-          example: "Best cost center"
   per_diem_settings:
     type: object
     properties:

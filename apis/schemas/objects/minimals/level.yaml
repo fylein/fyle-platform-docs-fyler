@@ -3,7 +3,7 @@ readOnly: true
 properties:
   id:
     type: string
-    maxLength: 10
+    maxLength: 13
     example: 'lvlnvJUe9k6Vx'
     description: |
       This id provided by Fyle to identify a level from this organisation.

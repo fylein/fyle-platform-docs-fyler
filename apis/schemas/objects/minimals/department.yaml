@@ -3,7 +3,7 @@ readOnly: true
 properties:
   id:
     type: string
-    maxLength: 10
+    maxLength: 14
     example: 'dept9in4oIHpdR'
     description: |
       This id provided by Fyle to identify a department from this organisation.
