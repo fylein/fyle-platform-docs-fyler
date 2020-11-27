@@ -2449,7 +2449,6 @@ components:
           example: This is a food expense
         created_at:
           $ref: '#/components/schemas/created_at'
-          readOnly: true
         employee_id:
           $ref: '#/components/schemas/employee_id'
         report_id:
@@ -3045,8 +3044,8 @@ components:
         For sorting in descending order, use `column_name.desc`
       schema:
         type: string
-      example: 'updated_at.desc,id'
-      default: 'updated_at.desc,id'
+        example: 'updated_at.desc,id'
+        default: 'updated_at.desc,id'
     offset:
       in: query
       name: offset
@@ -3212,7 +3211,7 @@ paths:
             ID of the cost center to be retrieved.
           schema:
             type: string
-            example: 76
+            example: ccnrigg2nl2
       responses:
         '200':
           description: OK
