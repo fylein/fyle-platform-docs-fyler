@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  version: 'q.0'
+  version: '1.0'
   title: Fyle - Fyler APIs
   contact:
     name: Integrations
