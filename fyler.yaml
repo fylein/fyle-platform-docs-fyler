@@ -906,8 +906,8 @@ components:
           description: >
             The unique ID of a Category to which the Expense belongs. <br>
 
-            Use `GET /api/tpa/v1/categories` to get the list of valid ID and
-            Name of the Categories for the organization.
+            Use `GET /v1/fyler/categories` to get the list of valid ID and Name
+            of the Categories for the organization.
           example: '18'
         category:
           $ref: '#/components/schemas/category'
@@ -1067,9 +1067,8 @@ components:
             the image of the receipts are added as attachments to the Expenses.
           readOnly: true
         attachments:
-          description: >
-            This field will not be present in the response for the GET method on
-            the `/api/tpa/v1/expenses` call.
+          description: |
+            returns reference to files API.
           type: array
           items:
             $ref: '#/components/schemas/file'
@@ -1604,18 +1603,23 @@ components:
           $ref: '#/components/schemas/updated_at'
     custom_properties:
       type: object
-      additionalProperties:
-        oneOf:
-          - type: string
-          - type: boolean
-          - type: integer
-          - $ref: '#/components/schemas/location'
-          - type: array
-            items:
-              type: string
-        description: >
-          The value for the custom properties. This could be a String, Boolean,
-          Integer or an Array of Strings. <br>
+      properties:
+        name:
+          type: string
+          description: |
+            Name of the custom property.
+        value:
+          oneOf:
+            - type: string
+            - type: boolean
+            - type: integer
+            - $ref: '#/components/schemas/location'
+            - type: array
+              items:
+                type: string
+          description: >
+            The value for the custom properties. This could be a String,
+            Boolean, Integer or an Array of Strings. <br>
       example:
         house: gryffindor
     employees:
