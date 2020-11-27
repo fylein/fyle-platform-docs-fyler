@@ -21,21 +21,30 @@ components:
             fyler.*: Grant all FYLER actions
 
 tags:
-  - name: Projects
+  - name: My Profile
     description: |
-      These APIs gives you list of your organisation's Projects data.
-  - name: Cost Centers
-    description: |
-      These APIs gives you list of your organisation's Cost Centers data.
+      This API gives you access to manage your profile data.
   - name: Expenses
     description: |
       This API gives you access to your Expenses data.
   - name: Expense Comments
     description: |
       This API gives you access to comment on a particular expense.
-  - name: Employees
+  - name: Expense Custom Properties
     description: |
-      This API gives you access to manage your profile data.
+      This API gives you access to your organisation's Expenses Custom Properties data.
+  - name: Reports
+    description: |
+      This API gives you access to your organisation's Expense Reports data.
+  - name: Policy
+    description: |
+      These APIs handles the company wide policy operations.
+  - name: Projects
+    description: |
+      These APIs gives you list of your organisation's Projects data.
+  - name: Cost Centers
+    description: |
+      These APIs gives you list of your organisation's Cost Centers data.
   - name: Vendors
     description: |
       This API gives you a list of vendors
@@ -60,15 +69,6 @@ tags:
   - name: Report Stats
     description: |
       This API gives you stats of your report.
-  - name: Expense Custom Properties
-    description: |
-      This API gives you access to your organisation's Expenses Custom Properties data.
-  - name: Policy
-    description: |
-      These APIs handles the company wide policy operations.
-  - name: Reports
-    description: |
-      This API gives you access to your organisation's Expense Reports data.
 
 paths:
   /fyler/projects/{id}:
@@ -84,7 +84,7 @@ paths:
   /fyler/expenses:
     $ref: 'paths/expenses.yaml'
   /fyler/my_profile:
-    $ref: 'paths/employees.yaml'
+    $ref: 'paths/my_profile.yaml'
   /fyler/vendors:
     $ref: 'paths/vendors.yaml'
   /fyler/categories:

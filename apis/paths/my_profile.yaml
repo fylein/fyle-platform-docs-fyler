@@ -1,8 +1,8 @@
 get:
   tags:
-    - Employees
-  summary: Retrieve employee profile
-  operationId: GetEmployee
+    - My Profile
+  summary: Retrieve my profile
+  operationId: get-my-profile
 
   responses:
     '200':
