@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  version: '3.0'
-  title: Fyle REST API
+  version: q.0
+  title: Fyle - Fyler APIs
   contact:
     name: Integrations
     email: support@fyle.in
@@ -43,6 +43,7 @@ components:
             perform this operation.
     org_id:
       type: string
+      readOnly: true
       description: |
         The unique id of the Organization to which the object is associated.
       example: orwruogwnngg
@@ -68,6 +69,7 @@ components:
       example: '2020-06-11T13:14:55.201598Z'
     category:
       type: object
+      readOnly: true
       properties:
         id:
           type: string
@@ -466,6 +468,7 @@ components:
       readOnly: true
     project:
       type: object
+      readOnly: true
       properties:
         id:
           type: string
@@ -520,6 +523,7 @@ components:
           example: sm-cc
     source_account:
       type: object
+      readOnly: true
       properties:
         id:
           type: string
@@ -756,10 +760,8 @@ components:
         state: APPROVED
     expense_actions:
       type: object
+      readOnly: true
       properties:
-        id:
-          type: string
-          example: '1'
         can_delete:
           type: boolean
           example: false
@@ -846,6 +848,7 @@ components:
           example: 1984.18
         policy_amount:
           type: number
+          readOnly: true
           description: >
             The transaction amount which is modified by policy.
 
@@ -854,6 +857,7 @@ components:
           example: 1500
         admin_amount:
           type: number
+          readOnly: true
           description: >
             The transaction amount which is modified by admin or approver.
 
@@ -925,6 +929,7 @@ components:
           $ref: '#/components/schemas/source_account'
         invoice_number:
           type: string
+          readOnly: true
           description: |
             invoice number from the receipt.
         billable:
@@ -940,6 +945,7 @@ components:
           $ref: '#/components/schemas/updated_at'
         expense_number:
           type: string
+          readOnly: true
           description: |
             This is user visible identifier for an expense.
             This field can be used as reference in UI.
@@ -956,6 +962,7 @@ components:
         reported_at:
           type: string
           format: date-time
+          readOnly: true
           description: >
             RFC 3339, section 5.6
             "https://tools.ietf.org/html/rfc3339#section-5.6" compliant
@@ -968,11 +975,13 @@ components:
           $ref: '#/components/schemas/report'
         physical_bill:
           type: boolean
+          readOnly: true
           description: |
             This field indicated whether physical bill was received or not.
           example: true
         physical_bill_at:
           type: string
+          readOnly: true
           format: date-time
           description: >
             RFC 3339, section 5.6
@@ -1070,18 +1079,21 @@ components:
             $ref: '#/components/schemas/custom_property'
         is_policy_flagged:
           type: boolean
+          readOnly: true
           description: >-
             This field indicates whether policy execution has flagged this
             expenses or not.
           example: false
         is_manual_flagged:
           type: boolean
+          readOnly: true
           description: >
             This field indicates whether this expenses was manually flagged by
             approver or finance or admin.
           example: true
         policy_state:
           type: string
+          readOnly: true
           enum:
             - FAILED
             - SUCCESS
@@ -1093,18 +1105,25 @@ components:
             expenses.
         extracted_data:
           type: object
+          readOnly: true
         transcribed_data:
           type: object
+          readOnly: true
         is_user_review_needed:
           type: boolean
+          readOnly: true
         is_mandatory_fields_present:
           type: boolean
+          readOnly: true
         is_receipt_required:
           type: boolean
+          readOnly: true
         is_holiday_expense:
           type: boolean
+          readOnly: true
         risk_state:
           type: string
+          readOnly: true
           enum:
             - HIGH_RISK
             - MODERATE_RISK
@@ -1121,16 +1140,19 @@ components:
           type: number
         personal_card_transaction:
           type: object
+          readOnly: true
           description: >
             This key contains details about personal card transaction linked to
             this expense.
         corporate_credit_card_transaction:
           type: object
+          readOnly: true
           description: >
             This key contains details about corporate card transaction linked to
             this expense.
         transaction_approvals:
           type: array
+          readOnly: true
           items:
             $ref: '#/components/schemas/approvals'
           example:
@@ -1140,6 +1162,7 @@ components:
               state: APPROVAL_PENDING
         last_updater_id:
           type: string
+          readOnly: true
           description: |
             This represents the id of employee who updated this expense.
           example: ouGgsdfdq
