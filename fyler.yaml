@@ -2061,7 +2061,7 @@ components:
           maxLength: 255
           description: Represents the name of the project.
           example: Fast and Furious
-        fyle_category:
+        system_category:
           type: string
           maxLength: 255
           description: Represents the name of the fyle category.
@@ -2523,7 +2523,7 @@ components:
       description: |
         This field specifies the placeholder of the custom property.
       example: Enter vendor
-    org_category_ids:
+    category_ids:
       type: array
       items:
         type: integer
@@ -2556,8 +2556,8 @@ components:
           $ref: '#/components/schemas/options'
         placeholder:
           $ref: '#/components/schemas/placeholder'
-        org_category_ids:
-          $ref: '#/components/schemas/org_category_ids'
+        category_ids:
+          $ref: '#/components/schemas/category_ids'
         enabled:
           $ref: '#/components/schemas/enabled'
         mandatory:
@@ -3050,7 +3050,7 @@ components:
       schema:
         type: string
         example: eq.true
-        default: true
+        default: eq.true
     order:
       in: query
       name: order
@@ -3059,7 +3059,7 @@ components:
         For sorting in descending order, use `column_name.desc`
       schema:
         type: string
-      example: 'created_at.desc,id'
+      example: 'updated_at.desc,id'
       default: 'updated_at.desc,id'
     offset:
       in: query
@@ -3078,6 +3078,7 @@ components:
       schema:
         type: integer
         example: 100
+        maximum: 200
         default: 50
     state:
       in: query
@@ -3087,7 +3088,7 @@ components:
         state=in.(value1,value2)
       schema:
         type: string
-        example: like.DRAFT
+        example: in.(DRAFT)
     sent_back:
       in: query
       name: sent_back
@@ -3162,7 +3163,7 @@ paths:
       tags:
         - Projects
       summary: Retrieve a project
-      operationId: 00-RetrieveProject
+      operationId: 0-get-project
       parameters:
         - in: path
           name: id
