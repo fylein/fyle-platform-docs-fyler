@@ -1252,7 +1252,7 @@ components:
       properties:
         id:
           type: string
-          maxLength: 10
+          maxLength: 13
           example: lvlnvJUe9k6Vx
           description: |
             This id provided by Fyle to identify a level from this organisation.
@@ -1283,7 +1283,7 @@ components:
       properties:
         id:
           type: string
-          maxLength: 10
+          maxLength: 14
           example: dept9in4oIHpdR
           description: >
             This id provided by Fyle to identify a department from this
@@ -1337,20 +1337,6 @@ components:
                 This field indicates if it is enabled in background (Not sure
                 about this setting)
               example: false
-        cost_center_settings:
-          type: object
-          properties:
-            default_cost_center_id:
-              type: integer
-              description: |
-                This field indicates the default cost center id of organisation.
-              example: 9
-              default_cost_center_name:
-                type: integer
-                description: >
-                  This field indicates the default cost center name of
-                  organisation.
-                example: Best cost center
         per_diem_settings:
           type: object
           properties:
@@ -2595,7 +2581,7 @@ components:
         - data
     currency:
       type: string
-      maxLength: 10
+      maxLength: 3
       description: >
         The three-letter currency code following ISO standard <a
         href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>
