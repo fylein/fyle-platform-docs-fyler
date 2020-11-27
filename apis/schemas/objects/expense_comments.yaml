@@ -17,7 +17,6 @@ properties:
     #   type: object
     #   description: |
     #     Difference between two comments
-    readOnly: true
   employee_id:
     $ref: 'commons/employee_id.yaml'
   report_id:

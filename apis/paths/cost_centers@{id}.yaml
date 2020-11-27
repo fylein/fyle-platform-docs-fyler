@@ -11,7 +11,7 @@ get:
         ID of the cost center to be retrieved.
       schema:
         type: string
-        example: 76
+        example: 'ccnrigg2nl2'
   responses:
     '200':
       description: OK
