@@ -723,15 +723,14 @@ components:
             Link to download this file.
             change this to right url later.
           example: /api/files/fiGxWO1vdkW8/download
-    custom_property:
+    custom_properties:
       type: object
-      description: |
-        custom properties
       properties:
         name:
           type: string
+          description: |
+            Name of the custom property.
         value:
-          type: string
           oneOf:
             - type: string
             - type: boolean
@@ -740,6 +739,9 @@ components:
             - type: array
               items:
                 type: string
+          description: >
+            The value for the custom properties. This could be a String,
+            Boolean, Integer or an Array of Strings. <br>
       example:
         house: gryffindor
     approvals:
@@ -1071,7 +1073,7 @@ components:
         custom_properties:
           type: array
           items:
-            $ref: '#/components/schemas/custom_property'
+            $ref: '#/components/schemas/custom_properties'
         is_policy_flagged:
           type: boolean
           readOnly: true
@@ -1581,27 +1583,6 @@ components:
           $ref: '#/components/schemas/created_at'
         updated_at:
           $ref: '#/components/schemas/updated_at'
-    custom_properties:
-      type: object
-      properties:
-        name:
-          type: string
-          description: |
-            Name of the custom property.
-        value:
-          oneOf:
-            - type: string
-            - type: boolean
-            - type: integer
-            - $ref: '#/components/schemas/location'
-            - type: array
-              items:
-                type: string
-          description: >
-            The value for the custom properties. This could be a String,
-            Boolean, Integer or an Array of Strings. <br>
-      example:
-        house: gryffindor
     employees:
       type: object
       properties:
