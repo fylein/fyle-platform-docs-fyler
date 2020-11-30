@@ -1,10 +1,11 @@
 openapi: 3.0.3
 info:
   version: '1.0'
-  title: Fyle - Fyler APIs
+  title: Fyler APIs
+  termsOfService: 'https://www.fylehq.com/privacy/terms-and-conditions'
   contact:
     name: Integrations
-    email: support@fyle.in
+    email: support@fylehq.com
 servers:
   - url: 'https://platform.fylehq.com/v1'
     description: Live Server
@@ -619,57 +620,6 @@ components:
         longitude:
           type: number
           example: 77.594566
-    mileage:
-      type: object
-      properties:
-        distance:
-          type: number
-          description: Actual distance travelled by employee in mileage expenses.
-        calculated_distance:
-          type: number
-          description: Distance compluted by Fyle in mileage expenses.
-        distance_unit:
-          type: string
-          enum:
-            - KM
-            - MILES
-        calculated_amount:
-          type: number
-          description: Amount compluted by Fyle in mileage expenses.
-        vehicle_type:
-          type: string
-          description: Type of vehicle used for travel.
-        rate:
-          type: number
-          description: Rate per km as provided in the Fyle system
-        is_round_trip:
-          type: boolean
-          description: Flag stating whether this was a round trip or not.
-    travel:
-      type: object
-      properties:
-        bus_travel_class:
-          description: |
-            This field is applicable only for bus category.
-          type: string
-          example: AC
-        train_travel_class:
-          description: |
-            This field is applicable for only Train category.
-          type: string
-          example: string
-        flight_journey_travel_class:
-          description: >
-            This field is applicable only for flight category. Can be
-            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
-          type: string
-          example: ECONOMY
-        flight_return_travel_class:
-          description: >
-            This field is applicable only for flight category. Can be
-            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
-          type: string
-          example: BUSINESS
     perdiem:
       type: object
       readOnly: true
@@ -1039,25 +989,63 @@ components:
             represents the return date.
           type: string
           example: '2019-07-27T00:00:00.000Z'
-        mileage:
-          $ref: '#/components/schemas/mileage'
-        travel:
-          $ref: '#/components/schemas/travel'
-        hotel:
-          type: object
-          properties:
-            is_breakfast_provided:
-              type: boolean
+        mileage_distance:
+          type: number
+          description: Actual distance travelled by employee in mileage expenses.
+        mileage_calculated_distance:
+          type: number
+          description: Distance compluted by Fyle in mileage expenses.
+        mileage_distance_unit:
+          type: string
+          enum:
+            - KM
+            - MILES
+        mileage_calculated_amount:
+          type: number
+          description: Amount compluted by Fyle in mileage expenses.
+        mileage_vehicle_type:
+          type: string
+          description: Type of vehicle used for travel.
+        mileage_rate:
+          type: number
+          description: Rate per km as provided in the Fyle system
+        mileage_is_round_trip:
+          type: boolean
+          description: Flag stating whether this was a round trip or not.
+        bus_travel_class:
+          description: |
+            This field is applicable only for bus category.
+          type: string
+          example: AC
+        train_travel_class:
+          description: |
+            This field is applicable for only Train category.
+          type: string
+          example: string
+        flight_journey_travel_class:
+          description: >
+            This field is applicable only for flight category. Can be
+            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
+          type: string
+          example: ECONOMY
+        flight_return_travel_class:
+          description: >
+            This field is applicable only for flight category. Can be
+            `BUSINESS`, `ECONOMY`, `FIRST_CLASS`
+          type: string
+          example: BUSINESS
+        hotel_is_breakfast_provided:
+          type: boolean
+          description: >
+            In case of `Hotel` related expenses, this field indicates whether a
+            breakfast was provided by the hotel or not.
         per_diem_rate_id:
           type: string
         per_diem_rate:
-          allOf:
-            - $ref: '#/components/schemas/perdiem'
-            - type: object
-              properties:
-                num_days:
-                  type: integer
-                  example: 2
+          $ref: '#/components/schemas/perdiem'
+        num_days:
+          type: integer
+          example: 2
         has_attachments:
           type: boolean
           description: >
@@ -3429,7 +3417,7 @@ paths:
       tags:
         - Categories
       summary: List categories
-      operationId: GetCategories
+      operationId: get-categories
       parameters:
         - $ref: '#/components/parameters/created_at'
         - $ref: '#/components/parameters/updated_at'
