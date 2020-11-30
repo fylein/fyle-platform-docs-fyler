@@ -1,7 +1,7 @@
 type: string
 maxLength: 255
 description: |
-  This id prodvided by Fyle to uniquely identify an expense.
+  This id provided by Fyle to uniquely identify an expense.
   This id is always prefixed with `tx`.
 readOnly: true
 example: txhxw8h92ks

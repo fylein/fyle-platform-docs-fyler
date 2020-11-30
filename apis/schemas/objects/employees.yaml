@@ -4,7 +4,7 @@ properties:
     type: string
     maxLength: 255
     description: |
-      This id prodvided by Fyle to identify a employee from this organisation.
+      This id provided by Fyle to identify a employee from this organisation.
       This id is always prefixed with `ou`.
       This id is unique per organisation per email.
     readOnly: true

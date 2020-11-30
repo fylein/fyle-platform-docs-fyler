@@ -5,4 +5,3 @@ description: |
   The second request will have offset as 1000 and limit as 1000 to return next 1000 objects. <br>
 type: integer
 example: 10
-default: 200

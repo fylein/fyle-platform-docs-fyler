@@ -31,21 +31,24 @@ tags:
   - name: Expense Comments
     description: |
       This API gives you access to comment on a particular expense.
+  - name: Expense Fields
+    description: |
+      This API gives you access to your organisation's Expense Fields data.
   - name: Expense Custom Properties
     description: |
       This API gives you access to your organisation's Expenses Custom Properties data.
   - name: Reports
     description: |
-      This API gives you access to your organisation's Expense Reports data.
+      This API gives you access to your Expense Reports data.
   - name: Policy
     description: |
       These APIs handles the company wide policy operations.
   - name: Projects
     description: |
-      These APIs gives you list of your organisation's Projects data.
+      These APIs gives you access to Projects data.
   - name: Cost Centers
     description: |
-      These APIs gives you list of your organisation's Cost Centers data.
+      These APIs gives you access to Cost Centers data.
   - name: Vendors
     description: |
       This API gives you a list of vendors
@@ -106,6 +109,8 @@ paths:
     $ref: 'paths/expense_comments.yaml'
   /fyler/expense_custom_properties:
     $ref: 'paths/expense_custom_properties.yaml'
+  /fyler/expense_fields:
+    $ref: 'paths/expense_fields.yaml'
   /fyler/policy_test:
     $ref: 'paths/policy_test.yaml'
   /fyler/reports:
