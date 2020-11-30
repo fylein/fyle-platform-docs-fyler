@@ -1,10 +1,11 @@
 openapi: 3.0.3
 info:
   version: '1.0'
-  title: Fyle - Fyler APIs
+  title: Fyler APIs
+  termsOfService: 'https://www.fylehq.com/privacy/terms-and-conditions'
   contact:
     name: Integrations
-    email: support@fyle.in
+    email: support@fylehq.com
 servers:
   - url: 'https://platform.fylehq.com/v1'
     description: Live Server

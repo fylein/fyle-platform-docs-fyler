@@ -2,7 +2,7 @@ get:
   tags:
     - Categories
   summary: List categories
-  operationId: GetCategories
+  operationId: get-categories
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
