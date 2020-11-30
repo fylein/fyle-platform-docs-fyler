@@ -3,7 +3,7 @@ properties:
   id:
     type: string
     description: |
-      This id is provided by Fyle to identify a particular custom property.
+      This id is provided by Fyle to identify a particular expense field.
     readOnly: true
     example: ef3ejnl335g
   created_at:
