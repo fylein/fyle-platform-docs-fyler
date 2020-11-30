@@ -245,7 +245,7 @@ properties:
   custom_properties:
     type: array
     items:
-      $ref: 'custom_property.yaml'
+      $ref: 'custom_properties.yaml'
   is_policy_flagged:
     type: boolean
     readOnly: true
