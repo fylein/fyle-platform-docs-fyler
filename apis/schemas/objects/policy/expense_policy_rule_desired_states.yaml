@@ -6,7 +6,7 @@ properties:
     type: string
     description: |
       Description of this policy rule.
-    example: Policy rule is this
+    example: Receipt needed for expenses above USD 74
   disable_system_approvers:
     type: boolean
     description: |
@@ -23,7 +23,7 @@ properties:
       Contains the missing ids of Approver set for this Fyler.
     items:
       type: string
-    example: [ 'apdh2ue92u', 'ape29iwk2p' ]
+    example: [ 'oudh2ue92ue3', 'oue29iwk2p334' ]
   policy_amount:
     type: number
     description: |
@@ -35,7 +35,7 @@ properties:
       Contains the ids of Approver set for this Fyler.
     items:
       type: string
-    example: [ 'apdh2ue92u', 'ape29iwk2p' ]
+    example: [ 'oudh2w4ue92u', 'ouvnre29iwk2p' ]
   popup:
     type: boolean
     description: |

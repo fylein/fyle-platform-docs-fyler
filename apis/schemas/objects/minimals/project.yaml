@@ -4,11 +4,11 @@ properties:
   id:
     type: string
     maxLength: 10
-    example: '1234'
     description: |
       This id provided by Fyle to identify a project from this organisation.
       This id is a numeric string.
       This id is unique within the organisation.
+    example: '1234'
   name:
     type: string
     maxLength: 255

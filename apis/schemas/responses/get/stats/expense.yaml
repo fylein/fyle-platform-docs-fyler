@@ -4,4 +4,4 @@ properties:
     type: string
     example: '/fyler/expense_stats'
   data:
-    $ref: '../../../objects/stats/expense.yaml'
+    $ref: '../../../objects/stats/expenses.yaml'

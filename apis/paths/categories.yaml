@@ -6,7 +6,7 @@ get:
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
-    - $ref: '../schemas/requests/commons/only_enabled.yaml'
+    - $ref: '../schemas/requests/commons/is_enabled.yaml'
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
 

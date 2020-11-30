@@ -2,7 +2,7 @@ get:
   tags:
     - Advance Requests Stats
   summary: Retrieve advance requests stats
-  operationId: GetAdvanceRequestsStats
+  operationId: get-advance-requests-stats
   parameters:
     - $ref: '../../schemas/requests/commons/state.yaml'
     - $ref: '../../schemas/requests/commons/sent_back.yaml'

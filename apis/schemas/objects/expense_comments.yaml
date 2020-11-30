@@ -13,29 +13,5 @@ properties:
     example: This is a food expense
   created_at:
     $ref: 'commons/created_at.yaml'
-    # diff:
-    #   type: object
-    #   description: |
-    #     Difference between two comments
-  employee_id:
-    $ref: 'commons/employee_id.yaml'
-  report_id:
-    $ref: 'commons/report_id.yaml'
   expense_id:
     $ref: 'commons/expense_id.yaml'
-  trip_request_id:
-    type: string
-    maxLength: 255
-    description: |
-      Trip request id if any.
-    readOnly: true
-  advance_request_id:
-    type: string
-    maxLength: 255
-    description: |
-      Advance request id if any.
-    readOnly: true
-  state:
-    type: string
-    maxLength: 255
-    description: State of the comment.

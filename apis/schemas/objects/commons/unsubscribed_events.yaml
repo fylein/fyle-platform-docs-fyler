@@ -3,4 +3,4 @@ description: |
   This field indicates which notifications are unsubscribed for this object.
 items:
   type: string
-example: [ "ERPTS_SUBMITTED", "TRIP_REQUESTS_CREATED", "EADVANCE_REQUESTS_CREATED", "EADVANCE_REQUESTS_UPDATED", "TRIP_REQUESTS_ADD_APPROVER" ]
+example: [ "REPORTS_SUBMITTED", "TRIP_REQUESTS_CREATED", "ADVANCE_REQUESTS_CREATED", "ADVANCE_REQUESTS_UPDATED", "TRIP_REQUESTS_ADD_APPROVER" ]

@@ -2,7 +2,7 @@ get:
   tags:
     - Exchange Rate
   summary: Retrieve currency exchange rate
-  operationId: GetCurrencyExchange
+  operationId: get-currency-exchange
   parameters:
     - in: query
       name: date
@@ -36,6 +36,7 @@ get:
         application/json:
           schema:
             $ref: '../schemas/responses/get/exchange_rate.yaml'
+
     '401':
       description: Unauthorized request
       content:

@@ -2,5 +2,5 @@ type: array
 items:
   type: integer
 description: |
-  This field specifies the org category ids associated with the custom property.
+  This field specifies the category ids associated with the custom property.
 example: [ 1, 3 ]

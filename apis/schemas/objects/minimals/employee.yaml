@@ -2,6 +2,15 @@ type: object
 description: Details of the employee to whom this object belongs to.
 readOnly: true
 properties:
+  id:
+    type: string
+    maxLength: 255
+    description: |
+      This id prodvided by Fyle to identify a employee from this organisation.
+      This id is always prefixed with `ou`.
+      This id is unique per organisation per email.
+    readOnly: true
+    example: 'ouHXboARkbAB'
   user_id:
     type: string
     maxLength: 255

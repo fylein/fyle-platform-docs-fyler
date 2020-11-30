@@ -5,7 +5,8 @@ post:
     Test policy on a expense
   description: |
     It run's the organization defined policy for the expense and returns any violation that occurred.
-  operationId: PostPolicyTest
+    This is a test call. the results wont be stored.
+  operationId: post-policy-test
   requestBody:
     required: true
     content:

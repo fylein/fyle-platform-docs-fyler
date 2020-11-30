@@ -36,28 +36,28 @@ properties:
   amount:
     type: number
     description: |
-      The transaction amount for which the expense was/will-be fyled.
+      The expense amount for which the expense was/will-be fyled.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
       Note that, when used as part of creating an Expense via POST, the actual amount in the Expense, in a subsequent GET call, may get changed either because of policies or admin/approvers changing the amount.
     example: 1500.0
   user_amount:
     type: number
     description: |
-      The transaction amount as claimed by user.
+      The expense amount as claimed by user.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
     example: 1984.18
   policy_amount:
     type: number
     readOnly: true
     description: |
-      The transaction amount which is modified by policy.
+      The expense amount which is modified by policy.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
     example: 1500.0
   admin_amount:
     type: number
     readOnly: true
     description: |
-      The transaction amount which is modified by admin or approver.
+      The expense amount which is modified by admin or approver.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
       This could be null if admin or approver has not edited your expense.
     example: 0
@@ -347,7 +347,7 @@ properties:
     readOnly: true
     description: |
       This key contains details about corporate card transaction linked to this expense.
-  transaction_approvals:
+  expense_approvals:
     type: array
     readOnly: true
     items:

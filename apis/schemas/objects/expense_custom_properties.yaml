@@ -6,6 +6,10 @@ properties:
       This id is provided by Fyle to identify a particular custom property.
     readOnly: true
     example: 7
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'
   name:
     $ref: './custom_properties/name.yaml'
   type:
@@ -16,13 +20,9 @@ properties:
     $ref: './custom_properties/placeholder.yaml'
   category_ids:
     $ref: './commons/category_ids.yaml'
-  enabled:
+  is_enabled:
     $ref: './commons/enabled.yaml'
   mandatory:
     $ref: './custom_properties/mandatory.yaml'
   org_id:
     $ref: './commons/org_id.yaml'
-  created_at:
-    $ref: './commons/created_at.yaml'
-  updated_at:
-    $ref: './commons/updated_at.yaml'

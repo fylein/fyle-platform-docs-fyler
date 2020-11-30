@@ -2,7 +2,7 @@ get:
   tags:
     - Expense Stats
   summary: Retrieve expense stats
-  operationId: GetExpenseStats
+  operationId: get-expense-stats
   parameters:
     - $ref: '../../schemas/requests/commons/state.yaml'
     - in: query

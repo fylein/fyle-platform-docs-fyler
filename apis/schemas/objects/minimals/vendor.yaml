@@ -7,6 +7,6 @@ properties:
   name:
     type: string
     maxLength: 255
-    example: 'Uber'
     description: |
       String denoting the name of the vendor to which the Expense was made.
+    example: 'Uber'

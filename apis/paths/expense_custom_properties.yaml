@@ -4,12 +4,12 @@ get:
   summary: List expense custom properties
   description: |
     Gives the list of all expense custom properties based on query parameters.
-  operationId: GetExpenseCustomProperties
+  operationId: get-expense-custom-properties
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - $ref: '../schemas/requests/commons/updated_at.yaml'
     - $ref: '../schemas/requests/custom_properties/name.yaml'
-    - $ref: '../schemas/requests/commons/only_enabled.yaml'
+    - $ref: '../schemas/requests/commons/is_enabled.yaml'
     - $ref: '../schemas/requests/commons/order.yaml'
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'

@@ -11,7 +11,7 @@ get:
         Id of the project to be retrieved.
       schema:
         type: string
-        example: '38'
+        example: 'pjwjgwlgnwk'
   responses:
     '200':
       description: OK

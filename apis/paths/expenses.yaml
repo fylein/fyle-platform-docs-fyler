@@ -2,7 +2,7 @@ get:
   tags:
     - Expenses
   summary: List expenses
-  operationId: GetExpenses
+  operationId: list-expenses
   parameters:
     - $ref: '../schemas/requests/commons/created_at.yaml'
     - in: query
@@ -43,7 +43,7 @@ post:
     Create or update expense
   description: |
     Creates or updates expenses in bulk. This API is written in such a way to support bulk operations only.
-  operationId: PostExpenses
+  operationId: post-expenses
   requestBody:
     required: true
     content:
@@ -63,7 +63,7 @@ post:
                 type: string
                 example: '/fyler/expenses'
               data:
-                $ref: '../schemas/responses/post/expenses.yaml'
+                $ref: '../schemas/objects/expenses.yaml'
 
     '401':
       description: Unauthorised request

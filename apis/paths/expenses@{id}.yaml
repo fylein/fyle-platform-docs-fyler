@@ -2,7 +2,7 @@ get:
   tags:
     - Expenses
   summary: Retrieve an expense
-  operationId: RetriveExpense
+  operationId: retrive-expense
   parameters:
     - in: path
       name: id
@@ -33,7 +33,7 @@ delete:
     Delete an expense
   description: |
     It delete's a single expense at a time only.
-  operationId: DeleteExpense
+  operationId: delete-expense
   parameters:
     - in: path
       name: id

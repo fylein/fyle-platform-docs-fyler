@@ -4,11 +4,11 @@ properties:
   id:
     type: string
     maxLength: 13
-    example: 'lvlnvJUe9k6Vx'
     description: |
       This id provided by Fyle to identify a level from this organisation.
       It is always prefixed with the string `lvl`.
       This id is unique within the organisation.
+    example: 'lvlnvJUe9k6Vx'
   name:
     type: string
     description: |

@@ -7,6 +7,10 @@ properties:
       This is provided by Fyle to identify a cost center from this organisation.
     readOnly: true
     example: '1'
+  created_at:
+    $ref: './commons/created_at.yaml'
+  updated_at:
+    $ref: './commons/updated_at.yaml'
   name:
     type: string
     maxLength: 255
@@ -32,7 +36,3 @@ properties:
     example: true
   org_id:
     $ref: './commons/org_id.yaml'
-  created_at:
-    $ref: './commons/created_at.yaml'
-  updated_at:
-    $ref: './commons/updated_at.yaml'

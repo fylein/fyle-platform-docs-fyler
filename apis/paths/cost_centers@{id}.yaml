@@ -2,7 +2,7 @@ get:
   tags:
     - Cost Centers
   summary: Retrieve a cost center
-  operationId: 00-RetrieveCostCenter
+  operationId: retrieve-cost-center
   parameters:
     - in: path
       name: id
@@ -12,6 +12,7 @@ get:
       schema:
         type: string
         example: 'ccnrigg2nl2'
+
   responses:
     '200':
       description: OK

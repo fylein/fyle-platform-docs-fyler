@@ -2,7 +2,7 @@ get:
   tags:
     - Currencies
   summary: List currencies
-  operationId: GetCurrencies
+  operationId: get-currencies
   responses:
     '200':
       description: OK

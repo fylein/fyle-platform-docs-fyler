@@ -4,7 +4,7 @@ post:
   summary: Creates a report
   description: |
     It creates single report at a time.
-  operationId: PostReports
+  operationId: post-reports
   requestBody:
     required: true
     content:

@@ -11,7 +11,7 @@ properties:
       notify:
         type: boolean
         description: |
-          This indicates whether it should be notified or not.
+          This indicates whether users should be notified or not.
         example: true
       comment:
         type: string

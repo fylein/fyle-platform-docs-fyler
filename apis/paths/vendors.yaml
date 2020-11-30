@@ -2,7 +2,7 @@ get:
   tags:
     - Vendors
   summary: List vendors
-  operationId: GetVendors
+  operationId: get-vendors
   parameters:
     - $ref: '../schemas/requests/commons/offset.yaml'
     - $ref: '../schemas/requests/commons/limit.yaml'
