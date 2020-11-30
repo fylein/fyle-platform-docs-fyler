@@ -1056,10 +1056,6 @@ components:
                 num_days:
                   type: integer
                   example: 2
-        activity_details:
-          type: string
-        activity_policy_pending:
-          type: boolean
         has_attachments:
           type: boolean
           description: >
