@@ -10,6 +10,9 @@ properties:
     $ref: './commons/created_at.yaml'
   updated_at:
     $ref: './commons/updated_at.yaml'
+  seq:
+    type: integer
+    example: 1
   field_name:
     $ref: './expense_fields/field_name.yaml'
   column_name:
