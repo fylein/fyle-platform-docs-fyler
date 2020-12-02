@@ -2407,92 +2407,6 @@ components:
           $ref: '#/components/schemas/created_at'
         expense_id:
           $ref: '#/components/schemas/expense_id'
-    name:
-      type: string
-      description: |
-        This field specifies the name of the custom property.
-      example: Vendor desciption
-    type:
-      type: string
-      description: |
-        This field specifies the type of the custom property.
-      example: TEXT
-    options:
-      type: array
-      items:
-        type: string
-      description: >
-        This field specifies the option values of the custom property in case on
-        SELECT or MULTI_SELECT custom property type.
-      example:
-        - Chai
-        - Coffee
-    placeholder:
-      type: string
-      description: |
-        This field specifies the placeholder of the custom property.
-      example: Enter vendor
-    category_ids:
-      type: array
-      items:
-        type: integer
-      description: >
-        This field specifies the category ids associated with the custom
-        property.
-      example:
-        - 1
-        - 3
-    mandatory:
-      type: boolean
-      description: |
-        This field specifies if the custom property is mandatory or not.
-      example: true
-    expense_custom_properties:
-      type: object
-      properties:
-        id:
-          type: number
-          description: >
-            This id is provided by Fyle to identify a particular custom
-            property.
-          readOnly: true
-          example: 7
-        created_at:
-          $ref: '#/components/schemas/created_at'
-        updated_at:
-          $ref: '#/components/schemas/updated_at'
-        name:
-          $ref: '#/components/schemas/name'
-        type:
-          $ref: '#/components/schemas/type'
-        options:
-          $ref: '#/components/schemas/options'
-        placeholder:
-          $ref: '#/components/schemas/placeholder'
-        category_ids:
-          $ref: '#/components/schemas/category_ids'
-        is_enabled:
-          $ref: '#/components/schemas/enabled'
-        mandatory:
-          $ref: '#/components/schemas/mandatory'
-        org_id:
-          $ref: '#/components/schemas/org_id'
-    get_expense_custom_properties:
-      type: object
-      properties:
-        count:
-          $ref: '#/components/schemas/count'
-        offset:
-          $ref: '#/components/schemas/offset'
-        limit:
-          $ref: '#/components/schemas/limit'
-        url:
-          type: string
-          example: /fyler/expense_custom_properties
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/expense_custom_properties'
     field_name:
       type: string
       description: |
@@ -2508,12 +2422,12 @@ components:
       description: |
         This specifies the title of the expense field.
       example: Vendor desciption
-    expense_fields_type:
+    type:
       type: string
       description: |
         This field specifies the type of the expense field.
       example: TEXT
-    expense_fields_options:
+    options:
       type: array
       items:
         type: string
@@ -2528,12 +2442,22 @@ components:
       description: |
         This specifies the default value of the expense fields.
       example: Coffee
-    expense_fields_placeholder:
+    placeholder:
       type: string
       description: |
         This specifies the placeholder of the expense field.
       example: Enter vendor
-    expense_fields_mandatory:
+    category_ids:
+      type: array
+      items:
+        type: integer
+      description: >
+        This field specifies the category ids associated with the custom
+        property.
+      example:
+        - 1
+        - 3
+    mandatory:
       type: boolean
       description: |
         This specifies if the expense field is mandatory or not.
@@ -2561,19 +2485,19 @@ components:
         title:
           $ref: '#/components/schemas/title'
         type:
-          $ref: '#/components/schemas/expense_fields_type'
+          $ref: '#/components/schemas/type'
         options:
-          $ref: '#/components/schemas/expense_fields_options'
+          $ref: '#/components/schemas/options'
         default_value:
           $ref: '#/components/schemas/default_value'
         placeholder:
-          $ref: '#/components/schemas/expense_fields_placeholder'
+          $ref: '#/components/schemas/placeholder'
         category_ids:
           $ref: '#/components/schemas/category_ids'
         is_enabled:
           $ref: '#/components/schemas/enabled'
         mandatory:
-          $ref: '#/components/schemas/expense_fields_mandatory'
+          $ref: '#/components/schemas/mandatory'
         org_id:
           $ref: '#/components/schemas/org_id'
     get_expense_fields:
@@ -3105,15 +3029,6 @@ components:
       schema:
         type: string
         example: eq.true
-    name:
-      in: query
-      name: name
-      description: |
-        Supported operators are `eq`, `like`, `in`.<br>
-        name=in.(value1,value2)
-      schema:
-        type: string
-        example: like.Add*
 tags:
   - name: My Profile
     description: |
@@ -3127,10 +3042,6 @@ tags:
   - name: Expense Fields
     description: |
       This API gives you access to your organisation's Expense Fields data.
-  - name: Expense Custom Properties
-    description: >
-      This API gives you access to your organisation's Expenses Custom
-      Properties data.
   - name: Reports
     description: |
       This API gives you access to your Expense Reports data.
@@ -3701,36 +3612,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-  /fyler/expense_custom_properties:
-    get:
-      tags:
-        - Expense Custom Properties
-      summary: List expense custom properties
-      description: >
-        Gives the list of all expense custom properties based on query
-        parameters.
-      operationId: get-expense-custom-properties
-      parameters:
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/is_enabled'
-        - $ref: '#/components/parameters/order'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/limit'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_expense_custom_properties'
-        '401':
-          description: Unauthorised request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
   /fyler/expense_fields:
     get:
       tags:
