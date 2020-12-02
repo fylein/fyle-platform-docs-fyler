@@ -1,4 +1,0 @@
-type: string
-description: |
-  This field specifies the type of the custom property.
-example: TEXT
