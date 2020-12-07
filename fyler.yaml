@@ -2520,9 +2520,7 @@ components:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/expenses'
+          $ref: '#/components/schemas/expenses'
       required:
         - data
     currency:
@@ -2532,6 +2530,69 @@ components:
         The three-letter currency code following ISO standard <a
         href='https://www.iso.org/iso-4217-currency-codes.html'>ISO 4217</a>
       example: USD
+    expense_desired_state:
+      type: object
+      properties:
+        action_description:
+          type: string
+          maxLength: 255
+          description: |
+            Describes the what action will taken on the expense.
+          example: >-
+            The following action(s) will be taken- expense violation will be
+            marked, expense amount will be changed to 0 USD
+        currency:
+          $ref: '#/components/schemas/currency'
+        disable_system_approvers:
+          type: boolean
+          default: false
+          example: false
+        failure_reason:
+          type: string
+          description: |
+            Contains the failure reasons.
+        is_flagged:
+          type: boolean
+          description: |
+            Indicates whether expense is flagged or not.
+          default: false
+          example: false
+        policy_amount:
+          type: number
+          example: 10
+        policy_approver_ids:
+          type: array
+          description: |
+            Contains list of approver ids.
+          items:
+            type: string
+          example:
+            - apd829d92j9w
+        policy_rule_descriptions:
+          type: array
+          description: |
+            Contains the list of policy rules description.
+          items:
+            type: string
+          example:
+            - This is rule 1
+            - This is the rule 2
+        policy_run_status:
+          type: string
+          description: >
+            Indicates the status of policy execution, whether it got executed or
+            not.
+          example: SUCCESS
+        is_receipt_required:
+          type: boolean
+          description: |
+            Indicates whether receipt is mandatory or not in this policy.
+          example: true
+        expense_id:
+          type: string
+          description: |
+            Expense Id on which this policy executed.
+          example: txu89h890i8
     expense_policy_rule_desired_states:
       type: object
       properties:
@@ -2598,66 +2659,8 @@ components:
     objects_policy_test:
       type: object
       properties:
-        action_description:
-          type: string
-          maxLength: 255
-          description: |
-            Describes the what action will taken on the expense.
-          example: >-
-            The following action(s) will be taken- expense violation will be
-            marked, expense amount will be changed to 0 USD
-        currency:
-          $ref: '#/components/schemas/currency'
-        disable_system_approvers:
-          type: boolean
-          default: false
-          example: false
-        failure_reason:
-          type: string
-          description: |
-            Contains the failure reasons.
-        is_flagged:
-          type: boolean
-          description: |
-            Indicates whether expense is flagged or not.
-          default: false
-          example: false
-        policy_amount:
-          type: number
-          example: 10
-        policy_approver_ids:
-          type: array
-          description: |
-            Contains list of approver ids.
-          items:
-            type: string
-          example:
-            - apd829d92j9w
-        policy_rule_descriptions:
-          type: array
-          description: |
-            Contains the list of policy rules description.
-          items:
-            type: string
-          example:
-            - This is rule 1
-            - This is the rule 2
-        policy_run_status:
-          type: string
-          description: >
-            Indicates the status of policy execution, whether it got executed or
-            not.
-          example: SUCCESS
-        is_receipt_required:
-          type: boolean
-          description: |
-            Indicates whether receipt is mandatory or not in this policy.
-          example: true
-        expense_id:
-          type: string
-          description: |
-            Expense Id on which this policy executed.
-          example: txu89h890i8
+        expense_desired_state:
+          $ref: '#/components/schemas/expense_desired_state'
         expense_policy_rule_desired_states:
           type: array
           items:
@@ -2671,15 +2674,11 @@ components:
     post_policy_test:
       type: object
       properties:
-        count:
-          $ref: '#/components/schemas/count'
         url:
           type: string
           example: /fyler/policy_test
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/objects_policy_test'
+          $ref: '#/components/schemas/objects_policy_test'
     from_dt:
       type: string
       format: date-time
@@ -3552,7 +3551,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/401'
-  /fyler/reports_stats:
+  /fyler/report_stats:
     get:
       tags:
         - Report Stats
