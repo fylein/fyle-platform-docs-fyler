@@ -3,4 +3,4 @@ items:
   type: integer
 description: |
   This field specifies the category ids associated with the custom property.
-example: [ 1, 3 ]
+example: [ 2391, 2392 ]

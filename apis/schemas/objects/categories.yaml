@@ -24,13 +24,13 @@ properties:
     type: string
     maxLength: 255
     description: Represents the name of the fyle category.
-    example: Formula One
+    example: Taxi
   sub_category:
     type: string
     maxLength: 513
     description: |
       Represents the sub category of a given category.
-    example: One
+    example: Taxi
   code:
     type: string
     maxLength: 255
