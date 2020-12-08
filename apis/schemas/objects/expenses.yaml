@@ -96,11 +96,11 @@ properties:
   cost_center:
     $ref: 'minimals/cost_center.yaml'
   category_id:
-    type: string
+    type: integer
     description: |
       The unique ID of a Category to which the Expense belongs. <br>
       Use `GET /v1/fyler/categories` to get the list of valid ID and Name of the Categories for the organization.
-    example: '18'
+    example: 2391
   category:
     $ref: 'minimals/category.yaml'
   state:
