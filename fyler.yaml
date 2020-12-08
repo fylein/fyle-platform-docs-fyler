@@ -2015,13 +2015,13 @@ components:
           type: string
           maxLength: 255
           description: Represents the name of the fyle category.
-          example: Formula One
+          example: Taxi
         sub_category:
           type: string
           maxLength: 513
           description: |
             Represents the sub category of a given category.
-          example: One
+          example: Taxi
         code:
           type: string
           maxLength: 255
@@ -2455,8 +2455,8 @@ components:
         This field specifies the category ids associated with the custom
         property.
       example:
-        - 1
-        - 3
+        - 2391
+        - 2392
     mandatory:
       type: boolean
       description: |
