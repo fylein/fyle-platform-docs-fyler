@@ -31,6 +31,11 @@ properties:
     $ref: './commons/category_ids.yaml'
   is_enabled:
     $ref: './commons/enabled.yaml'
+  is_custom:
+    type: boolean
+    description: |
+      This field indicates if the expense field is custom or not.
+    example: false
   mandatory:
     $ref: './expense_fields/mandatory.yaml'
   org_id:

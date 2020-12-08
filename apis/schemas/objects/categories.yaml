@@ -1,14 +1,14 @@
 type: object
 properties:
   id:
-    type: string
+    type: integer
     maxLength: 10
     description: |
       This id provided by Fyle to identify a project from this organisation.
-      This id is a numeric string.
+      This id is a numeric.
       This id is unique within the organisation.
     readOnly: true
-    example: '2391'
+    example: 2391
   org_id:
     $ref: './commons/org_id.yaml'
   created_at:

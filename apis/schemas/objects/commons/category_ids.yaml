@@ -1,6 +1,6 @@
 type: array
 items:
-  type: string
+  type: integer
 description: |
   This field specifies the category ids associated with the custom property.
-example: [ '2391', '2392' ]
+example: [ 2391, 2392 ]
