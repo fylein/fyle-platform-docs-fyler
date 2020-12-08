@@ -2450,13 +2450,13 @@ components:
     category_ids:
       type: array
       items:
-        type: integer
+        type: string
       description: >
         This field specifies the category ids associated with the custom
         property.
       example:
-        - 2391
-        - 2392
+        - '2391'
+        - '2392'
     mandatory:
       type: boolean
       description: |
