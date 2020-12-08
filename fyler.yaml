@@ -73,14 +73,14 @@ components:
       readOnly: true
       properties:
         id:
-          type: string
+          type: integer
           maxLength: 10
-          example: '18'
+          example: 2391
           description: >
             This id provided by Fyle to identify a category from this
             organisation.
 
-            This id is a numeric string.
+            This id is a numeric.
 
             This id is unique within the organisation.
         name:
@@ -1989,17 +1989,17 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type: integer
           maxLength: 10
           description: >
             This id provided by Fyle to identify a project from this
             organisation.
 
-            This id is a numeric string.
+            This id is a numeric.
 
             This id is unique within the organisation.
           readOnly: true
-          example: '2391'
+          example: 2391
         org_id:
           $ref: '#/components/schemas/org_id'
         created_at:
@@ -2450,13 +2450,13 @@ components:
     category_ids:
       type: array
       items:
-        type: string
+        type: integer
       description: >
         This field specifies the category ids associated with the custom
         property.
       example:
-        - '2391'
-        - '2392'
+        - 2391
+        - 2392
     mandatory:
       type: boolean
       description: |
@@ -2496,6 +2496,11 @@ components:
           $ref: '#/components/schemas/category_ids'
         is_enabled:
           $ref: '#/components/schemas/enabled'
+        is_custom:
+          type: boolean
+          description: |
+            This field indicates if the expense field is custom or not.
+          example: false
         mandatory:
           $ref: '#/components/schemas/mandatory'
         org_id:
