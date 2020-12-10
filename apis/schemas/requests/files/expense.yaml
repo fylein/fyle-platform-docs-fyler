@@ -1,0 +1,19 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      file_id:
+        type: string
+        description: |
+          Indicates to which expense this file belongs to. Ignore this field when used as part of a POST request to create an File.
+      expense_id:
+        type: string
+        description: |
+          Indicates of which expense this file belongs to.
+      purpose:
+        type: string
+        description: |
+          Indicates purpose of the expense.
+    required: [ file_id ]
+required: [ data ]

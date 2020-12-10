@@ -1,0 +1,23 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      id:
+        type: string
+        description: |
+          An unique string to identify the File. Ignore this field when used as part of a POST request to create an File.
+      name:
+        type: string
+        description: |
+          Name of the file.
+      password:
+        type: string
+        description: |
+          Password for the file.
+      content_type:
+        type: string
+        description: |
+          Content type of the file.
+    required: [ name, content_type ]
+required: [ data ]

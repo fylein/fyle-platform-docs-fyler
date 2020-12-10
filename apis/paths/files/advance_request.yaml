@@ -1,0 +1,26 @@
+post:
+  tags:
+    - Files
+  summary: Creates a advance request file
+  description: |
+    It creates a advance request file.
+  operationId: post-advance-request-files
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/requests/files/advance_request.yaml'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/post/files/advance_request.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

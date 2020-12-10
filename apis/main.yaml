@@ -70,6 +70,21 @@ tags:
   - name: Report Stats
     description: |
       This API gives you stats of your report.
+  - name: Files
+    description: |
+      Creates a file.
+  - name: Expense Files
+    description: |
+      Create a expense file.
+  - name: Transportation Booking Files
+    description: |
+      Creates a transportation booking file.
+  - name: Advance Request Files
+    description: |
+      Creates a advance request file.
+  - name: Email Files
+    description: |
+      Creates a email file.
 
 paths:
   /fyler/projects/{id}:
@@ -110,3 +125,13 @@ paths:
     $ref: 'paths/policy_test.yaml'
   /fyler/reports:
     $ref: 'paths/reports.yaml'
+  /fyler/files:
+    $ref: 'paths/files/files.yaml'
+  /fyler/expense_files:
+    $ref: 'paths/files/expense.yaml'
+  /fyler/transportation_booking_files:
+    $ref: 'paths/files/transportation_booking.yaml'
+  /fyler/advance_request_files:
+    $ref: 'paths/files/advance_request.yaml'
+  /fyler/email_files:
+    $ref: 'paths/files/email.yaml'

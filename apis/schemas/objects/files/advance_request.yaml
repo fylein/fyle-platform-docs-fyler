@@ -1,0 +1,26 @@
+type: object
+properties:
+  file_id:
+    type: string
+    description: |
+      An unique string to identify the File. Ignore this field when used as part of a POST request to create an File.
+    example: 'fibdwiqi0wo'
+  advance_request_id:
+    type: string
+    description: |
+      Indicates to which advance request this file belongs to.
+    example: 'ar8du9i0w10'
+  created_at:
+    $ref: '../commons/created_at.yaml'
+  updated_at:
+    $ref: '../commons/updated_at.yaml'  
+  purpose:
+    type: string
+    description: |
+      Indicates purpose of the expense.
+    example: Team trip
+  last_updater:
+    allOf:
+      - $ref: '../minimals/employee.yaml'
+    description: |
+      Details of employee who updated this expense.

@@ -1,0 +1,7 @@
+type: object
+properties:
+  url:
+    type: string
+    example: '/fyler/advance_request_files'
+  data:
+    $ref: '../../../objects/files/advance_request.yaml'

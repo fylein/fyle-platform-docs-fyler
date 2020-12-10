@@ -1,0 +1,15 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      file_id:
+        type: string
+        description: |
+          Indicates of which email this file belongs to.
+      email_meta_data:
+        type: object
+        description: |
+          Email meta data.
+    required: [ file_id ]
+required: [ data ]

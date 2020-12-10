@@ -1,0 +1,39 @@
+type: object
+properties:
+  id:
+    type: string
+    description: |
+      An unique string to identify the File. Ignore this field when used as part of a POST request to create an File.
+    example: 'fibdwiqi0wo'
+  created_at:
+    $ref: '../commons/created_at.yaml'
+  updated_at:
+    $ref: '../commons/updated_at.yaml'  
+  name:
+    type: string
+    description: |
+      Name of the file.
+    example: Starbucks receipt
+  password:
+    type: string
+    description: |
+      Password for the file.
+    example: password
+  content_type:
+    type: string
+    description: |
+      Content type of the file.
+  download_url:
+    type: string
+    description: |
+      Contains the URL to download the file.
+  upload_url:
+    type: string
+    description: |
+      Contains the URL where file is to be uploaded.
+  last_updater:
+    allOf:
+      - $ref: '../minimals/employee.yaml'
+    description: |
+      Details of employee who updated this expense.
+

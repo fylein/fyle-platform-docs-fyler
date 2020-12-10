@@ -1,0 +1,26 @@
+post:
+  tags:
+    - Files
+  summary: Creates a transportation booking file
+  description: |
+    It creates a transportation booking file.
+  operationId: post-transportation-booking-files
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/requests/files/transportation_booking.yaml'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/responses/post/files/transportation_booking.yaml'
+    '401':
+      description: Unauthorised request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/errors/401.yaml'

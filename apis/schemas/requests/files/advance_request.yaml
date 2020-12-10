@@ -1,0 +1,19 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      advance_request_id:
+        type: string
+        description: |
+          Indicates to which advance request this file belongs to. Ignore this field when used as part of a POST request to create an File.
+      file_id:
+        type: string
+        description: |
+          Indicates of which advance request this file belongs to.
+      purpose:
+        type: string
+        description: |
+          Indicates purpose of the advance request.
+    required: [ file_id ]
+required: [ data ]
