@@ -10,17 +10,17 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/files/email.yaml'
+          $ref: '../../schemas/requests/files/email.yaml'
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/post/files/email.yaml'
+            $ref: '../../schemas/responses/post/files/email.yaml'
     '401':
       description: Unauthorised request
       content:
         application/json:
           schema:
-            $ref: '../schemas/errors/401.yaml'
+            $ref: '../../schemas/errors/401.yaml'

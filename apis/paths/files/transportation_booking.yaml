@@ -10,17 +10,17 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/files/transportation_booking.yaml'
+          $ref: '../../schemas/requests/files/transportation_booking.yaml'
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/post/files/transportation_booking.yaml'
+            $ref: '../../schemas/responses/post/files/transportation_booking.yaml'
     '401':
       description: Unauthorised request
       content:
         application/json:
           schema:
-            $ref: '../schemas/errors/401.yaml'
+            $ref: '../../schemas/errors/401.yaml'

@@ -10,14 +10,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../schemas/requests/files/advance_request.yaml'
+          $ref: '../../schemas/requests/files/advance_request.yaml'
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/post/files/advance_request.yaml'
+            $ref: '../../schemas/responses/post/files/advance_request.yaml'
     '401':
       description: Unauthorised request
       content:
