@@ -1,6 +1,6 @@
 post:
   tags:
-    - Files
+    - Expense Files
   summary: Creates a expense file
   description: |
     It creates a expense file.

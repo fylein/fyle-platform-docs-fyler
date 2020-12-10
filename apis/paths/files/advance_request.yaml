@@ -1,6 +1,6 @@
 post:
   tags:
-    - Files
+    - Advance Request Files
   summary: Creates a advance request file
   description: |
     It creates a advance request file.

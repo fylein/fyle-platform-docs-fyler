@@ -1,6 +1,6 @@
 post:
   tags:
-    - Files
+    - Email Files
   summary: Creates a email file
   description: |
     It creates a email file.
