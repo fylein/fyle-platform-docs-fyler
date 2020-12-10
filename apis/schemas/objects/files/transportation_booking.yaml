@@ -18,7 +18,7 @@ properties:
     type: string
     description: |
       Indicates purpose of the expense.
-    expense: Team trip
+    example: Team trip
   last_updater:
     allOf:
       - $ref: '../minimals/employee.yaml'
