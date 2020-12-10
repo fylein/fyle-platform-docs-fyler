@@ -2942,6 +2942,308 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/objects_reports'
+    files:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >
+                An unique string to identify the File. Ignore this field when
+                used as part of a POST request to create an File.
+            name:
+              type: string
+              description: |
+                Name of the file.
+            password:
+              type: string
+              description: |
+                Password for the file.
+            content_type:
+              type: string
+              description: |
+                Content type of the file.
+          required:
+            - name
+            - content_type
+      required:
+        - data
+    files_files:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >
+            An unique string to identify the File. Ignore this field when used
+            as part of a POST request to create an File.
+          example: fibdwiqi0wo
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        name:
+          type: string
+          description: |
+            Name of the file.
+          example: Starbucks receipt
+        password:
+          type: string
+          description: |
+            Password for the file.
+          example: password
+        content_type:
+          type: string
+          description: |
+            Content type of the file.
+        download_url:
+          type: string
+          description: |
+            Contains the URL to download the file.
+        upload_url:
+          type: string
+          description: |
+            Contains the URL where file is to be uploaded.
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this expense.
+    post_files:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/files
+        data:
+          $ref: '#/components/schemas/files_files'
+    files_expense:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            file_id:
+              type: string
+              description: >
+                Indicates to which expense this file belongs to. Ignore this
+                field when used as part of a POST request to create an File.
+            expense_id:
+              type: string
+              description: |
+                Indicates of which expense this file belongs to.
+            purpose:
+              type: string
+              description: |
+                Indicates purpose of the expense.
+          required:
+            - file_id
+      required:
+        - data
+    objects_expense:
+      type: object
+      properties:
+        file_id:
+          type: string
+          description: >
+            An unique string to identify the File. Ignore this field when used
+            as part of a POST request to create an File.
+          example: fibdwiqi0wo
+        expense_id:
+          type: string
+          description: |
+            Indicates to which expense this file belongs to.
+          example: txdh9wiw0o
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        purpose:
+          type: string
+          description: |
+            Indicates purpose of the expense.
+          example: Team lunch
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this expense.
+    post_expense:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/expense_files
+        data:
+          $ref: '#/components/schemas/objects_expense'
+    transportation_booking:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            file_id:
+              type: string
+              description: >
+                Indicates to which expense this file belongs to. Ignore this
+                field when used as part of a POST request to create an File.
+            transportation_booking_id:
+              type: string
+              description: |
+                Indicates of which transportation booking this file belongs to.
+            purpose:
+              type: string
+              description: |
+                Indicates purpose of the expense.
+          required:
+            - file_id
+      required:
+        - data
+    files_transportation_booking:
+      type: object
+      properties:
+        file_id:
+          type: string
+          description: >
+            An unique string to identify the File. Ignore this field when used
+            as part of a POST request to create an File.
+          example: fibdwiqi0wo
+        transportation_booking_id:
+          type: string
+          description: |
+            Indicates to which transportation booking this file belongs to.
+          example: tbu82ue9sk
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        purpose:
+          type: string
+          description: |
+            Indicates purpose of the expense.
+          example: Team trip
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this expense.
+    post_transportation_booking:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/transportation_booking_files
+        data:
+          $ref: '#/components/schemas/files_transportation_booking'
+    advance_request:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            advance_request_id:
+              type: string
+              description: >
+                Indicates to which advance request this file belongs to. Ignore
+                this field when used as part of a POST request to create an
+                File.
+            file_id:
+              type: string
+              description: |
+                Indicates of which advance request this file belongs to.
+            purpose:
+              type: string
+              description: |
+                Indicates purpose of the advance request.
+          required:
+            - file_id
+      required:
+        - data
+    files_advance_request:
+      type: object
+      properties:
+        file_id:
+          type: string
+          description: >
+            An unique string to identify the File. Ignore this field when used
+            as part of a POST request to create an File.
+          example: fibdwiqi0wo
+        advance_request_id:
+          type: string
+          description: |
+            Indicates to which advance request this file belongs to.
+          example: ar8du9i0w10
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        purpose:
+          type: string
+          description: |
+            Indicates purpose of the expense.
+          example: Team trip
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this expense.
+    post_advance_request:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/advance_request_files
+        data:
+          $ref: '#/components/schemas/files_advance_request'
+    files_email:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            file_id:
+              type: string
+              description: |
+                Indicates of which email this file belongs to.
+            email_meta_data:
+              type: object
+              description: |
+                Email meta data.
+          required:
+            - file_id
+      required:
+        - data
+    objects_email:
+      type: object
+      properties:
+        file_id:
+          type: string
+          description: >
+            An unique string to identify the File. Ignore this field when used
+            as part of a POST request to create an File.
+          example: fibdwiqi0wo
+        email_meta_data:
+          type: object
+          description: |
+            Email meta data.
+        created_at:
+          $ref: '#/components/schemas/created_at'
+        updated_at:
+          $ref: '#/components/schemas/updated_at'
+        last_updater:
+          allOf:
+            - $ref: '#/components/schemas/employee'
+          description: |
+            Details of employee who updated this expense.
+    post_email:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /fyler/email_files
+        data:
+          $ref: '#/components/schemas/objects_email'
   parameters:
     created_at:
       in: query
@@ -3082,6 +3384,21 @@ tags:
   - name: Report Stats
     description: |
       This API gives you stats of your report.
+  - name: Files
+    description: |
+      Creates a file.
+  - name: Expense Files
+    description: |
+      Create a expense file.
+  - name: Transportation Booking Files
+    description: |
+      Creates a transportation booking file.
+  - name: Advance Request Files
+    description: |
+      Creates a advance request file.
+  - name: Email Files
+    description: |
+      Creates a email file.
 paths:
   '/fyler/projects/{id}':
     get:
@@ -3715,6 +4032,141 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/responses_reports'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /fyler/files:
+    post:
+      tags:
+        - Files
+      summary: Creates a file
+      description: |
+        It creates a file.
+      operationId: post-files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/files'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_files'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /fyler/expense_files:
+    post:
+      tags:
+        - Files
+      summary: Creates a expense file
+      description: |
+        It creates a expense file.
+      operationId: post-expense-files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/files_expense'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_expense'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /fyler/transportation_booking_files:
+    post:
+      tags:
+        - Files
+      summary: Creates a transportation booking file
+      description: |
+        It creates a transportation booking file.
+      operationId: post-transportation-booking-files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/transportation_booking'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_transportation_booking'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /fyler/advance_request_files:
+    post:
+      tags:
+        - Files
+      summary: Creates a advance request file
+      description: |
+        It creates a advance request file.
+      operationId: post-advance-request-files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/advance_request'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_advance_request'
+        '401':
+          description: Unauthorised request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+  /fyler/email_files:
+    post:
+      tags:
+        - Files
+      summary: Creates a email file
+      description: |
+        It creates a email file.
+      operationId: post-email-files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/files_email'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post_email'
         '401':
           description: Unauthorised request
           content:
