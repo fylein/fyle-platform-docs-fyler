@@ -1,5 +1,5 @@
 type: object
 properties:
   data:
-    $ref: '../objects/expenses.yaml'
+    $ref: '../objects/policy_test_expenses.yaml'
 required: [ data ]

@@ -5,7 +5,6 @@ properties:
     maxLength: 255
     example: txg3053jg33
     description: An unique string to identify the Expense. Ignore this field when used as part of a POST request to create an Expense.
-    readOnly: true
   employee_id:
     $ref: 'commons/employee_id.yaml'
   employee:
@@ -48,14 +47,12 @@ properties:
     example: 1984.18
   policy_amount:
     type: number
-    readOnly: true
     description: |
       The expense amount which is modified by policy.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
     example: 1500.0
   admin_amount:
     type: number
-    readOnly: true
     description: |
       The expense amount which is modified by admin or approver.
       The amount will be in the currency that the organization is setup with in case of GET requests. <br>
@@ -114,14 +111,12 @@ properties:
       - 'PAYMENT_PENDING'
       - 'APPROVED'
     description: The state of the Expense.
-    readOnly: true
   source_account_id:
     type: string
   source_account:
     $ref: 'minimals/source_account.yaml'
   invoice_number:
     type: string
-    readOnly: true
     description: |
       invoice number from the receipt.
   billable:
@@ -137,7 +132,6 @@ properties:
     $ref: 'commons/updated_at.yaml'
   expense_number:
     type: string
-    readOnly: true
     description: |
       This is user visible identifier for an expense.
       This field can be used as reference in UI.
@@ -153,7 +147,6 @@ properties:
   reported_at:
     type: string
     format: date-time
-    readOnly: true
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Expense was submitted via a Report to the Approvers.
       If the Expense is not added to a Report yet or if the Report is not yet submitted, this could be null.
@@ -161,13 +154,11 @@ properties:
     $ref: 'minimals/report.yaml'
   physical_bill:
     type: boolean
-    readOnly: true
     description: |
       This field indicated whether physical bill was received or not.
     example: true
   physical_bill_at:
     type: string
-    readOnly: true
     format: date-time
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp indicating when the Expense's physical bill was submitted.
@@ -176,14 +167,12 @@ properties:
     type: boolean
     description: |
       Indicates whether the Expense is verified or not
-    readOnly: true
   verified_at:
     type: string
     format: date-time
     description: |
       RFC 3339, section 5.6 "https://tools.ietf.org/html/rfc3339#section-5.6" compliant timestamp on which the Expense was verified.
       If the Expense is not verified yet, this could be null. <br>
-    readOnly: true
   vendor:
     type: string
     example: Uber
@@ -270,7 +259,6 @@ properties:
     type: boolean
     description: |
       Returns if there are file attachments that the Expense has. Usually the image of the receipts are added as attachments to the Expenses.
-    readOnly: true
   attachments:
     description: |
       returns reference to files API.
@@ -283,19 +271,16 @@ properties:
       $ref: 'custom_properties.yaml'
   is_policy_flagged:
     type: boolean
-    readOnly: true
     description:
       This field indicates whether policy execution has flagged this expenses or not.
     example: false
   is_manual_flagged:
     type: boolean
-    readOnly: true
     description: |
       This field indicates whether this expenses was manually flagged by approver or finance or admin.
     example: true
   policy_state:
     type: string
-    readOnly: true
     enum:
       - FAILED
       - SUCCESS
@@ -305,25 +290,18 @@ properties:
       If this field is null then its policy has not yet run on this expenses.
   extracted_data:
     type: object
-    readOnly: true
   transcribed_data:
     type: object
-    readOnly: true
   is_user_review_needed:
     type: boolean
-    readOnly: true
   is_mandatory_fields_present:
     type: boolean
-    readOnly: true
   is_receipt_required:
     type: boolean
-    readOnly: true
   is_holiday_expense:
     type: boolean
-    readOnly: true
   risk_state:
     type: string
-    readOnly: true
     enum:
       - HIGH_RISK
       - MODERATE_RISK
@@ -339,17 +317,14 @@ properties:
     type: number
   personal_card_transaction:
     type: object
-    readOnly: true
     description: |
       This key contains details about personal card transaction linked to this expense.
   corporate_credit_card_transaction:
     type: object
-    readOnly: true
     description: |
       This key contains details about corporate card transaction linked to this expense.
   expense_approvals:
     type: array
-    readOnly: true
     items:
       $ref: 'commons/approvals.yaml'
     example:
@@ -359,7 +334,6 @@ properties:
         state: APPROVAL_PENDING
   last_updater_id:
     type: string
-    readOnly: true
     description: |
       This represents the id of employee who updated this expense.
     example: "ouGgsdfdq"
