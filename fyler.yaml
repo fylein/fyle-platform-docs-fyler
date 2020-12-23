@@ -4068,7 +4068,7 @@ paths:
   /fyler/expense_files:
     post:
       tags:
-        - Files
+        - Expense Files
       summary: Creates a expense file
       description: |
         It creates a expense file.
@@ -4095,7 +4095,7 @@ paths:
   /fyler/transportation_booking_files:
     post:
       tags:
-        - Files
+        - Transportation Booking Files
       summary: Creates a transportation booking file
       description: |
         It creates a transportation booking file.
@@ -4122,7 +4122,7 @@ paths:
   /fyler/advance_request_files:
     post:
       tags:
-        - Files
+        - Advance Request Files
       summary: Creates a advance request file
       description: |
         It creates a advance request file.
@@ -4149,7 +4149,7 @@ paths:
   /fyler/email_files:
     post:
       tags:
-        - Files
+        - Email Files
       summary: Creates a email file
       description: |
         It creates a email file.
