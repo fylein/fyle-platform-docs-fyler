@@ -21,7 +21,7 @@ get:
           schema:
             $ref: '../schemas/responses/get/cost_centers@{id}.yaml'
     '401':
-      description: Unauthoried request
+      description: Unauthorized request
       content:
         application/json:
           schema:

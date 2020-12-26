@@ -3885,7 +3885,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/cost_centers@{id}'
         '401':
-          description: Unauthoried request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -3911,7 +3911,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_cost_centers'
         '401':
-          description: Unauthoried request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -3939,7 +3939,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/expenses@{id}'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -3964,7 +3964,7 @@ paths:
         '200':
           description: OK
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4050,7 +4050,7 @@ paths:
                         message: Invalid or duplicate project code
                   - $ref: '#/components/schemas/json_parsing_error'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4075,7 +4075,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_employees'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4364,7 +4364,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_expense_fields'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4408,7 +4408,7 @@ paths:
                         message: Invalid amount
                   - $ref: '#/components/schemas/json_parsing_error'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4441,7 +4441,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/responses_reports'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4468,7 +4468,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/post_files'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4495,7 +4495,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/post_expense'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4522,7 +4522,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/post_transportation_booking'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4549,7 +4549,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/post_advance_request'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:
@@ -4576,7 +4576,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/post_email'
         '401':
-          description: Unauthorised request
+          description: Unauthorized request
           content:
             application/json:
               schema:

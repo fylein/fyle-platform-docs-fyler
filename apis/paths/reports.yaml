@@ -1,7 +1,7 @@
 post:
   tags:
     - Reports
-  summary: Creates a report
+  summary: Create a report
   description: |
     It creates single report at a time.
   operationId: post-reports
@@ -19,7 +19,7 @@ post:
           schema:
             $ref: '../schemas/responses/post/reports.yaml'
     '401':
-      description: Unauthorised request
+      description: Unauthorized request
       content:
         application/json:
           schema:

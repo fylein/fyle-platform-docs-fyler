@@ -66,7 +66,7 @@ post:
                 $ref: '../schemas/objects/expenses.yaml'
 
     '401':
-      description: Unauthorised request
+      description: Unauthorized request
       content:
         application/json:
           schema:

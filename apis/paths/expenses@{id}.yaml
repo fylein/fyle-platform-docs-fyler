@@ -21,7 +21,7 @@ get:
           schema:
             $ref: '../schemas/responses/get/expenses@{id}.yaml'
     '401':
-      description: Unauthorised request
+      description: Unauthorized request
       content:
         application/json:
           schema:
@@ -53,7 +53,7 @@ delete:
       #       $ref: '../schemas/responses/delete/expenses.yaml'
 
     '401':
-      description: Unauthorised request
+      description: Unauthorized request
       content:
         application/json:
           schema:
