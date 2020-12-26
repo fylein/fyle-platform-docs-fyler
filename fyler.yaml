@@ -4423,7 +4423,7 @@ paths:
     post:
       tags:
         - Reports
-      summary: Creates a report
+      summary: Create a report
       description: |
         It creates single report at a time.
       operationId: post-reports
