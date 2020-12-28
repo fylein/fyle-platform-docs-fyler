@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Cost Centers
+  summary: List cost centers
+  operationId: get-cost-centers
+  parameters:
+    - $ref: '../main.yaml#/components/parameters/offsetParam'
+    - $ref: '../main.yaml#/components/parameters/limitParam'
+    - $ref: '../main.yaml#/components/parameters/isEnabledParam'
+    - $ref: '../main.yaml#/components/parameters/orderParam'
+    - $ref: '../main.yaml#/components/parameters/createdAtParam'
+    - $ref: '../main.yaml#/components/parameters/updatedAtParam'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              $ref: '../main.yaml#/components/schemas/countField'
+              # offset:
+              #   $ref: '../commons/offset.yaml'
+              # limit:
+              #   $ref: '../commons/limit.yaml'
+              # url:
+              #   type: string
+              #   example: '/fyler/cost_centers'
+              # data:
+              #   type: array
+              #   items:
+              #     $ref: '../../objects/cost_centers.yaml'
+            # $ref: '../api/schemas/responses/get/cost_centers.yaml'
+    '401':
+      $ref: '../main.yaml#/components/schemas/Error401'

@@ -1,0 +1,64 @@
+offsetParam:
+  in: query
+  name: offset
+  description: |
+    Offset is used to skip that many number of objects before counting.
+  schema:
+    type: integer
+    example: 10
+
+limitParam:
+  in: query
+  name: limit
+  description: |
+    A limit on the number of objects to be returned. Allowed values are from 1 to 200.
+  schema:
+    type: integer
+    example: 100
+    maximum: 200
+    default: 50
+
+isEnabledParam:
+  in: query
+  name: is_enabled
+  description: |
+    This param is used to filter records.
+    Supported operators are `eq`.<br>
+  schema:
+    type: string
+    example: 'eq.true'
+
+orderParam:
+  in: query
+  name: order
+  description: |
+    use comma separated column names for sorting the results.
+    For sorting in descending order, use `column_name.desc`
+  schema:
+    type: string
+    example: 'updated_at.desc,id'
+    default: 'updated_at.desc,id'
+
+createdAtParam:
+  in: query
+  name: created_at
+  description: |
+    Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS dot pattern.<br>
+    Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+    created_at=gte.2020-06-01T00:00:00.000Z filters all employees created on or after 1st Jun 2020.<br>
+    created_at=gte.2020-06-01T00:00:00.000Z&created_at=lt.2020-07-01T00:00:00.000Z filters objects `created` in the month of Jun 2020.<br>
+  schema:
+    type: string
+    example: 'gte.2020-06-01T00:00:00.000Z'
+
+updatedAtParam:
+  in: query
+  name: updated_at
+  description: |
+    Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS dot pattern.<br>
+    Supported operators are `gte`,`lte`,`gt`,`lt`.<br>
+    updated_at=gte.2020-06-01T00:00:00.000Z filters all employees updated on or after 1st Jun 2020.<br>
+    updated_at=gte.2020-06-01T00:00:00.000Z&updated_at=lt.2020-07-01T00:00:00.000Z filters objects `updated` in the month of Jun 2020.<br>
+  schema:
+    type: string
+    example: 'gte.2020-06-01T00:00:00.000Z'

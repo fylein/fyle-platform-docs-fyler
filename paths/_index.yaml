@@ -1,0 +1,2 @@
+/fyler/cost_centers:
+  $ref: 'cost_centers.yaml'

@@ -2,11 +2,11 @@
 
 ## Prerequisites ##
 
-Install speccy - this will allow you to combine 
+Install swagger-cli - this will allow you to combine 
 
-    npm install speccy -g
+    npm install -g swagger-cli
 
 ## Building ##
 
-    speccy resolve apis/main.yaml -o fyler.yaml
+    swagger-cli bundle -o fyler.yaml -t yaml -r main.yaml
 
