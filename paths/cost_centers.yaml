@@ -4,12 +4,12 @@ get:
   summary: List cost centers
   operationId: get-cost-centers
   parameters:
-    - $ref: '../main.yaml#/components/parameters/offsetParam'
-    - $ref: '../main.yaml#/components/parameters/limitParam'
-    - $ref: '../main.yaml#/components/parameters/isEnabledParam'
-    - $ref: '../main.yaml#/components/parameters/orderParam'
-    - $ref: '../main.yaml#/components/parameters/createdAtParam'
-    - $ref: '../main.yaml#/components/parameters/updatedAtParam'
+    - $ref: '../main.yaml#/components/parameters/offset'
+    - $ref: '../main.yaml#/components/parameters/limit'
+    - $ref: '../main.yaml#/components/parameters/is_enabled'
+    - $ref: '../main.yaml#/components/parameters/order'
+    - $ref: '../main.yaml#/components/parameters/created_at'
+    - $ref: '../main.yaml#/components/parameters/updated_at'
 
   responses:
     '200':

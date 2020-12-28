@@ -1,4 +1,4 @@
-offsetParam:
+offset:
   in: query
   name: offset
   description: |
@@ -7,7 +7,7 @@ offsetParam:
     type: integer
     example: 10
 
-limitParam:
+limit:
   in: query
   name: limit
   description: |
@@ -18,7 +18,7 @@ limitParam:
     maximum: 200
     default: 50
 
-isEnabledParam:
+is_enabled:
   in: query
   name: is_enabled
   description: |
@@ -28,7 +28,7 @@ isEnabledParam:
     type: string
     example: 'eq.true'
 
-orderParam:
+order:
   in: query
   name: order
   description: |
@@ -39,7 +39,7 @@ orderParam:
     example: 'updated_at.desc,id'
     default: 'updated_at.desc,id'
 
-createdAtParam:
+created_at:
   in: query
   name: created_at
   description: |
@@ -51,7 +51,7 @@ createdAtParam:
     type: string
     example: 'gte.2020-06-01T00:00:00.000Z'
 
-updatedAtParam:
+updated_at:
   in: query
   name: updated_at
   description: |

@@ -4,7 +4,7 @@ out_single:
   type: object
   properties:
     id:
-      $ref: '../main.yaml#/components/schemas/fields/idStr'
+      $ref: '../main.yaml#/components/schemas/fields/id_str'
     created_at:
       $ref: '../main.yaml#/components/schemas/fields/created_at'
     updated_at:
@@ -51,10 +51,6 @@ out_many:
       type: array
       items:
         $ref: '../main.yaml#/components/schemas/cost_centers/out_single'
-  # $ref: '../api/schemas/responses/get/cost_centers.yaml'
-
-
-
 
 # out_minimal:
 

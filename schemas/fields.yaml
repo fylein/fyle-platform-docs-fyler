@@ -1,4 +1,4 @@
-idStr:
+id_str:
   type: string
   maxLength: 255
   description: |
@@ -6,7 +6,7 @@ idStr:
   readOnly: true
   example: '1'
 
-idInt:
+id_int:
   description: |
     Identify the object
   type: integer
