@@ -42,7 +42,7 @@ post:
   summary:
     Create or update expense
   description: |
-    Creates or updates expenses in bulk. This API is written in such a way to support bulk operations only.
+    Creates or update an expense.
   operationId: post-expenses
   requestBody:
     required: true

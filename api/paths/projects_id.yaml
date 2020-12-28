@@ -1,25 +1,24 @@
 get:
   tags:
-    - Cost Centers
-  summary: Retrieve a cost center
-  operationId: retrieve-cost-center
+    - Projects
+  summary: Retrieve a project
+  operationId: 0-get-project
   parameters:
     - in: path
       name: id
       required: true
       description: |
-        ID of the cost center to be retrieved.
+        Id of the project to be retrieved.
       schema:
         type: string
-        example: 'ccnrigg2nl2'
-
+        example: 'pjwjgwlgnwk'
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/get/cost_centers@{id}.yaml'
+            $ref: '../schemas/responses/get/projects_id.yaml'
     '401':
       description: Unauthorized request
       content:

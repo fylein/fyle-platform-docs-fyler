@@ -24,10 +24,10 @@ jobs:
         node-version: 10.x
     
     - name: Install dependencies
-      run: npm install -g @redocly/openapi-cli@0.12.16
+      run: npm install -g speccy
 
     - name: Update source code
-      run: openapi bundle --output fyler.yaml apis/main.yaml
+      run: speccy resolve api/main.yaml -o fyler.yaml
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v5

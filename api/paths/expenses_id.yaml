@@ -19,7 +19,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../schemas/responses/get/expenses@{id}.yaml'
+            $ref: '../schemas/responses/get/expenses_id.yaml'
     '401':
       description: Unauthorized request
       content:

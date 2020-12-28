@@ -8,7 +8,7 @@ info:
     email: support@fylehq.com
 servers:
   - url: 'https://platform.fylehq.com/v1'
-    description: Live Server
+    description: Testing Server
 
 components:
   securitySchemes:
@@ -18,8 +18,6 @@ components:
         authorizationCode:
           authorizationUrl: 'https://accounts.fylehq.com/app/developers/#/oauth/authorize'
           tokenUrl: 'https://accounts.fylehq.com/oauth/token'
-          scopes:
-            fyler.*: Grant all FYLER actions
 
 tags:
   - name: My Profile
@@ -88,15 +86,15 @@ tags:
 
 paths:
   /fyler/projects/{id}:
-    $ref: 'paths/projects@{id}.yaml'
+    $ref: 'paths/projects_id.yaml'
   /fyler/projects:
     $ref: 'paths/projects.yaml'
   /fyler/cost_centers/{id}:
-    $ref: 'paths/cost_centers@{id}.yaml'
+    $ref: 'paths/cost_centers_id.yaml'
   /fyler/cost_centers:
     $ref: 'paths/cost_centers.yaml'
   /fyler/expenses/{id}:
-    $ref: 'paths/expenses@{id}.yaml'
+    $ref: 'paths/expenses_id.yaml'
   /fyler/expenses:
     $ref: 'paths/expenses.yaml'
   /fyler/my_profile:
