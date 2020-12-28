@@ -85,15 +85,12 @@ components:
           authorizationUrl: 'https://accounts.fylehq.com/app/developers/#/oauth/authorize'
           tokenUrl: 'https://accounts.fylehq.com/oauth/token'
   parameters:
-    $ref: './parameters/_index.yaml'
+    $ref: './api/parameters.yaml'
   schemas:
-    $ref: './schemas/_index.yaml'
-  # responses:
-  #   $ref: './responses/_index.yaml'
+    $ref: './core/_index.yaml'
 
- 
 paths:
-  $ref: './paths/_index.yaml'
+  $ref: './api/_index.yaml'
   # /fyler/projects/{id}:
   #   $ref: 'paths/projects_id.yaml'
   # /fyler/projects:

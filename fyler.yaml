@@ -195,6 +195,15 @@ components:
         readOnly: true
         example: '2020-06-11T13:14:55.201598'
     errors:
+      '400':
+        type: object
+        properties:
+          message:
+            enum:
+              - Unable to process JSON
+            type: string
+            description: |
+              This error means that incoming json is not in right format.
       '401':
         type: object
         properties:
@@ -214,6 +223,50 @@ components:
             type: string
             description: |
               This error means current user does not have enough permissions to perform this operation.
+      '500':
+        type: object
+        properties:
+          message:
+            enum:
+              - Internal server error
+            type: string
+            description: |
+              This error means that its an issue at our end. Please contact us if you are facing this issue.
+      '502':
+        type: object
+        properties:
+          message:
+            enum:
+              - Bad Gateway
+            type: string
+            description: |
+              This error means that our server is down (yes, it happens).This is very unlikely.
+              Please contact us if you are facing this issue.
+      '504':
+        type: object
+        properties:
+          message:
+            enum:
+              - Gateway Timeout
+            type: string
+            description: |
+              This error means request took more than allowed time to complete and got terminated at api gateway.<br/>
+              Please contact us if you are facing this issue.
+      400_bulk:
+        type: object
+        properties:
+          row:
+            type: integer
+            description: |
+              This holds the info of which row contains bad data.
+          key:
+            type: string
+            description: |
+              This helps in identifying the error by unique key.
+          message:
+            type: string
+            description: |
+              This explains what the error is in `human readable` text.
     cost_centers:
       out_single:
         type: object
@@ -495,6 +548,89 @@ paths:
                           description: |
                             This field specifies if the current cost center is enabled or not.
                           example: true
+        '401':
+          type: object
+          properties:
+            message:
+              enum:
+                - invalid token
+              type: string
+              description: |
+                This error means that the input access token is either not issued by Fyle or has expired.
+                You need to generate a new access token.
+  '/fyler/cost_centers/{id}':
+    get:
+      tags:
+        - Cost Centers
+      summary: Retrieve a cost center
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: |
+            ID of the cost center to be retrieved.
+          schema:
+            type: string
+            example: ccnrigg2nl2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    maxLength: 255
+                    description: |
+                      Identify the object
+                    readOnly: true
+                    example: '1'
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: |
+                      <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339, section 5.6 compliant timestamp.</a>
+                      Signifies when this object was created.
+                    readOnly: true
+                    example: '2020-06-01T13:14:54.804'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: |
+                      <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339, section 5.6 compliant timestamp.</a>
+                      Signifies when this object was updated.
+                    readOnly: true
+                    example: '2020-06-11T13:14:55.201598'
+                  org_id:
+                    type: string
+                    description: |
+                      The unique id of the Organization to which the object is associated.
+                    example: orNVthTo2Zyo
+                  name:
+                    type: string
+                    maxLength: 255
+                    description: |
+                      This represents the name of the cost center.
+                    example: sales & marketing
+                  code:
+                    type: string
+                    maxLength: 255
+                    description: |
+                      This represents the code of cost center.
+                    example: sm-cc
+                  description:
+                    type: string
+                    maxLength: 255
+                    description: |
+                      This field provides a decription about the cost center.
+                    example: Initial Cost center
+                  is_enabled:
+                    type: boolean
+                    description: |
+                      This field specifies if the current cost center is enabled or not.
+                    example: true
         '401':
           type: object
           properties:

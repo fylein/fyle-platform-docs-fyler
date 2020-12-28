@@ -1,0 +1,7 @@
+/fyler/cost_centers:
+  get:
+    $ref: 'cost_centers.yaml#/list'
+
+/fyler/cost_centers/{id}:
+  get:
+    $ref: 'cost_centers.yaml#/get'

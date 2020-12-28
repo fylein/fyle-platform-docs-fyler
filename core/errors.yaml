@@ -1,0 +1,79 @@
+400:
+  type: object
+  properties:
+    message:
+      enum:
+        - Unable to process JSON
+      type: string
+      description: |
+        This error means that incoming json is not in right format.
+
+401:
+  type: object
+  properties:
+    message:
+      enum:
+        - invalid token
+      type: string
+      description: |
+        This error means that the input access token is either not issued by Fyle or has expired.
+        You need to generate a new access token.
+
+403:
+  type: object
+  properties:
+    message:
+      enum:
+        - Forbidden
+      type: string
+      description: |
+        This error means current user does not have enough permissions to perform this operation.
+
+500:
+  type: object
+  properties:
+    message:
+      enum:
+        - Internal server error
+      type: string
+      description: |
+        This error means that its an issue at our end. Please contact us if you are facing this issue.
+
+502:
+  type: object
+  properties:
+    message:
+      enum:
+        - Bad Gateway
+      type: string
+      description: |
+        This error means that our server is down (yes, it happens).This is very unlikely.
+        Please contact us if you are facing this issue.
+
+504:
+  type: object
+  properties:
+    message:
+      enum:
+        - Gateway Timeout
+      type: string
+      description: |
+        This error means request took more than allowed time to complete and got terminated at api gateway.<br/>
+        Please contact us if you are facing this issue.
+
+400_bulk:
+  type: object
+  properties:
+    row:
+      type: integer
+      description: |
+        This holds the info of which row contains bad data.
+    key:
+      type: string
+      description: |
+        This helps in identifying the error by unique key.
+    message:
+      type: string
+      description: |
+        This explains what the error is in `human readable` text.
+

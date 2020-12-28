@@ -1,6 +1,29 @@
 get:
   tags:
     - Cost Centers
+  summary: Retrieve a cost center
+  parameters:
+    - in: path
+      name: id
+      required: true
+      description: |
+        ID of the cost center to be retrieved.
+      schema:
+        type: string
+        example: 'ccnrigg2nl2'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../main.yaml#/components/schemas/cost_centers/out_single'
+    '401':
+      $ref: '../main.yaml#/components/schemas/errors/401'
+
+list:
+  tags:
+    - Cost Centers
   summary: List cost centers
   operationId: get-cost-centers
   parameters:
@@ -10,7 +33,6 @@ get:
     - $ref: '../main.yaml#/components/parameters/order'
     - $ref: '../main.yaml#/components/parameters/created_at'
     - $ref: '../main.yaml#/components/parameters/updated_at'
-
   responses:
     '200':
       description: OK
