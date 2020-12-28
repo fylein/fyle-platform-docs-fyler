@@ -24,10 +24,10 @@ jobs:
         node-version: 10.x
     
     - name: Install dependencies
-      run: npm install -g speccy
+      run: npm install -g swagger-cli
 
-    - name: Update source code
-      run: speccy resolve api/main.yaml -o fyler.yaml
+    - name: Bundle yaml file
+      run: swagger-cli bundle -o fyler.yaml -t yaml -r main.yaml
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v5
