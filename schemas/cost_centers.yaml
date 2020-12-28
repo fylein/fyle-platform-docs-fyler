@@ -1,1 +1,60 @@
-costCenterIn:
+# in:
+
+out_single:
+  type: object
+  properties:
+    id:
+      $ref: '../main.yaml#/components/schemas/fields/idStr'
+    created_at:
+      $ref: '../main.yaml#/components/schemas/fields/created_at'
+    updated_at:
+      $ref: '../main.yaml#/components/schemas/fields/updated_at'
+    org_id:
+      $ref: '../main.yaml#/components/schemas/fields/org_id'
+    name:
+      type: string
+      maxLength: 255
+      description: |
+        This represents the name of the cost center.
+      example: 'sales & marketing'
+    code:
+      type: string
+      maxLength: 255
+      description: |
+        This represents the code of cost center.
+      example: 'sm-cc'
+    description:
+      type: string
+      maxLength: 255
+      description: |
+        This field provides a decription about the cost center.
+      example: 'Initial Cost center'
+    is_enabled:
+      type: boolean
+      description: |
+        This field specifies if the current cost center is enabled or not.
+      example: true
+
+out_many:
+  type: object
+  properties:
+    count:
+      $ref: '../main.yaml#/components/schemas/fields/count'
+    offset:
+      $ref: '../main.yaml#/components/schemas/fields/offset'
+    limit:
+      $ref: '../main.yaml#/components/schemas/fields/limit'
+    url:
+      type: string
+      example: '/fyler/cost_centers'
+    data:
+      type: array
+      items:
+        $ref: '../main.yaml#/components/schemas/cost_centers/out_single'
+  # $ref: '../api/schemas/responses/get/cost_centers.yaml'
+
+
+
+
+# out_minimal:
+

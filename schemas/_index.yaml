@@ -1,8 +1,8 @@
-countField:
-  count:
-    description: |
-      The total number of objects that can be requested.
-    type: integer
-    example: 10000
+fields:
+  $ref: './fields.yaml'
 
-$ref: './errors.yaml'
+errors:
+  $ref: './errors.yaml'
+
+cost_centers:
+  $ref: './cost_centers.yaml'
